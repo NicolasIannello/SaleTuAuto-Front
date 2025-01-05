@@ -39,17 +39,15 @@ export class ContactoComponent {
   enviar(){
     for (let i = 0; i < this.campos.length; i++) {
       if(this.campos[i]=='') this.flag=false;
-        this.alertas[i]= this.campos[i]=='*' ? 'El campo es obligatorio' : '';
-    }
+      this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
+    }    
 
     if(this.flag){
       let dato={
         'nombre_apellido':this.campos[0],
         'mail':this.campos[1],
-        // 'asunto':this.campos[2],
-        // 'como_encontro':this.campos[3],
-        'mensaje':this.campos[4],
-        'mensaje2':this.campos[4].replace(/\n/g, '<br>'),
+        'mensaje':this.campos[2],
+        'mensaje2':this.campos[2].replace(/\n/g, '<br>'),
       }
       
       this.api.contacto(dato).subscribe({
