@@ -1,0 +1,35 @@
+<div class="svh">
+    <div class="margin5 seccion" style="width: 100%;">
+        <div class="textRed" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Comunícate con nosotros</div>
+        <div style="width: 60%;">
+            <div class="linea" style="width: 100%;">
+                <div class="col-3" style="width: 100%;">
+                    <label class="textBlue" for="nomapel">Nombre y apellido </label><span class="msg">{{alertas[0]}}</span>
+                    <input class="effect-1" type="text" placeholder="Nombre y apellido" [(ngModel)]="campos[0]">
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="linea" style="width: 100%;">
+                <div class="col-3" style="width: 100%;">
+                    <label class="textBlue" for="mail">E-Mail </label><span class="msg">{{alertas[1]}}</span>
+                    <input class="effect-1" type="text" placeholder="E-Mail" [(ngModel)]="campos[1]">
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="linea" style="width: 100%;">
+                <div class="col-3" style="margin-bottom: 2%; width: 100%;">
+                    <label class="textBlue">Mensaje </label><span class="msg">{{alertas[2]}}</span>
+                    <div style="display: flex;">
+                        <textarea class="effect-1" style="width: 100%; height: 300px;" placeholder="Mensaje" [(ngModel)]="campos[2]"></textarea>
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: end; width: 100%;">
+                <form #form="ngForm">
+                    <button class="boton border rounded botones" (click)="send(form)">Enviar mensaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

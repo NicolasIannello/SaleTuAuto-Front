@@ -1,1 +1,98 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.cdnfonts.com/css/avenir');
+@import url('https://fonts.cdnfonts.com/css/shameimaru-sans');
+
+:root {
+    --white: #F9F9F9;
+    --blue1: #1A1A2E;
+    --blue2: #16213e;
+    --blue3: #0f3460;
+    --red: rgb(233, 69, 96);
+}
+body {
+    font-family: Avenir;
+    margin: 0;
+}
+.glass {
+    background-color: var(--blue3);  
+}
+.glass1 {
+    background-color: var(--blue1);  
+}
+.glass2 {
+    background-color: var(--blue3);  
+}
+.glassW {
+    background-color: var(--white);  
+}
+.svh{
+    min-height: 100vh;
+    justify-content: center;
+    display: flex;
+}
+.seccion{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.margin5, .margin5text{
+    margin: 5rem;
+    padding: 1rem;
+    @media (max-width: 1000px){
+        margin-left: 2rem;
+        margin-right: 2rem;
+        .margin5text{
+            margin-top: 0rem;
+            margin-bottom: 0rem;
+        }
+    }
+}
+.textWhite{
+    color: var(--white);
+}
+.textRed{
+    color: var(--red);
+}
+.textBlue{
+    color: var(--blue2);
+}
+.borderR{
+    border-right:1px solid var(--red);
+}
+.borderL{
+    border-left:1px solid var(--red);
+}
+
+:focus{outline: none;}
+.col-3{ position: relative;}
+input, textarea{font: 15px/24px "Avenir"; color: #333; box-sizing: border-box;}
+select{font: 15px/24px "Avenir"; color: #333; box-sizing: border-box;}
+.effect-1{border: 0; background: var(--white); z-index: 0;}
+.effect-1 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--red); transition: 0.4s;}
+.effect-1:focus ~ .focus-border{width: 100%; transition: 0.4s;}
+.effect-1 ~ .focus-border2{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--blue3); transition: 0.4s;}
+.effect-1:focus ~ .focus-border2{width: 100%; transition: 0.4s;}
+
+.border{
+    border: 1px solid rgb(233, 69, 96, 0.2);
+}
+.rounded{
+    border-radius: 12px;
+}
+.msg{
+    color: red;
+    font-weight: lighter;
+}
+.boton{
+    &:hover{
+        background-color: var(--red);
+        color: var(--white);
+        cursor: pointer;
+        transition: all 250ms linear;
+    }
+}
+.botones{
+    height: 3rem;
+    width: 10rem;
+    font-size: larger;
+}
