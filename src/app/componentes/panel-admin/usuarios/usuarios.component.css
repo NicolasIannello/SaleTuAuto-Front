@@ -80,10 +80,10 @@
 }
 
 .icerrar{
-    color: var(--amarello);
+    color: var(--blue3);
     &:hover{
         cursor: pointer;
-        color: var(--blue);
+        color: var(--red);
     }
 }
 
