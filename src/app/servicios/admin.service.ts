@@ -21,4 +21,10 @@ export class AdminService {
   checkTokenA(dato:any):Observable<any>{
     return this.http.post(base_url+'/admin/renew', dato, {'headers':this.header})
   }
+  crearAdmin(dato:any):Observable<any>{
+    return this.http.post(base_url+'/admin/crearAdmin', dato, {'headers':this.header})
+  }
+  cargarAdmins(dato:any):Observable<any>{
+    return this.http.post(base_url+'/admin/admins', dato, {'headers':this.header})
+  }
 }
