@@ -30,24 +30,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    p{
+    /* p{
         font-size: xxx-large;
         @media (max-width: 920px){
-            font-size: xx-large;
+            font-size: x-large;
         }
         @media (max-width: 600px){
-            font-size: x-large;
+            font-size: large;
         }
-        span{
-            font-family: Avenir;
-            font-size: x-large;
-            @media (max-width: 920px){
-                font-size: large !important;
-            }
-            @media (max-width: 600px){
-                font-size: medium !important;
-            }
-        }
+        
+    } */
+}
+.textS{
+    font-family: Avenir;
+    font-size: x-large;
+    @media (max-width: 920px){
+        font-size: large !important;
+    }
+    @media (max-width: 600px){
+        font-size: medium !important;
     }
 }
 .shadow{

@@ -24,6 +24,14 @@ body {
 .glassW {
     background-color: var(--white);  
 }
+.glassTrue {
+    backdrop-filter: blur(17px) saturate(179%);
+    -webkit-backdrop-filter: blur(17px) saturate(179%);
+    background-color: var(--red);  
+    span{
+        color: var(--white);
+    }
+}
 .svh{
     min-height: 100vh;
     justify-content: center;
@@ -41,6 +49,14 @@ body {
     @media (max-width: 1000px){
         margin-left: 2rem;
         margin-right: 2rem;
+        .margin5text{
+            margin-top: 0rem;
+            margin-bottom: 0rem;
+        }
+    }
+    @media (max-width: 600px){
+        margin-left: 0rem;
+        margin-right: 0rem;
         .margin5text{
             margin-top: 0rem;
             margin-bottom: 0rem;
@@ -95,4 +111,47 @@ select{font: 15px/24px "Avenir"; color: #333; box-sizing: border-box;}
     height: 3rem;
     width: 10rem;
     font-size: larger;
+}
+input, select{
+    width: 100%;
+    height: 3rem;
+}
+.bgblack{
+    background-color: black;
+    color: var(--white);
+}
+.bgwhite{
+    background-color: var(--white);
+    color: var(--black);
+}
+.iboton{
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    display: flex;
+    font-size: xx-large;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        background-color: rgb(78, 78, 78);
+        color: var(--white);
+        transition: all 200ms linear;
+    }
+}
+.titulo{
+    @media (max-width: 920px){
+        font-size: xx-large !important;
+    }
+    @media (max-width: 600px){
+        font-size: x-large !important;
+    }
+}
+.text{
+    @media (max-width: 920px){
+        font-size: large !important;
+    }
+    @media (max-width: 600px){
+        font-size: x-small !important;
+    }
 }

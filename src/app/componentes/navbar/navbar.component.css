@@ -27,7 +27,7 @@
     transform: skew(0deg);
     span {
         @media (max-width: 1230px){
-            width: 7rem;
+            width: 10rem;
         }
         width: 8rem;
         align-content: center;
