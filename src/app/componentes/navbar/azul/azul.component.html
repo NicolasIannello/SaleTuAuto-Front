@@ -1,0 +1,16 @@
+<div class="navbar glass">
+    <div style="align-items: center; display: flex; height: 100%;"><div class="logo" style="cursor: pointer;" (click)="activar('')" routerLink=""><span>SALE TU AUTO</span></div></div> 
+    <div *ngIf="widthC!=undefined && cap!=undefined && widthC>cap else mobile">
+        <div class="btnnav" [ngClass]="{'activa' : activa=='usuarios'}" (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
+        <div class="btnnav" [ngClass]="{'activa' : activa=='autos'}" (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
+    </div>
+    <ng-template #mobile>
+        <div style="display: flex;">
+            <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" (click)="open()"></i>    
+        </div>
+    </ng-template>
+</div>
+<div *ngIf="widthC!=undefined && cap!=undefined && widthC<cap" class="menu glassTrue" [ngClass]="{'none' : !menuOpen}">
+    <div (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
+    <div (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
+</div>
