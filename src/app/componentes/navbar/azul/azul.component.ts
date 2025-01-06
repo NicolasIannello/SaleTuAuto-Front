@@ -12,7 +12,7 @@ import { AdminService } from '../../../servicios/admin.service';
   styleUrl: './azul.component.css'
 })
 export class AzulComponent{
-  activa:string='inicio';
+  activa:string='login';
   @Input() widthC: number | undefined;
   @Input() cap: number | undefined;
   menuOpen:boolean=false;
