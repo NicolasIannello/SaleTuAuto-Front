@@ -155,3 +155,12 @@ input, select{
         font-size: x-small !important;
     }
 }
+.oculto{
+    display: none;
+}
+.rojo{
+    color:red
+}
+.verde{
+    color:green
+}
