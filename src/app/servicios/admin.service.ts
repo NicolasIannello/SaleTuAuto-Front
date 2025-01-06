@@ -27,4 +27,7 @@ export class AdminService {
   cargarAdmins(dato:any):Observable<any>{
     return this.http.post(base_url+'/admin/admins', dato, {'headers':this.header})
   }
+  deleteUsers(dato:any):Observable<any>{
+    return this.http.post(base_url+'/admin/deleteUser', dato, {'headers':this.header})
+  }
 }

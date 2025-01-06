@@ -99,27 +99,27 @@ export class UsuariosComponent implements OnInit{
       'token':localStorage.getItem('token'),
       'tipo': 1
     }
-    // if(this.tabla){
-    //   this.api.cargarUsersDesde(dato,this.pagina*20,this.ordenar,this.orden).subscribe({
-    //     next: (value)=>{
-    //       this.Usuarios = [...value.users];
-    //       this.Total=value.total;
-    //       this.pagU=Math.ceil(this.Total/20)
-    //     },
-    //     error: (err)=>{
-    //       this.error=true;
-    //     }
-    //   })
-    // }else{
-    //   this.api.cargarAdmins(dato).subscribe({
-    //     next:(value)=> {
-    //         this.Usuarios=value.admins
-    //     },
-    //     error:(err)=> {
-    //       Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});            
-    //     },
-    //   })
-    // }
+    if(this.tabla){
+      // this.api.cargarUsersDesde(dato,this.pagina*20,this.ordenar,this.orden).subscribe({
+      //   next: (value)=>{
+      //     this.Usuarios = [...value.users];
+      //     this.Total=value.total;
+      //     this.pagU=Math.ceil(this.Total/20)
+      //   },
+      //   error: (err)=>{
+      //     this.error=true;
+      //   }
+      // })
+    }else{
+      this.api.cargarAdmins(dato).subscribe({
+        next:(value)=> {
+            this.Usuarios=value.admins
+        },
+        error:(err)=> {
+          Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});            
+        },
+      })
+    }
   }
 
   eliminar(id:string,nom:string,tipo:string){
@@ -138,16 +138,16 @@ export class UsuariosComponent implements OnInit{
           "tipo":1,
           "user":tipo
         }
-        // this.api.deleteUsers(dato).subscribe({
-        //   next:(value)=> {
-        //     if(value.ok) Swal.fire({title:'Usuario eliminado con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-        //     if(!value.ok) Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-        //     this.recargar();
-        //     },
-        //   error:(err)=> {
-        //     Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-        //   },
-        // })
+        this.api.deleteUsers(dato).subscribe({
+          next:(value)=> {
+            if(value.ok) Swal.fire({title:'Usuario eliminado con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+            if(!value.ok) Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+            this.recargar();
+            },
+          error:(err)=> {
+            Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+          },
+        })
       }
     });
   }
@@ -301,6 +301,7 @@ export class UsuariosComponent implements OnInit{
       next: (value)=> {
           if(value.ok) Swal.fire({title:'Usuario admin creado con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
           if(!value.ok) Swal.fire({title:value.msg, confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+          this.recargar();
       },
       error: (err)=> {
         Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       

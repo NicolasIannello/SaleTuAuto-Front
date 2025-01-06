@@ -4,7 +4,7 @@
             <!-- <h1 [ngClass]="{'h1btn2' : tabla, 'h1btn' : !tabla}" (click)="cambiarTabla(true)">Usuarios</h1>
             <h1 style="margin-left: 3%; margin-right: 3%;">/</h1> -->
             <!-- <h1 [ngClass]="{'h1btn' : tabla, 'h1btn2' : !tabla}" (click)="cambiarTabla(false)">Admins</h1> -->
-            <h1 class="h1btn">Admins</h1>
+            <h1 class="h1btn2">Admins</h1>
         </div>
         <div>
             <!-- <button class="boton boton2 border rounded botones" (click)="reporte()" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">Generar reporte</button> -->
@@ -119,7 +119,7 @@
                 <i class="fa-solid" [ngClass]="{'fa-circle-check verde':u['autos'], 'fa-circle-xmark rojo':!u['autos']}" style="font-size: larger; margin-right: 1%;"></i> {{u['autos'] ? 'Habilitado' : 'Inhabilitado'}}
             </div>
             <div class="celda" style="width: 10%; border-right: none; display: flex; justify-content: flex-end; font-size: medium; padding-top: 0.5%; padding-bottom: 0.5%;">
-                <i class="fa-solid fa-trash-can boton2 border rounded ibtn" (click)="eliminar(u['_id'],u['usuario'],'admin')"></i>
+                <i class="fa-solid fa-trash-can boton border rounded ibtn" (click)="eliminar(u['_id'],u['usuario'],'admin')"></i>
             </div>
         </div>
     </div>
