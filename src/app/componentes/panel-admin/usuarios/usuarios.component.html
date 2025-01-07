@@ -7,8 +7,8 @@
             <h1 class="h1btn2">Admins</h1>
         </div>
         <div>
-            <!-- <button class="boton boton2 border rounded botones" (click)="reporte()" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">Generar reporte</button> -->
-            <button class="boton boton2 border rounded botones" (click)="crearUser('admin')" >Agregar usuario</button>
+            <!-- <button class="boton border rounded botones" (click)="reporte()" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">Generar reporte</button> -->
+            <button class="boton border rounded botones" (click)="crearUser('admin')" >Agregar usuario</button>
         </div>
     </div>
     <div style="border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;"></div>
@@ -37,7 +37,7 @@
                     </select>
                     <span class="focus-border2"></span>
                 </div>
-                <button class="border rounded boton boton2 paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="buscarDato()">Buscar</button>
+                <button class="border rounded boton paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="buscarDato()">Buscar</button>
             </div>
         </div>
         <div style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%; align-items: center;">
@@ -87,18 +87,18 @@
                 <i class="fa-solid fa-at ibtn tooltip" [ngClass]="{'verde':u['validado'], 'rojo':!u['validado'] }">
                     <span class="tooltiptext glassTrue rounded border">{{u['validado'] ? 'Validado' : 'Invalidado'}}</span>
                 </i>
-                <i class="fa-regular fa-eye boton2 border rounded ibtn" (click)="ver(i)"></i>
-                <i class="fa-solid fa-pen-to-square boton2 border rounded ibtn" (click)="verCambio(i,u['_id'])"></i>
-                <i class="fa-solid fa-trash-can boton2 border rounded ibtn" (click)="eliminar(u['_id'],u['nombre'],'user')"></i>
+                <i class="fa-regular fa-eye border rounded ibtn" (click)="ver(i)"></i>
+                <i class="fa-solid fa-pen-to-square border rounded ibtn" (click)="verCambio(i,u['_id'])"></i>
+                <i class="fa-solid fa-trash-can border rounded ibtn" (click)="eliminar(u['_id'],u['nombre'],'user')"></i>
             </div>
         </div>
         <div *ngIf="Usuarios.length!=0" style="font-family: Avenir; margin-top: 2%; display: flex; justify-content: flex-end; width: 100%; align-items: center;">
             Pagina {{pagina+1}} de {{pagU}}
             <div style="margin-right: 2%; margin-left: 2%;">
-                <button class="border rounded boton boton2 paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" (click)="principio()">Principio</button>
-                <button class="border rounded boton boton2 paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="atras()">Atras</button>
-                <button class="border rounded boton boton2 paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="siguiente()">Siguiente</button>    
-                <button class="border rounded boton boton2 paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="final()">Final</button>
+                <button class="border rounded boton paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" (click)="principio()">Principio</button>
+                <button class="border rounded boton paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="atras()">Atras</button>
+                <button class="border rounded boton paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="siguiente()">Siguiente</button>    
+                <button class="border rounded boton paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="final()">Final</button>
             </div>
             Usuarios totales: {{Total}}
         </div>
@@ -403,7 +403,7 @@
         <div style="display: flex;">
             <div class="celda" style="width: 50%; display:flex; align-items:center;border-right: none;"></div>
             <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none; justify-content: flex-end;">
-                <button class="boton boton2 border rounded botones" (click)="actualizar()">Actualizar</button>
+                <button class="boton border rounded botones" (click)="actualizar()">Actualizar</button>
             </div>
         </div>
     </div>
@@ -415,8 +415,8 @@
             <i class="fa-solid fa-xmark icerrar" (click)="crearUser('tipo')"></i>
         </div>
         <div style="display: flex; justify-content: space-evenly;">
-            <button class="boton boton2 border rounded botones" style="width: 20rem;" (click)="crearUser('admin')">Crear usuario Admin</button>
-            <button class="boton boton2 border rounded botones" style="width: 20rem;" (click)="crearUser('normal')">Crear usuario Empresa / Persona</button>
+            <button class="boton border rounded botones" style="width: 20rem;" (click)="crearUser('admin')">Crear usuario Admin</button>
+            <button class="boton border rounded botones" style="width: 20rem;" (click)="crearUser('normal')">Crear usuario Empresa / Persona</button>
         </div>
     </div>
 </div> -->
@@ -453,7 +453,7 @@
             </div>
         </div>
         <div style="width: 100%; display:flex; align-items:center; border-right: none; justify-content: center;">
-            <button class="boton boton2 border rounded botones" (click)="crearAdmin()">Crear</button>
+            <button class="boton border rounded botones" (click)="crearAdmin()">Crear</button>
         </div>
     </div>
 </div>
@@ -464,8 +464,8 @@
             <i class="fa-solid fa-xmark icerrar" (click)="reporte()"></i>
         </div>
         <div style="display: flex; justify-content: space-evenly;">
-            <button class="boton boton2 border rounded botones" style="width: 20rem;" (click)="generarExcel(true)">Reporte habilitados</button>
-            <button class="boton boton2 border rounded botones" style="width: 20rem;" (click)="generarExcel(false)">Reporte NO habilitados</button>
+            <button class="boton border rounded botones" style="width: 20rem;" (click)="generarExcel(true)">Reporte habilitados</button>
+            <button class="boton border rounded botones" style="width: 20rem;" (click)="generarExcel(false)">Reporte NO habilitados</button>
         </div>
     </div>
 </div> -->

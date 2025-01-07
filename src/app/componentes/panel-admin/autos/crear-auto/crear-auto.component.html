@@ -242,12 +242,12 @@
         <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
             <span *ngFor="let src of sources">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
-                <span class="boton boton2 glass border rounded textWhite" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 1rem; cursor: pointer;" (click)="cambiarOrden(src.id)">{{src.id}}</span>
+                <span class="boton glass border rounded textWhite" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 1rem; cursor: pointer;" (click)="cambiarOrden(src.id)">{{src.id}}</span>
             </span>
         </div>
         <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;">
         <div style="display: flex; justify-content: flex-end;">
-            <button class="border rounded boton boton2 botones" (click)="crearAuto()">Crear auto</button>
+            <button class="border rounded boton botones" (click)="crearAuto()">Crear auto</button>
         </div>
     </div>
 </div>
