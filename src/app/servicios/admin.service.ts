@@ -30,4 +30,21 @@ export class AdminService {
   deleteUsers(dato:any):Observable<any>{
     return this.http.post(base_url+'/admin/deleteUser', dato, {'headers':this.header})
   }
+  cargarAutos(url:number,order:string,orden:string):Observable<any>{
+    return this.http.post(base_url+'/auto/autos?desde='+url+'&order='+order+'&orden='+orden, {'headers':this.header})
+  }
+  async crearAuto(dato:any){    
+    try {
+      const resp = await fetch(base_url+'/admin/crearAuto',{
+        method: 'POST', 
+        headers: {'Acces-Control-Allow-Origin':'*'},
+        body: dato
+      });
+
+      const data = await resp.json();
+      return data;
+    } catch (error) {
+      return false;
+    }
+  }
 }
