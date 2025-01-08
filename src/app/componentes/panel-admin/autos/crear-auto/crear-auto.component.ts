@@ -223,10 +223,10 @@ export class CrearAutoComponent {
         }else{
           Swal.fire({title:resp.msg,confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'})
         }
-        //this.cerrarModal();
+        this.cerrarModal();
       }, (err)=>{				
         Swal.fire({title:'Ocurrio un error',confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-        //this.cerrarModal();
+        this.cerrarModal();
       });
     }
   }
