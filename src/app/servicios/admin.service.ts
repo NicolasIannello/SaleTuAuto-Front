@@ -47,4 +47,7 @@ export class AdminService {
       return false;
     }
   }
+  borrarAuto(dato:any):Observable<any>{
+    return this.http.post(base_url+'/admin/borrarAuto', dato, {'headers':this.header})
+  }
 }
