@@ -1,0 +1,331 @@
+<div id="myModal" class="modal" style="overflow: auto;">
+    <div class="modal-content" style="width: 50%;">
+        <div style="display: flex; justify-content: flex-end; font-size: x-large;">
+            <i class="fa-solid fa-xmark icerrar" (click)="cerrarModal()"></i>
+        </div>
+        <!-- <label>Titulo: </label><span class="msg">*{{alertas[0]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Titulo" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['titulo']!=auto['titulo']}" [(ngModel)]="autoNuevo['titulo']">
+            <span class="focus-border2"></span>
+        </div>
+        <label>Moneda: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <select class="effect-1" [(ngModel)]="autoNuevo['moneda']" 
+            [ngClass]="{'changed': autoNuevo['moneda']!=auto['moneda']}" style="width: 100%; height: 2.5rem;">
+                <option value='ARS' selected>Peso Argentino (ARS)</option>
+                <option value='USD'>Dolar Americano (USD)</option>    
+            </select>
+            <span class="focus-border2"></span>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <select class="effect-1" [(ngModel)]="autoNuevo['base_salida']" style="width: 100%; height: 2.5rem;">
+                <option [ngValue]=true>Precio base / Precio salida</option>
+                <option [ngValue]=false>Monto arranque / Monto esperado</option>    
+            </select>
+            <span class="focus-border2"></span>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>{{autoNuevo['base_salida'] ? 'Precio base' : 'Monto arranque'}}: </label><span class="msg">*{{alertas[2]}}</span></div>
+                <input class="effect-1" type="number" placeholder="{{autoNuevo['base_salida'] ? 'Precio base' : 'Monto arranque'}}" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['precio_base']!=auto['precio_base']}" [(ngModel)]="autoNuevo['precio_base']">
+                <span class="focus-border2" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Incremento minimo: </label><span class="msg">*{{alertas[3]}}</span></div>
+                <input class="effect-1" type="number" placeholder="Incremento minimo" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['incremento']!=auto['incremento']}" [(ngModel)]="autoNuevo['incremento']">
+                <span class="focus-border2" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+                <div style="display: flex; flex-direction: row;"><label>{{autoNuevo['base_salida'] ? 'Precio salida' : 'Monto esperado'}}: </label></div>
+                <input class="effect-1" type="number" placeholder="{{autoNuevo['base_salida'] ? 'Precio salida' : 'Monto esperado'}}" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['precio_salida']!=auto['precio_salida']}" [(ngModel)]="autoNuevo['precio_salida']">
+                <span class="focus-border2" style="position: relative !important;"></span>
+            </div>
+        </div>
+        <label>Aclaracion: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Aclaracion" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['aclaracion']!=auto['aclaracion']}" [(ngModel)]="autoNuevo['aclaracion']">
+            <span class="focus-border2"></span>
+        </div> -->
+        <label>Marca: </label><span class="msg">*{{alertas[0]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Marca" style="height: 2.5rem;"
+            [ngClass]="{'changed': autoNuevo['marca']!=auto['marca']}" [(ngModel)]="autoNuevo['marca']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Modelo: </label><span class="msg">*{{alertas[1]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Modelo" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['modelo']!=auto['modelo']}" [(ngModel)]="autoNuevo['modelo']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Version: </label><span class="msg">*{{alertas[2]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Version" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['version']!=auto['version']}" [(ngModel)]="autoNuevo['version']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Año: </label><span class="msg">*{{alertas[3]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="number" placeholder="Año" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['ano']!=auto['ano']}" [(ngModel)]="autoNuevo['ano']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Kilometros: </label><span class="msg">*{{alertas[4]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="number" placeholder="Kilometros" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['kms']!=auto['kms']}" [(ngModel)]="autoNuevo['kms']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Ubicacion: </label><span class="msg">*{{alertas[5]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Ubicacion" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['ubicacion']!=auto['ubicacion']}" [(ngModel)]="autoNuevo['ubicacion']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Transmision: </label><span class="msg">*{{alertas[6]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Transmision" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['transmision']!=auto['transmision']}" [(ngModel)]="autoNuevo['transmision']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Traccion: </label><span class="msg">*{{alertas[7]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="text" placeholder="Traccion" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['traccion']!=auto['traccion']}" [(ngModel)]="autoNuevo['traccion']">
+            <span class="focus-border"></span>
+        </div>
+        <label>Precio: </label><span class="msg">*{{alertas[8]}}</span>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
+            <input class="effect-1" type="number" placeholder="Precio" style="height: 2.5rem;" 
+            [ngClass]="{'changed': autoNuevo['precio']!=auto['precio']}" [(ngModel)]="autoNuevo['precio']">
+            <span class="focus-border"></span>
+        </div>
+
+        <h1 class="textRed">General:</h1>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Cilindros: </label></div>
+                <input class="effect-1" type="number" placeholder="Cilindros" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['cilindros']!=auto['cilindros']}" [(ngModel)]="autoNuevo['cilindros']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Caballos de fuerza: </label></div>
+                <input class="effect-1" type="number" placeholder="Caballos de fuerza" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['caballos']!=auto['caballos']}" [(ngModel)]="autoNuevo['caballos']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+                <div style="display: flex; flex-direction: row;"><label>Peso bruto (kg): </label></div>
+                <input class="effect-1" type="number" placeholder="Peso bruto (kg)" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['peso_bruto_kg']!=auto['peso_bruto_kg']}" [(ngModel)]="autoNuevo['peso_bruto_kg']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Combined (km): </label></div>
+                <input class="effect-1" type="number" placeholder="Combined (km)" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['combined_km']!=auto['combined_km']}" [(ngModel)]="autoNuevo['combined_km']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Combined (l / 100km): </label></div>
+                <input class="effect-1" type="number" placeholder="Combined (l / 100km)" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['combined_l_100']!=auto['combined_l_100']}" [(ngModel)]="autoNuevo['combined_l_100']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+                <div style="display: flex; flex-direction: row;"><label>Número de Velocidades: </label></div>
+                <input class="effect-1" type="number" placeholder="Número de Velocidades" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['numero_velocidades']!=auto['numero_velocidades']}" [(ngModel)]="autoNuevo['numero_velocidades']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Aceleración Estimada 0-100 km/h: </label></div>
+                <input class="effect-1" type="number" placeholder="Aceleración Estimada 0-100 km/h" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['aceleración_0_100']!=auto['aceleración_0_100']}" [(ngModel)]="autoNuevo['aceleración_0_100']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Litros: </label></div>
+                <input class="effect-1" type="number" placeholder="Litros" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['litros']!=auto['litros']}" [(ngModel)]="autoNuevo['litros']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+                <div style="display: flex; flex-direction: row;"><label>Tipo de motor: </label></div>
+                <input class="effect-1" type="text" placeholder="Tipo de motor" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['motor']!=auto['motor']}" [(ngModel)]="autoNuevo['motor']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Tipo de Combustible: </label></div>
+                <input class="effect-1" type="text" placeholder="Tipo de Combustible" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['combustible']!=auto['combustible']}" [(ngModel)]="autoNuevo['combustible']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+            </div>
+        </div>
+
+        <h1 class="textRed">Exterior:</h1>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Número de Puertas: </label></div>
+                <input class="effect-1" type="number" placeholder="Número de Puertas" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['puertas']!=auto['puertas']}" [(ngModel)]="autoNuevo['puertas']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Diámetro de Rin: </label></div>
+                <input class="effect-1" type="number" placeholder="Diámetro de Rin" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['rin_dia']!=auto['rin_dia']}" [(ngModel)]="autoNuevo['rin_dia']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+                <div style="display: flex; flex-direction: row;"><label>Tipo de Rin: </label></div>
+                <input class="effect-1" type="text" placeholder="Tipo de Rin" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['rin']!=auto['rin']}" [(ngModel)]="autoNuevo['rin']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Tipo de Carrocería: </label></div>
+                <input class="effect-1" type="text" placeholder="Tipo de Carrocería" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['carroceria']!=auto['carroceria']}" [(ngModel)]="autoNuevo['carroceria']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Tipo de bulbo luz baja: </label></div>
+                <input class="effect-1" type="text" placeholder="Tipo de bulbo luz baja" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['luz_baja']!=auto['luz_baja']}" [(ngModel)]="autoNuevo['luz_baja']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+            </div>
+        </div>
+
+        <h1 class="textRed">Equipamiento y comfort  :</h1>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: row; width: 32%; margin-right: 2%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['gps']===true, 'fa-circle-xmark rojo':autoNuevo['gps']===false, 'fa-circle':!autoNuevo['gps']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['gps']= (autoNuevo['gps']==='' ? true : autoNuevo['gps']===true ? false : '')"></i> GPS
+            </div>
+            <div style="display: flex; flex-direction: row; width: 32%; margin-right: 2%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['aire_acondicionado']===true, 'fa-circle-xmark rojo':autoNuevo['aire_acondicionado']===false, 'fa-circle':!autoNuevo['aire_acondicionado']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['aire_acondicionado']= (autoNuevo['aire_acondicionado']==='' ? true : autoNuevo['aire_acondicionado']===true ? false : '')"></i> Aire acondicionado
+            </div>
+            <div style="display: flex; flex-direction: row; width: 32%; margin-right: 2%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['sensor_distancia']===true, 'fa-circle-xmark rojo':autoNuevo['sensor_distancia']===false, 'fa-circle':!autoNuevo['sensor_distancia']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['sensor_distancia']= (autoNuevo['sensor_distancia']==='' ? true : autoNuevo['sensor_distancia']===true ? false : '')"></i> Sensor de distancia
+            </div>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%;">
+                <div style="display: flex; flex-direction: row;"><label>Asistencia de estacionamiento: </label></div>
+                <input class="effect-1" type="text" placeholder="Asistencia de estacionamiento" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['asistencia_estacionamiento']!=auto['asistencia_estacionamiento']}" [(ngModel)]="autoNuevo['asistencia_estacionamiento']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: row; width: 32%; margin-right: 2%; align-items: center;">
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+            </div>
+        </div>
+
+        <h1 class="textRed">Seguridad:</h1>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Número total de Airbags: </label></div>
+                <input class="effect-1" type="number" placeholder="Número total de Airbags" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['airbags']!=auto['airbags']}" [(ngModel)]="autoNuevo['airbags']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: row; width: 32%; margin-right: 2%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['sensor_lluvia']===true, 'fa-circle-xmark rojo':autoNuevo['sensor_lluvia']===false, 'fa-circle':!autoNuevo['sensor_lluvia']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['sensor_lluvia']= (autoNuevo['sensor_lluvia']==='' ? true : autoNuevo['sensor_lluvia']===true ? false : '')"></i> Sensor de lluvia
+            </div>
+            <div style="display: flex; flex-direction: row; width: 32%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['bolsas_frontales']===true, 'fa-circle-xmark rojo':autoNuevo['bolsas_frontales']===false, 'fa-circle':!autoNuevo['bolsas_frontales']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['bolsas_frontales']= (autoNuevo['bolsas_frontales']==='' ? true : autoNuevo['bolsas_frontales']===true ? false : '')"></i> Bolsas de Aire Frontales
+            </div>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Cantidad de discos de freno: </label></div>
+                <input class="effect-1" type="number" placeholder="Cantidad de discos de freno" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['discos_freno']!=auto['discos_freno']}" [(ngModel)]="autoNuevo['discos_freno']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: row; width: 32%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['freno_abs']===true, 'fa-circle-xmark rojo':autoNuevo['freno_abs']===false, 'fa-circle':!autoNuevo['freno_abs']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['freno_abs']= (autoNuevo['freno_abs']==='' ? true : autoNuevo['freno_abs']===true ? false : '')"></i> Tipo Frenos ABS
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+            </div>
+        </div>
+
+        <h1 class="textRed">Interior:</h1>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Número de Pasajeros: </label></div>
+                <input class="effect-1" type="number" placeholder="Número de Pasajeros" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['pasajeros']!=auto['pasajeros']}" [(ngModel)]="autoNuevo['pasajeros']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Material Asientos: </label></div>
+                <input class="effect-1" type="text" placeholder="Material Asientos" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['asientos']!=auto['asientos']}" [(ngModel)]="autoNuevo['asientos']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%;">
+            </div>
+        </div>
+
+        <h1 class="textRed">Entrenenimiento:</h1>
+        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
+            <div style="display: flex; flex-direction: row; width: 32%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['bluetooth']===true, 'fa-circle-xmark rojo':autoNuevo['bluetooth']===false, 'fa-circle':!autoNuevo['bluetooth']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['bluetooth']= (autoNuevo['bluetooth']==='' ? true : autoNuevo['bluetooth']===true ? false : '')"></i> Bluetooth
+            </div>
+            <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
+                <div style="display: flex; flex-direction: row;"><label>Radio: </label></div>
+                <input class="effect-1" type="text" placeholder="Radio" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['radio']!=auto['radio']}" [(ngModel)]="autoNuevo['radio']">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+            <div style="display: flex; flex-direction: row; width: 32%; align-items: center;">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':autoNuevo['android_auto']===true, 'fa-circle-xmark rojo':autoNuevo['android_auto']===false, 'fa-circle':!autoNuevo['android_auto']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="autoNuevo['android_auto']= (autoNuevo['android_auto']==='' ? true : autoNuevo['android_auto']===true ? false : '')"></i> Android auto
+            </div>
+        </div>
+        <label>Imagenes del auto: </label>
+        <div style="margin-top: 2%; text-align: center;">
+            <span *ngFor="let src of imagenes">
+                <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 200px; cursor: pointer;" (click)="verImagen(src.id)">
+                <span *ngIf="src.link!=''" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 2rem; height: 2rem; cursor: pointer;">
+                    <i class="fa-solid fa-trash-can boton border glass textWhite rounded ibtn" style="width: 2rem; height: 2rem;" (click)="eliminarImg(src)"></i>
+                </span>
+            </span>
+        </div>
+        <label>Nuevas imagenes del auto: </label>
+        <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
+            <span *ngFor="let src of sources">
+                <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
+                <span class="boton glass border rounded textWhite" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 1rem; cursor: pointer;" (click)="cambiarOrden(src.id)">{{src.id}}</span>
+            </span>
+        </div>
+        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;">
+        <div style="display: flex; justify-content: flex-end;">
+            <button class="border rounded boton botones" (click)="actualizar()">Actualizar</button>
+        </div>
+    </div>
+</div>
+
+<app-ver-imagen [ngClass]="{ 'oculto':!verImg }" (messageEvent)="handleMessage($event,'crear')" [imagenes]="imagenes" [imagen]="imgID" [verImg]="verImg"></app-ver-imagen>

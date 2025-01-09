@@ -50,4 +50,18 @@ export class AdminService {
   borrarAuto(dato:any):Observable<any>{
     return this.http.post(base_url+'/admin/borrarAuto', dato, {'headers':this.header})
   }
+  async actualizarAuto(dato:any){    
+    try {
+      const resp = await fetch(base_url+'/admin/actualizarAuto',{
+        method: 'POST', 
+        headers: {'Acces-Control-Allow-Origin':'*'},
+        body: dato
+      });
+
+      const data = await resp.json();
+      return data;
+    } catch (error) {
+      return false;
+    }
+  }
 }
