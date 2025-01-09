@@ -179,3 +179,7 @@ input, select{
         transform:rotate(360deg);
     }
 }
+.changed{
+    background-color: var(--blue3) !important;
+    color: var(--white) !important;
+}
