@@ -1,0 +1,82 @@
+<div class="borderAzul margin5 rounded" style="display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+        <div style="display: flex;">
+            <h1 class="h1btn2">Autos</h1>
+        </div>
+        <div>
+            <button class="boton border rounded botones" (click)="crear=!crear">Crear auto</button>
+        </div>
+    </div>
+    <div style="border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;"></div>
+    
+    <div style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%; align-items: center;">
+        <div class="celda" style="width: 7.5%;">Marca</div>
+        <div class="celda username" style="width: 10%;">Modelo</div>
+        <div class="celda username" style="width: 10%;">Version</div>
+        <div class="celda username" style="width: 5%;">Año</div>
+        <div class="celda username" style="width: 10%;">Kilometros</div>
+        <div class="celda username" style="width: 20%;">Ubicacion</div>
+        <div class="celda username" style="width: 7.5%;">Transmision</div>
+        <div class="celda username" style="width: 10%;">Traccion</div>
+        <div class="celda username" style="width: 15%;">Precio</div>
+        <div class="celda" style="border-right: none; display: flex; width: 20%; justify-content: flex-end;">
+            <div class="col-3" style="width: 60%;">
+                <select class="effect-1" [(ngModel)]="ordenar" (change)="cargarAutos()" style="width: 100%; height: 2rem;">
+                    <option value='_id' selected hidden>Ordenar</option>    
+                    <option value='marca'>Marca</option>
+                    <option value='modelo'>Modelo</option>
+                    <option value='version'>Version</option>
+                    <option value='ano'>Año</option>
+                    <option value='kms'>Kilometros</option>
+                    <option value='ubicacion'>Ubicacion</option>
+                    <option value='transmision'>Transmision</option>
+                    <option value='traccion'>Traccion</option>
+                    <option value='precio'>Precio</option>
+                    <option value='_id'>Default</option>    
+                </select>
+                <span class="focus-border2"></span>
+            </div>
+            <div class="col-3" style="width: 40%;">
+                <select class="effect-1" [(ngModel)]="orden" (change)="cargarAutos()" style="width: 100%; height: 2rem;">
+                    <option value='1' selected>Asc.</option>    
+                    <option value='-1'>Desc.</option>  
+                </select>
+                <span class="focus-border2"></span>
+            </div>
+        </div>
+    </div>
+    <h2 *ngIf="!error && total==-1" class="load"><i class="fa-solid fa-spinner ispinner" style="font-size: 3rem;"></i> Cargando</h2>
+    <h2 *ngIf="error">Error al cargar autos</h2>
+    <h2 *ngIf="total==0">No hay autos para mostrar</h2>
+    <div *ngFor="let auto of Autos" class="linea" style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;">
+        <div class="celda" style="width: 7.5%;">{{auto['marca']}}</div>
+        <div class="celda username" style="width: 10%;">{{auto['modelo']}}</div>
+        <div class="celda username" style="width: 10%;">{{auto['version']}}</div>
+        <div class="celda username" style="width: 5%;">{{auto['ano']}}</div>
+        <div class="celda username" style="width: 10%;">{{auto['kms']}}</div>
+        <div class="celda username" style="width: 20%;">{{auto['ubicacion']}}</div>
+        <div class="celda username" style="width: 7.5%;">{{auto['transmision']}}</div>
+        <div class="celda username" style="width: 10%;">{{auto['traccion']}}</div>
+        <div class="celda username" style="width: 15%;">{{auto['precio']}}</div>
+        <div class="celda" style="border-right: none; display: flex; justify-content: flex-end; font-size: medium; padding-top: 0.5%; padding-bottom: 0.5%; width: 20%;">
+            <i class="fa-regular fa-eye boton border rounded ibtn" (click)="verAuto(auto['uuid'],1);"></i>
+            <i class="fa-solid fa-pen-to-square boton border rounded ibtn" (click)="verAuto(auto['uuid'],2);"></i>
+            <!-- <i class="fa-solid fa-copy boton border rounded ibtn" (click)="duplicar(auto['_id'],auto['titulo']);"></i> -->
+            <i class="fa-solid fa-trash-can boton border rounded ibtn" (click)="eliminar(auto['_id'])"></i>
+        </div>
+    </div>
+    <div style="font-family: Avenir; margin-top: 2%; display: flex; justify-content: flex-end; width: 100%; align-items: center;">
+        Pagina {{pagina+1}} de {{pagU}}
+        <div style="margin-right: 2%; margin-left: 2%;">
+            <button class="border rounded boton paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" (click)="principio()">Principio</button>
+            <button class="border rounded boton paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="atras()">Atras</button>
+            <button class="border rounded boton paginacion" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="siguiente()">Siguiente</button>    
+            <button class="border rounded boton paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="final()">Final</button>
+        </div>
+        Autos totales: {{total}}
+    </div>
+</div>
+
+<app-crear-auto [ngClass]="{ 'oculto':!crear }" (messageEvent)="handleMessage($event,'crear')"></app-crear-auto>
+<app-ver-auto [ngClass]="{ 'oculto':!ver }" (messageEvent)="handleMessage($event,'ver')" [auto]="autoModal"></app-ver-auto>
+<app-editar-auto [ngClass]="{ 'oculto':!editar }" (messageEvent)="handleMessage($event,'editar')" [auto]="autoModal"></app-editar-auto>
