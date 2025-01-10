@@ -43,24 +43,16 @@ body {
     flex-direction: column;
     justify-content: flex-start;
 }
-.margin5, .margin5text{
+.margin5{
     margin: 5rem;
     padding: 1rem;
     @media (max-width: 1000px){
         margin-left: 2rem;
         margin-right: 2rem;
-        .margin5text{
-            margin-top: 0rem;
-            margin-bottom: 0rem;
-        }
     }
     @media (max-width: 600px){
         margin-left: 0rem;
         margin-right: 0rem;
-        .margin5text{
-            margin-top: 0rem;
-            margin-bottom: 0rem;
-        }
     }
 }
 .textWhite{
