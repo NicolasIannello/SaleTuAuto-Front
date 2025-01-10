@@ -62,42 +62,42 @@ export class CrearAutoComponent {
 
   cerrarModal() {
     this.datos=  ['','','','','','','','',''];
-    this.alertas=['','','','','','','','',''];
+    this.alertas=['','','','','','','','','',''];
     this.extras={ 
-      cilindros: null,
-      caballos: null,
-      peso_bruto_kg: null,
-      combined_km: null,
-      combined_l_100: null,
-      numero_velocidades: null,
-      aceleración_0_100: null,
-      litros: null,
-      motor: null,
-      combustible: null,
+      cilindros: '',
+      caballos: '',
+      peso_bruto_kg: '',
+      combined_km: '',
+      combined_l_100: '',
+      numero_velocidades: '',
+      aceleración_0_100: '',
+      litros: '',
+      motor: '',
+      combustible: '',
   
-      puertas: null,
-      rin_dia: null,
-      rin: null,
-      carroceria: null,
-      luz_baja: null,
+      puertas: '',
+      rin_dia: '',
+      rin: '',
+      carroceria: '',
+      luz_baja: '',
   
-      gps: null,
-      aire_acondicionado: null,
-      sensor_distancia: null,
-      asistencia_estacionamiento: null,
+      gps: '',
+      aire_acondicionado: '',
+      sensor_distancia: '',
+      asistencia_estacionamiento: '',
   
-      airbags: null,
-      sensor_lluvia: null,
-      bolsas_frontales: null,
-      discos_freno: null,
-      freno_abs: null,
+      airbags: '',
+      sensor_lluvia: '',
+      bolsas_frontales: '',
+      discos_freno: '',
+      freno_abs: '',
   
-      pasajeros: null,
-      asientos: null,
+      pasajeros: '',
+      asientos: '',
   
-      bluetooth: null,
-      radio: null,
-      android_auto: null 
+      bluetooth: '',
+      radio: '',
+      android_auto: '' 
     };
     this.fotos = [];
     this.sources = [];
@@ -155,8 +155,8 @@ export class CrearAutoComponent {
   crearAuto(){    
     let flag=true;
     for (let i = 0; i < this.datos.length; i++) {
-      if(this.datos[i]=='') flag=false;
-      this.alertas[i]= this.datos[i]=='' ? 'Campo obligatorio' : '';
+      if(this.datos[i]==='') flag=false;
+      this.alertas[i]= this.datos[i]==='' ? 'Campo obligatorio' : '';
     }
     if(this.fotos.length==0) flag=false;
     this.alertas[8]= this.fotos.length==0 ? 'Campo obligatorio' : '';
