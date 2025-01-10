@@ -7,9 +7,31 @@
             <button class="boton border rounded botones" (click)="crear=!crear">Crear auto</button>
         </div>
     </div>
-    <div style="border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;"></div>
-    
-    <div style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%; align-items: center;">
+    <div style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;"></div>
+    <!-- <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center; border-right: none;">
+        <div class="celda" style="border-right: none; display: flex; width: 100%;">
+            <div class="col-3" style="width: 27.2%; border-right: 1px solid rgb(15, 52, 96, 0.2);">
+                <input type="text" class="effect-1" [(ngModel)]="datoBuscar" placeholder="Ingrese un dato para buscar" style="height: 2rem; width: 100%;">
+                <span class="focus-border2"></span>
+            </div>
+            <div class="col-3" style="width: 7rem;">
+                <select class="effect-1" [(ngModel)]="tipoBuscar" style="width: 100%; height: 2rem;">
+                    <option value='marca' selected>Marca</option>
+                    <option value='modelo'>Modelo</option>
+                    <option value='version'>Version</option>
+                    <option value='ano'>Año</option>
+                    <option value='kms'>Kilometros</option>
+                    <option value='ubicacion'>Ubicacion</option>
+                    <option value='transmision'>Transmision</option>
+                    <option value='traccion'>Traccion</option>
+                    <option value='precio'>Precio</option>
+                </select>
+                <span class="focus-border2"></span>
+            </div>
+            <button class="border rounded boton paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="buscarDato()">Buscar</button>
+        </div>
+    </div> -->
+    <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center;">
         <div class="celda" style="width: 7.5%;">Marca</div>
         <div class="celda username" style="width: 10%;">Modelo</div>
         <div class="celda username" style="width: 10%;">Version</div>
@@ -48,7 +70,7 @@
     <h2 *ngIf="!error && total==-1" class="load"><i class="fa-solid fa-spinner ispinner" style="font-size: 3rem;"></i> Cargando</h2>
     <h2 *ngIf="error">Error al cargar autos</h2>
     <h2 *ngIf="total==0">No hay autos para mostrar</h2>
-    <div *ngFor="let auto of Autos" class="linea" style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;">
+    <div *ngFor="let auto of Autos" class="linea" style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;">
         <div class="celda" style="width: 7.5%;">{{auto['marca']}}</div>
         <div class="celda username" style="width: 10%;">{{auto['modelo']}}</div>
         <div class="celda username" style="width: 10%;">{{auto['version']}}</div>

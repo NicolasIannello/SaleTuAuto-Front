@@ -2,10 +2,10 @@
 @import url('https://fonts.cdnfonts.com/css/shameimaru-sans');
 
 :root {
-    --white: #F9F9F9;
-    --blue1: #1A1A2E;
-    --blue2: #16213e;
-    --blue3: #0f3460;
+    --white: rgb(249, 249, 249);
+    --blue1: rgb(26, 26, 46);
+    --blue2: rgb(22, 33, 62);
+    --blue3: rgb(15, 52, 96);
     --red: rgb(233, 69, 96);
 }
 body {
@@ -182,4 +182,12 @@ input, select{
 .changed{
     background-color: var(--blue3) !important;
     color: var(--white) !important;
+}
+.username{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.borderAzul{
+    border: 1px solid rgb(15, 52, 96, 0.2);
 }

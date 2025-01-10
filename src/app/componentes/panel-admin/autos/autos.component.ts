@@ -125,7 +125,33 @@ export class AutosComponent implements OnInit{
     });
   }
 
+  // buscarDato(){
+  //   let dato={
+  //     'token':localStorage.getItem('token'),
+  //     'tipo':1,
+  //     'dato':this.datoBuscar,
+  //     'datoTipo':this.tipoBuscar,
+  //     'datoTipoUser':'auto',
+  //     //ver de meter orden ordenar
+  //   }
 
+  //   // this.api.buscarDato(dato).subscribe({
+  //   //   next:(value)=> {
+  //   //       if(value.ok){
+  //   //         if(value.busqueda.length>0) {
+  //   //           this.Autos=value.busqueda
+  //   //         }else{
+  //   //           Swal.fire({title:'No se encontro ningun resultado', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
+  //   //         }
+  //   //       }else{
+  //   //         Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
+  //   //       }
+  //   //   },
+  //   //   error:(err)=> {
+  //   //     Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
+  //   //   },
+  //   // })
+  // }
 
   principio(){
     this.pagina=0;
