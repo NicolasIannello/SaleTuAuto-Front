@@ -11,11 +11,11 @@
             <button class="boton border rounded botones" (click)="crearUser('admin')" >Agregar usuario</button>
         </div>
     </div>
-    <div style="border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;"></div>
+    <div style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;"></div>
     <!-- <div *ngIf="tabla" style="width: 100%;">
-        <div style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%; align-items: center; border-right: none;">
+        <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center; border-right: none;">
             <div class="celda" style="border-right: none; display: flex; width: 100%;">
-                <div class="col-3" style="width: 26.5%; border-right: 1px solid rgb(48, 131, 220, 0.2);">
+                <div class="col-3" style="width: 26.5%; border-right: 1px solid rgb(15, 52, 96, 0.2);">
                     <input type="text" class="effect-1" [(ngModel)]="datoBuscar" placeholder="Ingrese un dato para buscar" style="height: 2rem; width: 100%;">
                     <span class="focus-border2"></span>
                 </div>
@@ -40,7 +40,7 @@
                 <button class="border rounded boton paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="buscarDato()">Buscar</button>
             </div>
         </div>
-        <div style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%; align-items: center;">
+        <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center;">
             <div class="celda username" style="width: 25%;">Usuario</div>
             <div class="celda username" style="width: 25%;">E-mail</div>
             <div class="celda username" style="width: 12%;">Telefono</div>
@@ -70,7 +70,7 @@
         </div>
         <h2 class="load" *ngIf="Usuarios.length==0 && !error"><i class="fa-solid fa-spinner ispinner" style="font-size: 3rem;"></i> Cargando</h2>
         <h2 *ngIf="error">Error al cargar usuarios</h2>
-        <div *ngFor="let u of Usuarios; index as i" class="linea" style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;">
+        <div *ngFor="let u of Usuarios; index as i" class="linea" style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;">
             <div class="celda username" style="width: 25%;">
                 <i [ngClass]="{'fa-user' : u['tipo']=='user', 'fa-building-user' : u['tipo']=='emp', 'fa-gears' : u['tipo']=='viejo'}" class="fa-solid "></i>{{u['nombre']}}
             </div>
@@ -104,13 +104,13 @@
         </div>
     </div> -->
     <div *ngIf="!tabla" style="width: 100%;">
-        <div style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%; align-items: center;">
+        <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center;">
             <div class="celda username" style="width: 40%;">Usuario</div>
             <div class="celda username" style="width: 25%;">Gestion de cuentas</div>
             <div class="celda username" style="width: 25%;">Gestion de autos</div>
             <div class="celda username" style="width: 10%; border-right: none;"></div>
         </div>
-        <div *ngFor="let u of Usuarios; index as i" class="linea" style="display: flex; border-bottom: 1px solid rgb(48, 131, 220, 0.2); width: 100%;">
+        <div *ngFor="let u of Usuarios; index as i" class="linea" style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;">
             <div class="celda username" style="width: 40%;">{{u['usuario']}}</div>
             <div class="celda" style="width: 25%;">
                 <i class="fa-solid" [ngClass]="{'fa-circle-check verde':u['usuarios'], 'fa-circle-xmark rojo':!u['usuarios']}" style="font-size: larger; margin-right: 1%;"></i> {{u['usuarios'] ? 'Habilitado' : 'Inhabilitado'}}
