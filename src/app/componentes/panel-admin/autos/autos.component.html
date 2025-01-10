@@ -32,7 +32,7 @@
         </div>
     </div> -->
     <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center;">
-        <div class="celda" style="width: 7.5%;">Marca</div>
+        <div class="celda username" style="width: 7.5%;">Marca</div>
         <div class="celda username" style="width: 10%;">Modelo</div>
         <div class="celda username" style="width: 10%;">Version</div>
         <div class="celda username" style="width: 5%;">Año</div>
@@ -71,7 +71,7 @@
     <h2 *ngIf="error">Error al cargar autos</h2>
     <h2 *ngIf="total==0">No hay autos para mostrar</h2>
     <div *ngFor="let auto of Autos" class="linea" style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;">
-        <div class="celda" style="width: 7.5%;">{{auto['marca']}}</div>
+        <div class="celda username" style="width: 7.5%;">{{auto['marca']}}</div>
         <div class="celda username" style="width: 10%;">{{auto['modelo']}}</div>
         <div class="celda username" style="width: 10%;">{{auto['version']}}</div>
         <div class="celda username" style="width: 5%;">{{auto['ano']}}</div>
