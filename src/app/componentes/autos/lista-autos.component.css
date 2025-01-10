@@ -1,0 +1,35 @@
+.carta{
+    width: 15rem;
+    margin: 0.5%;
+    height: 20rem;
+}
+.cartaT1{
+    font-size: smaller;
+
+}
+.cartaT2{
+    font-size: x-large;
+    font-weight: bold;
+}
+.cartaT3{
+    font-size: smaller;
+
+}
+.margins{
+    margin: 5rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    padding: 1rem;
+    @media (max-width: 1430px){
+        margin-left: 10rem;
+        margin-right: 10rem;
+    }
+    @media (max-width: 1240px){
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    @media (max-width: 1000px){
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+}
