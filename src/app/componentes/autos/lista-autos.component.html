@@ -1,6 +1,35 @@
 <div class="svh borderAzul margins rounded" style="text-align: center;">
-    <div style="width: 20%; border-right: 1px solid rgb(15, 52, 96, 0.2);">
-        hola
+    <div style="width: 20%; border-right: 1px solid rgb(15, 52, 96, 0.2); padding-right: 2%; display: flex; flex-direction: column; align-items: flex-start;">
+        <label>Marca: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+            <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
+                <option value='' selected>Todas</option>
+                <ng-container *ngFor="let m of marcas">
+                    <option  [ngValue]=m>{{m}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <label>Modelo: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+            <select class="effect-1" [(ngModel)]="modelo" style="width: 100%; height: 2.5rem;" disabled="{{modeloD}}" (change)="getVersiones()">
+                <option value='' selected>Todos</option>
+                <ng-container *ngFor="let m of modelos">
+                    <option  [ngValue]=m>{{m}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <label>Version: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+            <select class="effect-1" [(ngModel)]="version" style="width: 100%; height: 2.5rem;" disabled="{{versionD}}" (change)="cargarAutos()">
+                <option value='' selected>Todas</option>
+                <ng-container *ngFor="let v of versiones">
+                    <option  [ngValue]=v>{{v}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
     </div>
     <div style="width: 80%; padding-left: 1%;">
         <h1 class="textRed" style="display: flex; margin-left: 2%; text-decoration: underline;">Autos disponibles:</h1>

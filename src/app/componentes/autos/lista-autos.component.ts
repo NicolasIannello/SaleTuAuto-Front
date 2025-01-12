@@ -3,11 +3,12 @@ import { AdminService } from '../../servicios/admin.service';
 import { ServiciosService } from '../../servicios/servicios.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-autos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './lista-autos.component.html',
   styleUrl: './lista-autos.component.css'
 })
@@ -18,15 +19,33 @@ export class ListaAutosComponent implements OnInit{
   ordenar:string="_id";
   orden:string="1";
   pagU:number=0;
+  marcas:Array<any>=[""];
+  marca:string|undefined='';
+  modelos:Array<any>=[""];
+  modelo:string|undefined='';
+  modeloD:boolean=true;
+  versiones:Array<any>=[""];
+  version:string|undefined='';
+  versionD:boolean=true;
 
   constructor(public api:AdminService, public api2:ServiciosService) {}
 
   ngOnInit(): void {
     this.cargarAutos();
+    this.api2.marcas().subscribe({
+      next:(value)=> {
+        if(value.ok) {
+          this.marcas=value.marcas;
+        }
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+      },
+    })
   }
 
   cargarAutos(){
-    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden).subscribe({
+    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version).subscribe({
       next:(value)=> {
           if(value.ok) {
             this.Autos=value.autos;
@@ -68,5 +87,57 @@ export class ListaAutosComponent implements OnInit{
   final(){
     this.pagina=this.pagU>0 ? this.pagU-1 : 0;
     this.cargarAutos()
+  }
+
+  getModelos(){
+    this.modelo='';
+    this.modelos=[""];
+    this.version='';
+    this.versiones=[""];
+    this.versionD=true;
+    if(this.marca==""){
+      this.modeloD=true;
+    }else{
+      this.modeloD=false;
+      let dato={
+        'marca':this.marca
+      }
+      this.api2.modelos(dato).subscribe({
+        next:(value)=> {
+          if(value.ok) {
+            this.modelos=value.modelos;
+          }
+        },
+        error:(err)=> {
+          Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+        },
+      })
+    }
+    this.cargarAutos();
+  }
+
+  getVersiones(){
+    this.version='';
+    this.versiones=[""];
+    if(this.modelo==""){
+      this.versionD=true;
+    }else{
+      this.versionD=false;
+      let dato={
+        'marca':this.marca,
+        'modelo':this.modelo
+      }
+      this.api2.versiones(dato).subscribe({
+        next:(value)=> {
+          if(value.ok) {
+            this.versiones=value.versiones;
+          }
+        },
+        error:(err)=> {
+          Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+        },
+      })
+    }
+    this.cargarAutos();
   }
 }
