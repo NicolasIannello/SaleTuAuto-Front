@@ -4,11 +4,12 @@ import { ServiciosService } from '../../servicios/servicios.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {MatSliderModule} from '@angular/material/slider';
 
 @Component({
   selector: 'app-lista-autos',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatSliderModule],
   templateUrl: './lista-autos.component.html',
   styleUrl: './lista-autos.component.css'
 })
@@ -27,15 +28,38 @@ export class ListaAutosComponent implements OnInit{
   versiones:Array<any>=[""];
   version:string|undefined='';
   versionD:boolean=true;
+  anos:Array<any>=[""];
+  ano:number|undefined=undefined;
+  mayorKm:number=1000000000;
+  menorKm:number=0;
+  mayorR:number|null=null;
+  menorR:number|null=null;
+  flagSlider:boolean=true;
 
   constructor(public api:AdminService, public api2:ServiciosService) {}
 
   ngOnInit(): void {
     this.cargarAutos();
-    this.api2.marcas().subscribe({
+    let dato={
+      'dato':'marca'
+    }
+    this.api2.datos(dato).subscribe({
       next:(value)=> {
         if(value.ok) {
-          this.marcas=value.marcas;
+          this.marcas=value.datos;
+        }
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+      },
+    })
+    let dato2={
+      'dato':'ano'
+    }
+    this.api2.datos(dato2).subscribe({
+      next:(value)=> {
+        if(value.ok) {
+          this.anos=value.datos;
         }
       },
       error:(err)=> {
@@ -45,12 +69,19 @@ export class ListaAutosComponent implements OnInit{
   }
 
   cargarAutos(){
-    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version).subscribe({
+    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version,this.ano,this.menorR,this.mayorR).subscribe({
       next:(value)=> {
           if(value.ok) {
             this.Autos=value.autos;
             this.total=value.total;
             this.pagU=Math.ceil(this.total/20)
+            this.mayorKm=value.mayorkm;
+            this.menorKm=value.menorkm;
+            if(this.flagSlider){
+              this.flagSlider=false;
+              this.mayorR=value.mayorkm;
+              this.menorR=value.menorkm;
+            }
             for (let i = 0; i < this.total; i++) {
               this.api2.cargarArchivo(this.Autos[i].img.img,'autos').then(resp=>{                
                 if(resp!=false){
@@ -100,12 +131,13 @@ export class ListaAutosComponent implements OnInit{
     }else{
       this.modeloD=false;
       let dato={
+        'dato':'modelo',
         'marca':this.marca
       }
-      this.api2.modelos(dato).subscribe({
+      this.api2.datos(dato).subscribe({
         next:(value)=> {
           if(value.ok) {
-            this.modelos=value.modelos;
+            this.modelos=value.datos;
           }
         },
         error:(err)=> {
@@ -124,13 +156,14 @@ export class ListaAutosComponent implements OnInit{
     }else{
       this.versionD=false;
       let dato={
+        'dato':'version',
         'marca':this.marca,
         'modelo':this.modelo
       }
-      this.api2.versiones(dato).subscribe({
+      this.api2.datos(dato).subscribe({
         next:(value)=> {
           if(value.ok) {
-            this.versiones=value.versiones;
+            this.versiones=value.datos;
           }
         },
         error:(err)=> {
@@ -139,5 +172,13 @@ export class ListaAutosComponent implements OnInit{
       })
     }
     this.cargarAutos();
+  }
+
+  formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return `${value}`;
   }
 }
