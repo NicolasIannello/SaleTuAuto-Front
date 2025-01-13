@@ -60,6 +60,26 @@
             </mat-slider>
             <span class="focus-border"></span>
         </div>
+        <label>Precio: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+            <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorRP" [max]="mayorRP" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorRP" [min]="menorRP" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+            </div>
+            <mat-slider min="{{menorP}}" max="{{mayorP}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
+                <input [(ngModel)]="menorRP" matSliderStartThumb>
+                <input [(ngModel)]="mayorRP" matSliderEndThumb>
+            </mat-slider>
+            <span class="focus-border"></span>
+        </div>
     </div>
     <div style="width: 80%; padding-left: 1%;">
         <h1 class="textRed" style="display: flex; margin-left: 2%; text-decoration: underline;">Autos disponibles:</h1>

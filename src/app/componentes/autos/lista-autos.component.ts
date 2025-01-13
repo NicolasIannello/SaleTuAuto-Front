@@ -35,6 +35,11 @@ export class ListaAutosComponent implements OnInit{
   mayorR:number|null=null;
   menorR:number|null=null;
   flagSlider:boolean=true;
+  mayorP:number=1000000000;
+  menorP:number=0;
+  mayorRP:number|null=null;
+  menorRP:number|null=null;
+  flagSliderP:boolean=true;
 
   constructor(public api:AdminService, public api2:ServiciosService) {}
 
@@ -69,7 +74,7 @@ export class ListaAutosComponent implements OnInit{
   }
 
   cargarAutos(){
-    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version,this.ano,this.menorR,this.mayorR).subscribe({
+    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version,this.ano,this.menorR,this.mayorR,this.menorRP,this.mayorRP).subscribe({
       next:(value)=> {
           if(value.ok) {
             this.Autos=value.autos;
@@ -81,6 +86,13 @@ export class ListaAutosComponent implements OnInit{
               this.flagSlider=false;
               this.mayorR=value.mayorkm;
               this.menorR=value.menorkm;
+            }
+            this.mayorP=value.mayorp;
+            this.menorP=value.menorp;
+            if(this.flagSliderP){
+              this.flagSliderP=false;
+              this.mayorRP=value.mayorp;
+              this.menorRP=value.menorp;
             }
             for (let i = 0; i < this.total; i++) {
               this.api2.cargarArchivo(this.Autos[i].img.img,'autos').then(resp=>{                
