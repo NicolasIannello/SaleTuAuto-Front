@@ -34,13 +34,7 @@ export class ServiciosService {
       return false;
     }
   }
-  marcas():Observable<any>{
-    return this.http.post(base_url+'/auto/marcas', {'headers':this.header})
-  }
-  modelos(dato:any):Observable<any>{
-    return this.http.post(base_url+'/auto/modelos', dato, {'headers':this.header})
-  }
-  versiones(dato:any):Observable<any>{
-    return this.http.post(base_url+'/auto/versiones', dato, {'headers':this.header})
+  datos(dato:any):Observable<any>{
+    return this.http.post(base_url+'/auto/datos', dato, {'headers':this.header})
   }
 }
