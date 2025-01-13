@@ -30,11 +30,14 @@ export class AdminService {
   deleteUsers(dato:any):Observable<any>{
     return this.http.post(base_url+'/admin/deleteUser', dato, {'headers':this.header})
   }
-  cargarAutos(url:number,order:string,orden:string,marca?:string,modelo?:string,version?:string):Observable<any>{
+  cargarAutos(url:number,order:string,orden:string,marca?:string,modelo?:string,version?:string,ano?:number,menorR?:number|null,mayorR?:number|null):Observable<any>{
     let link=base_url+'/auto/autos?desde='+url+'&order='+order+'&orden='+orden;
     if(marca) link+='&marca='+marca;
     if(modelo) link+='&modelo='+modelo;
     if(version) link+='&version='+version;
+    if(ano) link+='&ano='+ano;
+    if(menorR!=null) link+='&menorR='+menorR;
+    if(mayorR!=null) link+='&mayorR='+mayorR;
     return this.http.post(link, {'headers':this.header})
   }
   async crearAuto(dato:any){    
