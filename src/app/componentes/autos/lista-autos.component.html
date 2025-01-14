@@ -1,6 +1,6 @@
 <div class="svh borderAzul margins rounded" style="text-align: center;">
     <div style="width: 20%; border-right: 1px solid rgb(15, 52, 96, 0.2); padding-right: 2%; display: flex; flex-direction: column; align-items: flex-start;">
-        <label>Marca: </label>
+        <label class="textRed" style="text-decoration: underline;">Marca: </label>
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
             <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
                 <option value='' selected>Todas</option>
@@ -10,7 +10,7 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label>Modelo: </label>
+        <label class="textRed" style="text-decoration: underline;">Modelo: </label>
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
             <select class="effect-1" [(ngModel)]="modelo" style="width: 100%; height: 2.5rem;" disabled="{{modeloD}}" (change)="getVersiones()">
                 <option value='' selected>Todos</option>
@@ -20,7 +20,7 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label>Version: </label>
+        <label class="textRed" style="text-decoration: underline;">Version: </label>
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
             <select class="effect-1" [(ngModel)]="version" style="width: 100%; height: 2.5rem;" disabled="{{versionD}}" (change)="cargarAutos()">
                 <option value='' selected>Todas</option>
@@ -30,7 +30,7 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label>Año: </label>
+        <label class="textRed" style="text-decoration: underline;">Año: </label>
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
             <select class="effect-1" [(ngModel)]="ano" style="width: 100%; height: 2.5rem;" (change)="cargarAutos()">
                 <option value='' selected>Todos</option>
@@ -40,7 +40,7 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label>Kilometros: </label>
+        <label class="textRed" style="text-decoration: underline;">Kilometros: </label>
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column; margin-right: 2%;">
@@ -60,7 +60,7 @@
             </mat-slider>
             <span class="focus-border"></span>
         </div>
-        <label>Precio: </label>
+        <label class="textRed" style="text-decoration: underline;">Precio: </label>
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column; margin-right: 2%;">
@@ -79,6 +79,11 @@
                 <input [(ngModel)]="mayorRP" matSliderEndThumb>
             </mat-slider>
             <span class="focus-border"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-right: 2%;">
+            <div style="display: flex; flex-direction: row;"><label class="textRed" style="text-decoration: underline;">Ubicacion: </label></div>
+            <input class="effect-1" style="width: 100%;" type="text" placeholder="Ubicacion" style="height: 2.5rem;" [(ngModel)]="ubicacion" (change)="cargarAutos()">
+            <span class="focus-border" style="position: relative !important;"></span>
         </div>
     </div>
     <div style="width: 80%; padding-left: 1%;">

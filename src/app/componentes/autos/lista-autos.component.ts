@@ -40,6 +40,7 @@ export class ListaAutosComponent implements OnInit{
   mayorRP:number|null=null;
   menorRP:number|null=null;
   flagSliderP:boolean=true;
+  ubicacion:string='';
 
   constructor(public api:AdminService, public api2:ServiciosService) {}
 
@@ -74,7 +75,7 @@ export class ListaAutosComponent implements OnInit{
   }
 
   cargarAutos(){
-    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version,this.ano,this.menorR,this.mayorR,this.menorRP,this.mayorRP).subscribe({
+    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version,this.ano,this.menorR,this.mayorR,this.menorRP,this.mayorRP,this.ubicacion).subscribe({
       next:(value)=> {
           if(value.ok) {
             this.Autos=value.autos;
