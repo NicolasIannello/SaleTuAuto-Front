@@ -3,6 +3,12 @@
     margin: 0.5%;
     height: 20rem;
 }
+.cartaHover:hover {
+    transition: transform .1s, box-shadow 0.2s;
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 5px 5px rgba(10, 10, 10, 0.7);
+    cursor: pointer;
+}
 .cartaT1{
     font-size: smaller;
 
