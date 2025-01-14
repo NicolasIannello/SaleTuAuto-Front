@@ -8,29 +8,93 @@
         </div>
     </div>
     <div style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;"></div>
-    <!-- <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center; border-right: none;">
-        <div class="celda" style="border-right: none; display: flex; width: 100%;">
-            <div class="col-3" style="width: 27.2%; border-right: 1px solid rgb(15, 52, 96, 0.2);">
-                <input type="text" class="effect-1" [(ngModel)]="datoBuscar" placeholder="Ingrese un dato para buscar" style="height: 2rem; width: 100%;">
-                <span class="focus-border2"></span>
-            </div>
-            <div class="col-3" style="width: 7rem;">
-                <select class="effect-1" [(ngModel)]="tipoBuscar" style="width: 100%; height: 2rem;">
-                    <option value='marca' selected>Marca</option>
-                    <option value='modelo'>Modelo</option>
-                    <option value='version'>Version</option>
-                    <option value='ano'>Año</option>
-                    <option value='kms'>Kilometros</option>
-                    <option value='ubicacion'>Ubicacion</option>
-                    <option value='transmision'>Transmision</option>
-                    <option value='traccion'>Traccion</option>
-                    <option value='precio'>Precio</option>
-                </select>
-                <span class="focus-border2"></span>
-            </div>
-            <button class="border rounded boton paginacion" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" (click)="buscarDato()">Buscar</button>
+    <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center; border-right: none;">
+        <div class="col-3" style="display: flex; flex-direction: column; width: 20rem; margin-right: 2%;">
+            <label class="textRed" style="text-decoration: underline;">Marca: </label>
+            <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
+                <option value='' selected>Todas</option>
+                <ng-container *ngFor="let m of marcas">
+                    <option  [ngValue]=m>{{m}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
         </div>
-    </div> -->
+        <div class="col-3" style="display: flex; flex-direction: column; width: 20rem; margin-right: 2%;">
+            <label class="textRed" style="text-decoration: underline;">Modelo: </label>
+            <select class="effect-1" [(ngModel)]="modelo" style="width: 100%; height: 2.5rem;" disabled="{{modeloD}}" (change)="getVersiones()">
+                <option value='' selected>Todos</option>
+                <ng-container *ngFor="let m of modelos">
+                    <option  [ngValue]=m>{{m}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: column; width: 20rem; margin-right: 2%;">
+            <label class="textRed" style="text-decoration: underline;">Version: </label>
+            <select class="effect-1" [(ngModel)]="version" style="width: 100%; height: 2.5rem;" disabled="{{versionD}}" (change)="cargarAutos()">
+                <option value='' selected>Todas</option>
+                <ng-container *ngFor="let v of versiones">
+                    <option  [ngValue]=v>{{v}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: column; width: 20rem; margin-right: 2%;">
+            <label class="textRed" style="text-decoration: underline;">Año: </label>
+            <select class="effect-1" [(ngModel)]="ano" style="width: 100%; height: 2.5rem;" (change)="cargarAutos()">
+                <option value='' selected>Todos</option>
+                <ng-container *ngFor="let a of anos">
+                    <option  [ngValue]=a>{{a}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: column; width: 20rem; margin-right: 2%;">
+            <label class="textRed" style="text-decoration: underline;">Kilometros: </label>
+            <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorR" [max]="mayorR" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorR" [min]="menorR" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+            </div>
+            <mat-slider min="{{menorKm}}" max="{{mayorKm}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
+                <input [(ngModel)]="menorR" matSliderStartThumb>
+                <input [(ngModel)]="mayorR" matSliderEndThumb>
+            </mat-slider>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3" style="display: flex; flex-direction: column; width: 20rem; margin-right: 2%;">
+            <label class="textRed" style="text-decoration: underline;">Precio: </label>
+            <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorRP" [max]="mayorRP" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorRP" [min]="menorRP" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+            </div>
+            <mat-slider min="{{menorP}}" max="{{mayorP}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
+                <input [(ngModel)]="menorRP" matSliderStartThumb>
+                <input [(ngModel)]="mayorRP" matSliderEndThumb>
+            </mat-slider>
+            <span class="focus-border"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-right: 2%; width: 20rem;">
+            <div style="display: flex; flex-direction: row;"><label class="textRed" style="text-decoration: underline;">Ubicacion: </label></div>
+            <input class="effect-1" style="width: 100%;" type="text" placeholder="Ubicacion" style="height: 2.5rem;" [(ngModel)]="ubicacion" (change)="cargarAutos()">
+            <span class="focus-border" style="position: relative !important;"></span>
+        </div>
+    </div>
     <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center;">
         <div class="celda username" style="width: 7.5%;">Marca</div>
         <div class="celda username" style="width: 10%;">Modelo</div>

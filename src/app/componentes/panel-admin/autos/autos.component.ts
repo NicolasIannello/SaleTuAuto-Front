@@ -7,11 +7,12 @@ import { CrearAutoComponent } from './crear-auto/crear-auto.component';
 import { VerAutoComponent } from './ver-auto/ver-auto.component';
 import { EditarAutoComponent } from './editar-auto/editar-auto.component';
 import { ServiciosService } from '../../../servicios/servicios.service';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-autos',
   standalone: true,
-  imports: [CommonModule, CrearAutoComponent, VerAutoComponent, FormsModule, EditarAutoComponent],
+  imports: [CommonModule, CrearAutoComponent, VerAutoComponent, FormsModule, EditarAutoComponent, MatSliderModule],
   templateUrl: './autos.component.html',
   styleUrl: '../usuarios/usuarios.component.css'
 })
@@ -31,11 +32,58 @@ export class AutosComponent implements OnInit{
   datoBuscar:string="";
   tipoBuscar:string="marca";
   pagU:number=0;
+  marcas:Array<any>=[""];
+  marca:string|undefined='';
+  modelos:Array<any>=[""];
+  modelo:string|undefined='';
+  modeloD:boolean=true;
+  versiones:Array<any>=[""];
+  version:string|undefined='';
+  versionD:boolean=true;
+  anos:Array<any>=[""];
+  ano:number|undefined=undefined;
+  mayorKm:number=1000000000;
+  menorKm:number=0;
+  mayorR:number|null=null;
+  menorR:number|null=null;
+  flagSlider:boolean=true;
+  mayorP:number=1000000000;
+  menorP:number=0;
+  mayorRP:number|null=null;
+  menorRP:number|null=null;
+  flagSliderP:boolean=true;
+  ubicacion:string='';
 
   constructor(public api:AdminService, public api2:ServiciosService) {}
 
   ngOnInit(): void {
     this.cargarAutos();
+    let dato={
+      'dato':'marca'
+    }
+    this.api2.datos(dato).subscribe({
+      next:(value)=> {
+        if(value.ok) {
+          this.marcas=value.datos;
+        }
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+      },
+    })
+    let dato2={
+      'dato':'ano'
+    }
+    this.api2.datos(dato2).subscribe({
+      next:(value)=> {
+        if(value.ok) {
+          this.anos=value.datos;
+        }
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+      },
+    })
   }
 
   handleMessage(message: boolean, tipo:string) {    
@@ -58,12 +106,26 @@ export class AutosComponent implements OnInit{
   }
 
   cargarAutos(){
-    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden).subscribe({
+    this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version,this.ano,this.menorR,this.mayorR,this.menorRP,this.mayorRP,this.ubicacion).subscribe({
       next:(value)=> {
           if(value.ok) {
             this.Autos=value.autos;
             this.total=value.total;
             this.pagU=Math.ceil(this.total/20)            
+            this.mayorKm=value.mayorkm;
+            this.menorKm=value.menorkm;
+            if(this.flagSlider){
+              this.flagSlider=false;
+              this.mayorR=value.mayorkm;
+              this.menorR=value.menorkm;
+            }
+            this.mayorP=value.mayorp;
+            this.menorP=value.menorp;
+            if(this.flagSliderP){
+              this.flagSliderP=false;
+              this.mayorRP=value.mayorp;
+              this.menorRP=value.menorp;
+            }
           }else{
             this.error=true;
           }
@@ -125,33 +187,67 @@ export class AutosComponent implements OnInit{
     });
   }
 
-  // buscarDato(){
-  //   let dato={
-  //     'token':localStorage.getItem('token'),
-  //     'tipo':1,
-  //     'dato':this.datoBuscar,
-  //     'datoTipo':this.tipoBuscar,
-  //     'datoTipoUser':'auto',
-  //     //ver de meter orden ordenar
-  //   }
+getModelos(){
+    this.modelo='';
+    this.modelos=[""];
+    this.version='';
+    this.versiones=[""];
+    this.versionD=true;
+    if(this.marca==""){
+      this.modeloD=true;
+    }else{
+      this.modeloD=false;
+      let dato={
+        'dato':'modelo',
+        'marca':this.marca
+      }
+      this.api2.datos(dato).subscribe({
+        next:(value)=> {
+          if(value.ok) {
+            this.modelos=value.datos;
+          }
+        },
+        error:(err)=> {
+          Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+        },
+      })
+    }
+    this.cargarAutos();
+  }
 
-  //   // this.api.buscarDato(dato).subscribe({
-  //   //   next:(value)=> {
-  //   //       if(value.ok){
-  //   //         if(value.busqueda.length>0) {
-  //   //           this.Autos=value.busqueda
-  //   //         }else{
-  //   //           Swal.fire({title:'No se encontro ningun resultado', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
-  //   //         }
-  //   //       }else{
-  //   //         Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
-  //   //       }
-  //   //   },
-  //   //   error:(err)=> {
-  //   //     Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
-  //   //   },
-  //   // })
-  // }
+  getVersiones(){
+    this.version='';
+    this.versiones=[""];
+    if(this.modelo==""){
+      this.versionD=true;
+    }else{
+      this.versionD=false;
+      let dato={
+        'dato':'version',
+        'marca':this.marca,
+        'modelo':this.modelo
+      }
+      this.api2.datos(dato).subscribe({
+        next:(value)=> {
+          if(value.ok) {
+            this.versiones=value.datos;
+          }
+        },
+        error:(err)=> {
+          Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+        },
+      })
+    }
+    this.cargarAutos();
+  }
+
+  formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return `${value}`;
+  }
 
   principio(){
     this.pagina=0;
