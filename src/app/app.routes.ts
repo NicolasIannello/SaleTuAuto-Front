@@ -7,11 +7,13 @@ import { LoginComponent } from './componentes/panel-admin/login/login.component'
 import { UsuariosComponent } from './componentes/panel-admin/usuarios/usuarios.component';
 import { AutosComponent } from './componentes/panel-admin/autos/autos.component';
 import { ListaAutosComponent } from './componentes/autos/lista-autos.component';
+import { AutoComponent } from './componentes/autos/auto/auto.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent, children: [
         { path: '', component: InicioComponent },
         { path: 'autos', component: ListaAutosComponent },
+        { path: 'autos/:uuid', component: AutoComponent },
     ] },
     { path: 'panelAdmin', component: PanelAdminComponent , children: [
         { path: '', component: LoginComponent },
