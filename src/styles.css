@@ -27,7 +27,7 @@ body {
 .glassTrue {
     backdrop-filter: blur(17px) saturate(179%);
     -webkit-backdrop-filter: blur(17px) saturate(179%);
-    background-color: var(--red);  
+    background-color: rgb(233 69 96 / 75%); 
     span{
         color: var(--white);
     }
@@ -69,6 +69,10 @@ body {
 }
 .borderL{
     border-left:1px solid var(--red);
+    @media (max-width: 650px){
+        border-left:none;
+        border-top:1px solid var(--red);
+    }
 }
 
 :focus{outline: none;}
@@ -140,11 +144,26 @@ input, select{
     }
 }
 .text{
+    flex-direction:row;
     @media (max-width: 920px){
         font-size: large !important;
     }
-    @media (max-width: 600px){
-        font-size: x-small !important;
+    @media (max-width: 650px){
+        flex-direction:column;
+    }
+    @media (max-width: 450px){
+        font-size: small !important;
+    }
+}
+.empresaRes{
+    width: 33%;
+    @media (max-width: 650px){
+        margin-bottom: 2%;
+        padding-top: 2%;
+        width: 95%;
+    }
+    @media (max-width: 360px){
+        width: 90%;
     }
 }
 .oculto{

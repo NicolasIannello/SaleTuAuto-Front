@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { afterNextRender, Component, HostListener, inject, Injector, OnInit } from '@angular/core';
 import { AdminService } from '../../servicios/admin.service';
 import { ServiciosService } from '../../servicios/servicios.service';
 import Swal from 'sweetalert2';
@@ -42,10 +42,15 @@ export class ListaAutosComponent implements OnInit{
   menorRP:number|null=null;
   flagSliderP:boolean=true;
   ubicacion:string='';
+  menuOpen:boolean=false;
+  width:number | undefined;
+  cap:number = 701;
+  injector = inject(Injector);
 
   constructor(public api:AdminService, public api2:ServiciosService) {}
 
   ngOnInit(): void {
+    afterNextRender(() => this.width=window.innerWidth, {injector: this.injector});
     this.cargarAutos();
     let dato={
       'dato':'marca'
@@ -74,6 +79,11 @@ export class ListaAutosComponent implements OnInit{
       },
     })
   }
+
+  @HostListener('window:resize', ['$event'])
+    onResize(_event: any) {
+      this.width=window.innerWidth;
+    }
 
   cargarAutos(){
     this.api.cargarAutos(this.pagina*20,this.ordenar,this.orden,this.marca,this.modelo,this.version,this.ano,this.menorR,this.mayorR,this.menorRP,this.mayorRP,this.ubicacion).subscribe({
@@ -194,5 +204,9 @@ export class ListaAutosComponent implements OnInit{
     }
 
     return `${value}`;
+  }
+
+  open(){
+    this.menuOpen=!this.menuOpen;
   }
 }

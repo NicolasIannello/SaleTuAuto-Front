@@ -2,6 +2,14 @@
     width: 15rem;
     margin: 0.5%;
     height: 20rem;
+    @media (max-width: 700px){
+        width: 10rem;
+        height: 15rem;
+    }
+    @media (max-width: 470px){
+        width: 9rem;
+        height: 14rem;
+    }
 }
 .cartaHover:hover {
     transition: transform .1s, box-shadow 0.2s;
@@ -37,5 +45,102 @@
     @media (max-width: 1000px){
         margin-left: 0rem;
         margin-right: 0rem;
+    }
+    @media (max-width: 700px){
+        padding: 0rem;
+        padding-bottom: 1rem;
+    }
+}
+.filtroRes{
+    @media (max-width: 700px){
+        display: none !important;
+    }
+}
+.paginacionRes{
+    @media (max-width: 750px){
+        font-size: medium !important;
+        button{
+            font-size: medium !important;
+        }
+    }
+    @media (max-width: 680px){
+        justify-content: center !important;
+    }
+    @media (max-width: 520px){
+        font-size: x-small !important;
+        button{
+            font-size: small !important;
+        }
+    }
+}
+.listaRes{
+    width: 80%;
+    padding-left: 1%;
+    @media (max-width: 680px){
+        width: 100%;
+        padding-left: 0%;
+    }
+}
+.pagRes{
+    @media (max-width: 700px){
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+.filtro{
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding-right: 2rem;
+    height: 2rem;
+    display: none;
+    @media (max-width: 700px){
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+.menu{
+    font-family: Avenir;
+    transform: scale3d(1, 1, 1);
+    transform-origin: top;
+    transition: all 0.3s ease-in;
+    height: 100%;
+    position: absolute;
+    color: var(--blue1);
+    top: 12.5%;
+    /* background-color: var(--color1D); */
+    width: 100%;
+    z-index: 2;
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 520px){
+        height: 125%;
+    }
+    div{
+        @media (max-width: 380px){
+            margin-right: 1rem;
+            margin-left: 1rem;
+        }
+    }
+}
+.none{
+    transform: scale3d(1, 0, 1);
+    visibility: hidden;
+    opacity: 0;
+}
+.autoRes{
+    @media (max-width: 550px){
+        flex-direction: column-reverse !important;
+        align-items: center !important;
+    }
+    div{
+        @media (max-width: 550px){
+            width: 99.5% !important;
+            margin-left: 0% !important;
+        }
     }
 }
