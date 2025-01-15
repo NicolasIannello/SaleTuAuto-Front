@@ -5,173 +5,153 @@
             <i class="fa-solid fa-xmark icerrar" (click)="cerrarModal()"></i>
         </div>
 
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 2%; justify-content: space-around; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Marca: </label><span style="margin-left: 1%;">{{auto['marca'] ? auto['marca'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Modelo: </label><span style="margin-left: 1%;">{{auto['modelo'] ? auto['modelo'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Version: </label><span style="margin-left: 1%;">{{auto['version'] ? auto['version'] : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Año: </label><span style="margin-left: 1%;">{{auto['ano'] ? auto['ano'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Kilometros: </label><span style="margin-left: 1%;">{{auto['kms'] ? auto['kms'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Ubicacion: </label><span style="margin-left: 1%;">{{auto['ubicacion'] ? auto['ubicacion'] : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Transmision: </label><span style="margin-left: 1%;">{{auto['transmision'] ? auto['transmision'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Traccion: </label><span style="margin-left: 1%;">{{auto['traccion'] ? auto['traccion'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Precio: </label><span style="margin-left: 1%;">{{auto['precio'] ? auto['precio'] : '-'}}</span>
             </div>
         </div>
 
         <h1 class="textBlue" style="text-decoration: underline;">General:</h1>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 2%; justify-content: space-around; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Cilindros: </label><span style="margin-left: 1%;">{{auto['cilindros'] ? auto['cilindros'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Caballos de Fuerza: </label><span style="margin-left: 1%;">{{auto['caballos'] ? auto['caballos'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Peso bruto (kg): </label><span style="margin-left: 1%;">{{auto['peso_bruto_kg'] ? auto['peso_bruto_kg'] : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Combined (km): </label><span style="margin-left: 1%;">{{auto['combined_km'] ? auto['combined_km'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Combined (l / 100km): </label><span style="margin-left: 1%;">{{auto['combined_l_100'] ? auto['combined_l_100'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Número de Velocidades: </label><span style="margin-left: 1%;">{{auto['numero_velocidades'] ? auto['numero_velocidades'] : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Aceleración Estimada 0-100 km/h: </label><span style="margin-left: 1%;">{{auto['aceleración_0_100'] ? auto['aceleración_0_100'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Litros: </label><span style="margin-left: 1%;">{{auto['litros'] ? auto['litros'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Tipo de motor: </label><span style="margin-left: 1%;">{{auto['motor'] ? auto['motor'] : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Tipo de Combustible: </label><span style="margin-left: 1%;">{{auto['combustible'] ? auto['combustible'] : '-'}}</span>
-            </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
-            </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
             </div>
         </div>
 
         <h1 class="textBlue" style="text-decoration: underline;">Exterior</h1>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 2%; justify-content: space-around; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Número de Puertas: </label><span style="margin-left: 1%;">{{auto['puertas'] ? auto['puertas'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Diámetro de Rin: </label><span style="margin-left: 1%;">{{auto['rin_dia'] ? auto['rin_dia'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Tipo de Rin: </label><span style="margin-left: 1%;">{{auto['rin'] ? auto['rin'] : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Tipo de Carrocería: </label><span style="margin-left: 1%;">{{auto['carroceria'] ? auto['carroceria'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Tipo de bulbo luz baja: </label><span style="margin-left: 1%;">{{auto['luz_baja'] ? auto['luz_baja'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
             </div>
         </div>
 
         <h1 class="textBlue" style="text-decoration: underline;">Equipamiento y confort:</h1>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 2%; justify-content: space-around; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">GPS: </label><span style="margin-left: 1%;">{{auto['gps']===true ? 'Si' : auto['gps']===false ? 'No' : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Aire acondicionado: </label><span style="margin-left: 1%;">{{auto['aire_acondicionado']===true ? 'Si' : auto['aire_acondicionado']===false ? 'No' : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Sensor de distancia: </label><span style="margin-left: 1%;">{{auto['sensor_distancia']===true ? 'Si' : auto['sensor_distancia']===false ? 'No' : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Asistencia de estacionamiento: </label><span style="margin-left: 1%;">{{auto['asistencia_estacionamiento'] ? auto['asistencia_estacionamiento'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
             </div>
         </div>
 
         <h1 class="textBlue" style="text-decoration: underline;">Seguridad:</h1>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 2%; justify-content: space-around; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Número total de Airbags: </label><span style="margin-left: 1%;">{{auto['airbags'] ? auto['airbags'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Sensor de lluvia: </label><span style="margin-left: 1%;">{{auto['sensor_lluvia']===true ? 'Si' : auto['sensor_lluvia']===false ? 'No' : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Bolsas de Aire Frontales: </label><span style="margin-left: 1%;">{{auto['bolsas_frontales']===true ? 'Si' : auto['bolsas_frontales']===false ? 'No' : '-'}}</span>
             </div>
-        </div>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Cantidad de discos de freno: </label><span style="margin-left: 1%;">{{auto['discos_freno'] ? auto['discos_freno'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Tipo Frenos ABS: </label><span style="margin-left: 1%;">{{auto['freno_abs']===true ? 'Si' : auto['freno_abs']===false ? 'No' : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
             </div>
         </div>
 
         <h1 class="textBlue" style="text-decoration: underline;">Interior:</h1>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 2%; justify-content: space-around; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Material Asientos: </label><span style="margin-left: 1%;">{{auto['asientos'] ? auto['asientos'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Número de Pasajeros: </label><span style="margin-left: 1%;">{{auto['pasajeros'] ? auto['pasajeros'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
             </div>
         </div>
 
         <h1 class="textBlue" style="text-decoration: underline;">Entrenenimiento:</h1>
-        <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
-            <div style="display: flex; flex-direction: row; width: 33%;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 2%; justify-content: space-around; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Bluetooth: </label><span style="margin-left: 1%;">{{auto['bluetooth']===true ? 'Si' : auto['bluetooth']===false ? 'No' : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Radio: </label><span style="margin-left: 1%;">{{auto['radio'] ? auto['radio'] : '-'}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; width: 33%; align-items: center;">
+            <div style="display: flex; flex-direction: row; margin-left: 1%; margin-right: 1%; min-width: 12rem; white-space:nowrap">
                 <label class="textRed">Android auto: </label><span style="margin-left: 1%;">{{auto['android_auto']===true ? 'Si' : auto['android_auto']===false ? 'No' : '-'}}</span>
             </div>
         </div>

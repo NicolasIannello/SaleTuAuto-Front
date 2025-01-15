@@ -8,7 +8,98 @@
         </div>
     </div>
     <div style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;"></div>
-    <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center; border-right: none;">
+    <div class="filtro glass textWhite">
+        <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" style="padding-right: 2%; cursor: pointer;" (click)="open()"></i>
+        <span (click)="open()" style="cursor: pointer;">Filtrar</span>
+    </div>
+    <div *ngIf="width!=undefined && cap!=undefined && width<cap" class="menu glassTrue" style="border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;" [ngClass]="{'none' : !menuOpen}">
+        <label style="text-decoration: underline;">Marca: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+            <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
+                <option value='' selected>Todas</option>
+                <ng-container *ngFor="let m of marcas">
+                    <option  [ngValue]=m>{{m}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <label style="text-decoration: underline;">Modelo: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+            <select class="effect-1" [(ngModel)]="modelo" style="width: 100%; height: 2.5rem;" disabled="{{modeloD}}" (change)="getVersiones()">
+                <option value='' selected>Todos</option>
+                <ng-container *ngFor="let m of modelos">
+                    <option  [ngValue]=m>{{m}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <label style="text-decoration: underline;">Version: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+            <select class="effect-1" [(ngModel)]="version" style="width: 100%; height: 2.5rem;" disabled="{{versionD}}" (change)="cargarAutos()">
+                <option value='' selected>Todas</option>
+                <ng-container *ngFor="let v of versiones">
+                    <option  [ngValue]=v>{{v}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <label style="text-decoration: underline;">Año: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+            <select class="effect-1" [(ngModel)]="ano" style="width: 100%; height: 2.5rem;" (change)="cargarAutos()">
+                <option value='' selected>Todos</option>
+                <ng-container *ngFor="let a of anos">
+                    <option  [ngValue]=a>{{a}}</option>    
+                </ng-container>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <label style="text-decoration: underline;">Kilometros: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+            <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorR" [max]="mayorR" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorR" [min]="menorR" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+            </div>
+            <mat-slider min="{{menorKm}}" max="{{mayorKm}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
+                <input [(ngModel)]="menorR" matSliderStartThumb>
+                <input [(ngModel)]="mayorR" matSliderEndThumb>
+            </mat-slider>
+            <span class="focus-border"></span>
+        </div>
+        <label style="text-decoration: underline;">Precio: </label>
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+            <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorRP" [max]="mayorRP" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                    <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
+                    <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorRP" [min]="menorRP" (change)="cargarAutos()">
+                    <span class="focus-border" style="position: relative !important;"></span>
+                </div>
+            </div>
+            <mat-slider min="{{menorP}}" max="{{mayorP}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
+                <input [(ngModel)]="menorRP" matSliderStartThumb>
+                <input [(ngModel)]="mayorRP" matSliderEndThumb>
+            </mat-slider>
+            <span class="focus-border"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-right: 2%; width: 60%;">
+            <div style="display: flex; flex-direction: row;"><label style="text-decoration: underline;">Ubicacion: </label></div>
+            <input class="effect-1" style="width: 100%;" type="text" placeholder="Ubicacion" style="height: 2.5rem;" [(ngModel)]="ubicacion" (change)="cargarAutos()">
+            <span class="focus-border" style="position: relative !important;"></span>
+        </div>
+    </div>
+    <div class="filtroRes" style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center; border-right: none;">
         <div class="col-3" style="display: flex; flex-direction: column; width: 20rem; margin-right: 2%;">
             <label class="textRed" style="text-decoration: underline;">Marca: </label>
             <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
@@ -95,60 +186,62 @@
             <span class="focus-border" style="position: relative !important;"></span>
         </div>
     </div>
-    <div style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%; align-items: center;">
-        <div class="celda username" style="width: 7.5%;">Marca</div>
-        <div class="celda username" style="width: 10%;">Modelo</div>
-        <div class="celda username" style="width: 10%;">Version</div>
-        <div class="celda username" style="width: 5%;">Año</div>
-        <div class="celda username" style="width: 10%;">Kilometros</div>
-        <div class="celda username" style="width: 20%;">Ubicacion</div>
-        <div class="celda username" style="width: 7.5%;">Transmision</div>
-        <div class="celda username" style="width: 10%;">Traccion</div>
-        <div class="celda username" style="width: 15%;">Precio</div>
-        <div class="celda" style="border-right: none; display: flex; width: 20%; justify-content: flex-end;">
-            <div class="col-3" style="width: 60%;">
-                <select class="effect-1" [(ngModel)]="ordenar" (change)="cargarAutos()" style="width: 100%; height: 2rem;">
-                    <option value='_id' selected hidden>Ordenar</option>    
-                    <option value='marca'>Marca</option>
-                    <option value='modelo'>Modelo</option>
-                    <option value='version'>Version</option>
-                    <option value='ano'>Año</option>
-                    <option value='kms'>Kilometros</option>
-                    <option value='ubicacion'>Ubicacion</option>
-                    <option value='transmision'>Transmision</option>
-                    <option value='traccion'>Traccion</option>
-                    <option value='precio'>Precio</option>
-                    <option value='_id'>Default</option>    
-                </select>
-                <span class="focus-border2"></span>
-            </div>
-            <div class="col-3" style="width: 40%;">
-                <select class="effect-1" [(ngModel)]="orden" (change)="cargarAutos()" style="width: 100%; height: 2rem;">
-                    <option value='1' selected>Asc.</option>    
-                    <option value='-1'>Desc.</option>  
-                </select>
-                <span class="focus-border2"></span>
-            </div>
+    <div style="overflow-x: auto; overflow-y: hidden; white-space: nowrap; width: 100%;">
+        <div style="display: flex; width: 100%; align-items: center;">
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Marca</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Modelo</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Version</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Año</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Kilometros</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Ubicacion</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Transmision</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Traccion</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">Precio</span>
+            <span class="celda" style="border-right: none; display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 10rem; height: 1.5rem; justify-content: flex-end;">
+                <div class="col-3" style="width: 60%;">
+                    <select class="effect-1" [(ngModel)]="ordenar" (change)="cargarAutos()" style="width: 100%; height: 1.5rem;">
+                        <option value='_id' selected hidden>Ordenar</option>    
+                        <option value='marca'>Marca</option>
+                        <option value='modelo'>Modelo</option>
+                        <option value='version'>Version</option>
+                        <option value='ano'>Año</option>
+                        <option value='kms'>Kilometros</option>
+                        <option value='ubicacion'>Ubicacion</option>
+                        <option value='transmision'>Transmision</option>
+                        <option value='traccion'>Traccion</option>
+                        <option value='precio'>Precio</option>
+                        <option value='_id'>Default</option>    
+                    </select>
+                    <span class="focus-border2"></span>
+                </div>
+                <div class="col-3" style="width: 40%;">
+                    <select class="effect-1" [(ngModel)]="orden" (change)="cargarAutos()" style="width: 100%; height: 1.5rem;">
+                        <option value='1' selected>Asc.</option>    
+                        <option value='-1'>Desc.</option>  
+                    </select>
+                    <span class="focus-border2"></span>
+                </div>
+            </span>
         </div>
-    </div>
-    <h2 *ngIf="!error && total==-1" class="load"><i class="fa-solid fa-spinner ispinner" style="font-size: 3rem;"></i> Cargando</h2>
-    <h2 *ngIf="error">Error al cargar autos</h2>
-    <h2 *ngIf="total==0">No hay autos para mostrar</h2>
-    <div *ngFor="let auto of Autos" class="linea" style="display: flex; border-bottom: 1px solid rgb(15, 52, 96, 0.2); width: 100%;">
-        <div class="celda username" style="width: 7.5%;">{{auto['marca']}}</div>
-        <div class="celda username" style="width: 10%;">{{auto['modelo']}}</div>
-        <div class="celda username" style="width: 10%;">{{auto['version']}}</div>
-        <div class="celda username" style="width: 5%;">{{auto['ano']}}</div>
-        <div class="celda username" style="width: 10%;">{{auto['kms']}}</div>
-        <div class="celda username" style="width: 20%;">{{auto['ubicacion']}}</div>
-        <div class="celda username" style="width: 7.5%;">{{auto['transmision']}}</div>
-        <div class="celda username" style="width: 10%;">{{auto['traccion']}}</div>
-        <div class="celda username" style="width: 15%;">{{auto['precio']}}</div>
-        <div class="celda" style="border-right: none; display: flex; justify-content: flex-end; font-size: medium; padding-top: 0.5%; padding-bottom: 0.5%; width: 20%;">
-            <i class="fa-regular fa-eye boton border rounded ibtn" (click)="verAuto(auto['uuid'],1);"></i>
-            <i class="fa-solid fa-pen-to-square boton border rounded ibtn" (click)="verAuto(auto['uuid'],2);"></i>
-            <!-- <i class="fa-solid fa-copy boton border rounded ibtn" (click)="duplicar(auto['_id'],auto['titulo']);"></i> -->
-            <i class="fa-solid fa-trash-can boton border rounded ibtn" (click)="eliminar(auto['_id'])"></i>
+        <h2 *ngIf="!error && total==-1" class="load"><i class="fa-solid fa-spinner ispinner" style="font-size: 3rem;"></i> Cargando</h2>
+        <h2 *ngIf="error">Error al cargar autos</h2>
+        <h2 *ngIf="total==0">No hay autos para mostrar</h2>
+        <div *ngFor="let auto of Autos" class="linea" style="display: flex; width: 100%;">
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['marca']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['modelo']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['version']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['ano']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['kms']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['ubicacion']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['transmision']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['traccion']}}</span>
+            <span class="celda username" style="border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 5rem; height: 1.5rem;">{{auto['precio']}}</span>
+            <span class="celda" style="border-right: none; display: flex; justify-content: flex-end; font-size: medium; padding-top: 0.5%; padding-bottom: 0.5%; border-bottom: 1px solid rgb(15, 52, 96, 0.2); min-width: 10rem;">
+                <i class="fa-regular fa-eye boton border rounded ibtn" (click)="verAuto(auto['uuid'],1);"></i>
+                <i class="fa-solid fa-pen-to-square boton border rounded ibtn" (click)="verAuto(auto['uuid'],2);"></i>
+                <!-- <i class="fa-solid fa-copy boton border rounded ibtn" (click)="duplicar(auto['_id'],auto['titulo']);"></i> -->
+                <i class="fa-solid fa-trash-can boton border rounded ibtn" (click)="eliminar(auto['_id'])"></i>
+            </span>
         </div>
     </div>
     <div style="font-family: Avenir; margin-top: 2%; display: flex; justify-content: flex-end; width: 100%; align-items: center;">

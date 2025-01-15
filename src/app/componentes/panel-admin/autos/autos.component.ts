@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { afterNextRender, Component, HostListener, inject, Injector, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../../../servicios/admin.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
@@ -53,10 +53,15 @@ export class AutosComponent implements OnInit{
   menorRP:number|null=null;
   flagSliderP:boolean=true;
   ubicacion:string='';
+  menuOpen:boolean=false;
+  width:number | undefined;
+  cap:number = 701;
+  injector = inject(Injector);
 
   constructor(public api:AdminService, public api2:ServiciosService) {}
 
   ngOnInit(): void {
+    afterNextRender(() => this.width=window.innerWidth, {injector: this.injector});
     this.cargarAutos();
     let dato={
       'dato':'marca'
@@ -84,6 +89,11 @@ export class AutosComponent implements OnInit{
         Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
       },
     })
+  }
+
+  @HostListener('window:resize', ['$event'])
+    onResize(_event: any) {
+    this.width=window.innerWidth;
   }
 
   handleMessage(message: boolean, tipo:string) {    
@@ -270,6 +280,10 @@ getModelos(){
     this.cargarAutos()
   }
 
+  open(){
+    this.menuOpen=!this.menuOpen;
+  }
+  
   // duplicar(id:string,nom:string){
   //   Swal.fire({
   //     title: "Esta por duplicar un auto",
