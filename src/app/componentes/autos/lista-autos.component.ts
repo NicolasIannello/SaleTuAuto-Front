@@ -5,11 +5,12 @@ import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-lista-autos',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatSliderModule],
+  imports: [CommonModule, FormsModule, MatSliderModule, RouterModule],
   templateUrl: './lista-autos.component.html',
   styleUrl: './lista-autos.component.css'
 })
