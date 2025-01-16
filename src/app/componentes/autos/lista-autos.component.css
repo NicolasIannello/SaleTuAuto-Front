@@ -91,8 +91,9 @@
 .filtro{
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    padding-right: 2rem;
+    /* padding-right: 2rem; */
     height: 2rem;
+    width: 100%;
     display: none;
     @media (max-width: 700px){
         display: flex;
@@ -105,21 +106,22 @@
     transform: scale3d(1, 1, 1);
     transform-origin: top;
     transition: all 0.3s ease-in;
-    height: 100%;
+    min-height: 100%;
     position: absolute;
     color: var(--blue1);
-    top: 12.5%;
+    top: 6.5%;
+    /* top: 12.5%; */
     /* background-color: var(--color1D); */
     width: 100%;
     z-index: 2;
     backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    @media (max-width: 520px){
+    /* @media (max-width: 520px){
         height: 125%;
-    }
+    } */
     div{
         @media (max-width: 380px){
             margin-right: 1rem;
