@@ -89,14 +89,18 @@
         <span class="focus-border" style="position: relative !important;"></span>
     </div>
 </div>
-<div class="svh borderAzul margins rounded pagRes" style="text-align: center;">
+<div class="svh borderAzul margins rounded pagRes" style="text-align: center; flex-direction: column; justify-content: flex-start;">
     <div class="filtro glass textWhite">
         <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" style="padding-right: 2%; cursor: pointer;" (click)="open()"></i>
         <span (click)="open()" style="cursor: pointer; margin-right: 2rem;">Filtrar</span>
     </div>
-    <div class="filtroRes" style="width: 20%; border-right: 1px solid rgb(15, 52, 96, 0.2); padding-right: 2%; display: flex; flex-direction: column; align-items: flex-start;">
-        <label class="textRed" style="text-decoration: underline;">Marca: </label>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+    <div class="filtroRes" style="width: 100%; 
+    border-bottom: 1px solid rgb(15, 52, 96, 0.2);
+    padding-right: 2%; display: flex; 
+    /* flex-direction: column; */
+     align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;">
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 10rem;">
+            <label class="textRed" style="text-decoration: underline;">Marca: </label>
             <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
                 <option value='' selected>Todas</option>
                 <ng-container *ngFor="let m of marcas">
@@ -105,8 +109,8 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label class="textRed" style="text-decoration: underline;">Modelo: </label>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 10rem;">
+            <label class="textRed" style="text-decoration: underline;">Modelo: </label>
             <select class="effect-1" [(ngModel)]="modelo" style="width: 100%; height: 2.5rem;" disabled="{{modeloD}}" (change)="getVersiones()">
                 <option value='' selected>Todos</option>
                 <ng-container *ngFor="let m of modelos">
@@ -115,8 +119,8 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label class="textRed" style="text-decoration: underline;">Version: </label>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 10rem;">
+            <label class="textRed" style="text-decoration: underline;">Version: </label>
             <select class="effect-1" [(ngModel)]="version" style="width: 100%; height: 2.5rem;" disabled="{{versionD}}" (change)="cargarAutos()">
                 <option value='' selected>Todas</option>
                 <ng-container *ngFor="let v of versiones">
@@ -125,8 +129,8 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label class="textRed" style="text-decoration: underline;">Año: </label>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 10rem;">
+            <label class="textRed" style="text-decoration: underline;">Año: </label>
             <select class="effect-1" [(ngModel)]="ano" style="width: 100%; height: 2.5rem;" (change)="cargarAutos()">
                 <option value='' selected>Todos</option>
                 <ng-container *ngFor="let a of anos">
@@ -135,8 +139,14 @@
             </select>
             <span class="focus-border"></span>
         </div>
-        <label class="textRed" style="text-decoration: underline;">Kilometros: </label>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+        <div style="display: flex; flex-direction: column; margin-right: 2%;">
+            <div style="display: flex; flex-direction: row;"><label class="textRed" style="text-decoration: underline;">Ubicacion: </label></div>
+            <input class="effect-1" style="width: 100%;" type="text" placeholder="Ubicacion" style="height: 2.5rem;" [(ngModel)]="ubicacion" (change)="cargarAutos()">
+            <span class="focus-border" style="position: relative !important;"></span>
+        </div>
+        <div style="display: flex;">
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 15rem; margin-right: 2%;">
+            <label class="textRed" style="text-decoration: underline;">Kilometros: </label>
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column; margin-right: 2%;">
                     <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
@@ -155,8 +165,8 @@
             </mat-slider>
             <span class="focus-border"></span>
         </div>
-        <label class="textRed" style="text-decoration: underline;">Precio: </label>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 15rem;">
+            <label class="textRed" style="text-decoration: underline;">Precio: </label>
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column; margin-right: 2%;">
                     <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
@@ -175,27 +185,27 @@
             </mat-slider>
             <span class="focus-border"></span>
         </div>
-        <div style="display: flex; flex-direction: column; margin-right: 2%;">
-            <div style="display: flex; flex-direction: row;"><label class="textRed" style="text-decoration: underline;">Ubicacion: </label></div>
-            <input class="effect-1" style="width: 100%;" type="text" placeholder="Ubicacion" style="height: 2.5rem;" [(ngModel)]="ubicacion" (change)="cargarAutos()">
-            <span class="focus-border" style="position: relative !important;"></span>
         </div>
     </div>
     <div class="listaRes">
         <h1 class="textRed" style="display: flex; margin-left: 2%; text-decoration: underline;">Autos disponibles:</h1>
         <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <div class="rounded border carta cartaHover" *ngFor="let a of Autos" routerLink="{{a['uuid']}}">
-                <div style="height: 50%; border-bottom: 1px solid rgb(233, 69, 96, 0.2);  background-repeat: no-repeat;
+            <div class="rounded carta cartaHover glass2" *ngFor="let a of Autos" routerLink="{{a['uuid']}}">
+                <div class="border" style="height: 50%; 
+                /* border-bottom: 1px solid rgb(233, 69, 96, 0.2);   */
+                background-repeat: no-repeat;
                 background-size: cover; max-width:100%; max-height:100%; border-top-left-radius: 12px; border-top-right-radius: 12px;" 
                 [ngStyle]="{'background-image': 'url(' + a['img']['foto'] + ')'}">
                     <!-- <img src="{{a['img']['foto']}}" alt="" style="max-width:100%; max-height:100%; border-top-left-radius: 12px; border-top-right-radius: 12px;"> -->
                 </div>
-                <div style="height: 50%; display: flex; flex-direction: column; flex-wrap: wrap; align-content: 
+                <div style="height: 35%; display: flex; flex-direction: column; flex-wrap: wrap; align-content: 
                 flex-start; align-items: flex-start; justify-content: space-around; margin-left: 4%;">
-                    <span class="cartaT1">{{a['marca']}} | {{a['modelo']}} | {{a['version']}}</span>
-                    <span class="cartaT2">$ {{a['precio']}}</span>
-                    <span class="cartaT3">{{a['ano']}} | {{a['kms']}} KM</span>
+                    <span class="cartaT1 textBlue2">{{a['marca']}} | {{a['modelo']}} | {{a['version']}}</span>
+                    <span class="cartaT3 textWhite">{{a['traccion']}}  | {{a['ano']}} | {{a['kms']}} KM</span>
+                    <span class="cartaT3 textWhite">{{a['ubicacion']}}</span>
                 </div>
+                <div class="cartaT2 glass" style="display: flex; height: 15%; align-items: center; justify-content: center;
+                border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">$ {{a['precio']}}</div>
             </div>
         </div>
         <div class="paginacionRes" style="font-family: Avenir; margin-top: 2%; display: flex; justify-content: flex-end; width: 100%; align-items: center; font-size: large;">

@@ -52,7 +52,7 @@
     }
 }
 .filtroRes{
-    @media (max-width: 700px){
+    @media (max-width: 730px){
         display: none !important;
     }
 }
@@ -74,7 +74,7 @@
     }
 }
 .listaRes{
-    width: 80%;
+    width: 100%;
     padding-left: 1%;
     @media (max-width: 680px){
         width: 100%;
@@ -95,7 +95,7 @@
     height: 2rem;
     width: 100%;
     display: none;
-    @media (max-width: 700px){
+    @media (max-width: 730px){
         display: flex;
         justify-content: flex-end;
         align-items: center;

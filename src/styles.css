@@ -5,7 +5,8 @@
     --white: rgb(249, 249, 249);
     --blue1: rgb(26, 26, 46);
     --blue2: rgb(22, 33, 62);
-    --blue3: rgb(15, 52, 96);
+    --blue3: rgb(255, 144, 0);
+    /* --blue3: rgb(15, 52, 96); */
     --red: rgb(233, 69, 96);
 }
 body {
@@ -19,7 +20,7 @@ body {
     background-color: var(--blue1);  
 }
 .glass2 {
-    background-color: var(--blue3);  
+    background-color: var(--blue2);  
 }
 .glassW {
     background-color: var(--white);  
@@ -63,6 +64,9 @@ body {
 }
 .textBlue{
     color: var(--blue2);
+}
+.textBlue2{
+    color: var(--blue3);
 }
 .borderR{
     border-right:1px solid var(--red);
