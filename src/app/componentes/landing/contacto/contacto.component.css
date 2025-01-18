@@ -9,3 +9,21 @@ input, select{
         flex-direction: column;
     }
 }
+.wsp{
+    border: 1px solid rgb(7,94,84);
+    cursor: pointer;
+    width: 20rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    background-color: rgb(37,211,102);
+    color: azure;
+    &:hover{
+        background-color: rgb(18,140,126);
+    }
+    @media (max-width: 1000px){
+        
+    }
+}

@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ContactoComponent } from "../contacto/contacto.component";
+import { ListaAutosComponent } from "../../autos/lista-autos.component";
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, RouterModule, ContactoComponent],
+  imports: [CommonModule, RouterModule, ListaAutosComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })

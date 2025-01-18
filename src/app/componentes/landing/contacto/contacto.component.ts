@@ -16,49 +16,54 @@ export class ContactoComponent {
   campos:Array<string>=['','',''];
   alertas:Array<string>=['*','*','*'];
   flag:boolean=true;
+  number:string="+5491127605336";
 
-  constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service) {}
+  constructor(public api:ServiciosService/*, private recaptchaV3Service: ReCaptchaV3Service*/) {}
 
-  public send(form: NgForm): void {
-    if (form.invalid) {
-      for (const control of Object.keys(form.controls)) {
-        form.controls[control].markAsTouched();
-      }
-      return;
-    }
-
-    this.recaptchaV3Service.execute('importantAction').subscribe(
-      (token)=> {
-        this.enviar()
-      },
-      (error)=> {
-      },
-    );
+  wspW(){
+    window.open('https://wa.me/'+this.number);
   }
 
-  enviar(){
-    for (let i = 0; i < this.campos.length; i++) {
-      if(this.campos[i]=='') this.flag=false;
-      this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
-    }    
+  // public send(form: NgForm): void {
+  //   if (form.invalid) {
+  //     for (const control of Object.keys(form.controls)) {
+  //       form.controls[control].markAsTouched();
+  //     }
+  //     return;
+  //   }
 
-    if(this.flag){
-      let dato={
-        'nombre_apellido':this.campos[0],
-        'mail':this.campos[1],
-        'mensaje':this.campos[2],
-        'mensaje2':this.campos[2].replace(/\n/g, '<br>'),
-      }
+  //   this.recaptchaV3Service.execute('importantAction').subscribe(
+  //     (token)=> {
+  //       this.enviar()
+  //     },
+  //     (error)=> {
+  //     },
+  //   );
+  // }
+
+  // enviar(){
+  //   for (let i = 0; i < this.campos.length; i++) {
+  //     if(this.campos[i]=='') this.flag=false;
+  //     this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
+  //   }    
+
+  //   if(this.flag){
+  //     let dato={
+  //       'nombre_apellido':this.campos[0],
+  //       'mail':this.campos[1],
+  //       'mensaje':this.campos[2],
+  //       'mensaje2':this.campos[2].replace(/\n/g, '<br>'),
+  //     }
       
-      this.api.contacto(dato).subscribe({
-        next:(value)=> {
-          if(value.ok) Swal.fire({title:'Mensaje enviado con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-          if(!value.ok) Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-        },
-        error:(err)=> {
-          Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
-        },
-      })
-    }
-  }
+  //     this.api.contacto(dato).subscribe({
+  //       next:(value)=> {
+  //         if(value.ok) Swal.fire({title:'Mensaje enviado con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+  //         if(!value.ok) Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+  //       },
+  //       error:(err)=> {
+  //         Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
+  //       },
+  //     })
+  //   }
+  // }
 }
