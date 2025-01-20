@@ -2,9 +2,12 @@
     <div class="inicio foto">
         <p style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
             <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Bienvenido a SALE Tu Auto.</span>
-            <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Cotizamos tu auto usado!!</span>
-            <span style="font-weight: 100;" class="textS">Vende al mejor precio y no te apresures. SALE Tu Auto te acerca la mejor cotización por tu vehículo.</span>
-            <button class="boton border rounded botones" style="font-size: xx-large; width: 15rem; height: 4rem;" routerLink="ventaRapida">Venta rapida</button>
+            <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Encontra el Auto que buscas!</span>
+            <!-- <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Cotizamos tu auto usado!!</span>
+            <span style="font-weight: 100;" class="textS">Vende al mejor precio y no te apresures. SALE Tu Auto te acerca la mejor cotización por tu vehículo.</span> -->
+            <span style="width: 100%; display: flex; justify-content: flex-end;">
+                <button class="boton border rounded botones" style="font-size: xx-large; width: 15rem; height: 4rem;" routerLink="ventaRapida">Quiero vender!</button>
+            </span>
         </p>
     </div>
     <div class="shadow"></div>
@@ -37,4 +40,10 @@
     </div> -->
     <!-- <app-contacto style="width: 100%;"></app-contacto> -->
     <app-lista-autos></app-lista-autos>
+    <div class="glass1" style="width: 100%;">
+        <div class="margin5 seccion">
+            <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Comunícate con nosotros</div>
+            <div class="wsp rounded" (click)="wspW()"><i class="fa-brands fa-whatsapp" style="margin-right: 2%;"></i> {{number}}</div>
+        </div>
+    </div>
 </div>

@@ -9,7 +9,7 @@
     p{
         color: var(--white);
         font-size: xxx-large;
-        height: 41%;
+        height: 60%;
         align-content: center;
         text-align: center;
         @media (max-width: 920px){
@@ -24,7 +24,7 @@
     }
 }
 .foto{
-    height: 80vh;
+    height: 50vh;
     width: 100%;
     z-index: 1;
     display: flex;
@@ -57,4 +57,33 @@
     box-shadow: 0 0px 30px 30px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 0px 30px 30px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 0px 30px 30px rgba(0, 0, 0, 0.3);
+}
+input, select{
+    width: 100%;
+    height: 3rem;
+}
+.linea{
+    display: flex;
+    margin-bottom: 2%;
+    @media (max-width: 1000px){
+        flex-direction: column;
+    }
+}
+.wsp{
+    border: 1px solid rgb(7,94,84);
+    cursor: pointer;
+    width: 20rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    background-color: rgb(37,211,102);
+    color: azure;
+    &:hover{
+        background-color: rgb(18,140,126);
+    }
+    @media (max-width: 1000px){
+        
+    }
 }

@@ -14,7 +14,11 @@ import { ListaAutosComponent } from "../../autos/lista-autos.component";
 export class InicioComponent {
   @Input() widthC: number | undefined;
   @Input() cap: number | undefined;
+  number:string="+5491127605336";
 
   constructor() {}
-
+  
+  wspW(){
+    window.open('https://wa.me/'+this.number);
+  }
 }
