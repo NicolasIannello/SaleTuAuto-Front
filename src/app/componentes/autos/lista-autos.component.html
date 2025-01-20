@@ -1,105 +1,103 @@
-<div *ngIf="width!=undefined && cap!=undefined && width<cap" class="menu glassTrue" style="border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;" [ngClass]="{'none' : !menuOpen}">
-    <div class="filtro glass textWhite" style="border-radius: 0px;">
-        <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" style="padding-right: 2%; cursor: pointer;" (click)="open()"></i>
-        <span (click)="open()" style="cursor: pointer; margin-right: 2rem;">Filtrar</span>
-    </div>
-    <label style="text-decoration: underline;">Marca: </label>
-    <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
-        <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
-            <option value='' selected>Todas</option>
-            <ng-container *ngFor="let m of marcas">
-                <option  [ngValue]=m>{{m}}</option>    
-            </ng-container>
-        </select>
-        <span class="focus-border"></span>
-    </div>
-    <label style="text-decoration: underline;">Modelo: </label>
-    <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
-        <select class="effect-1" [(ngModel)]="modelo" style="width: 100%; height: 2.5rem;" disabled="{{modeloD}}" (change)="getVersiones()">
-            <option value='' selected>Todos</option>
-            <ng-container *ngFor="let m of modelos">
-                <option  [ngValue]=m>{{m}}</option>    
-            </ng-container>
-        </select>
-        <span class="focus-border"></span>
-    </div>
-    <label style="text-decoration: underline;">Version: </label>
-    <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
-        <select class="effect-1" [(ngModel)]="version" style="width: 100%; height: 2.5rem;" disabled="{{versionD}}" (change)="cargarAutos()">
-            <option value='' selected>Todas</option>
-            <ng-container *ngFor="let v of versiones">
-                <option  [ngValue]=v>{{v}}</option>    
-            </ng-container>
-        </select>
-        <span class="focus-border"></span>
-    </div>
-    <label style="text-decoration: underline;">Año: </label>
-    <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
-        <select class="effect-1" [(ngModel)]="ano" style="width: 100%; height: 2.5rem;" (change)="cargarAutos()">
-            <option value='' selected>Todos</option>
-            <ng-container *ngFor="let a of anos">
-                <option  [ngValue]=a>{{a}}</option>    
-            </ng-container>
-        </select>
-        <span class="focus-border"></span>
-    </div>
-    <label style="text-decoration: underline;">Kilometros: </label>
-    <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
-        <div style="display: flex; flex-direction: row;">
-            <div style="display: flex; flex-direction: column; margin-right: 2%;">
-                <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
-                <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorR" [max]="mayorR" (change)="cargarAutos()">
-                <span class="focus-border" style="position: relative !important;"></span>
-            </div>
-            <div style="display: flex; flex-direction: column; margin-right: 2%;">
-                <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
-                <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorR" [min]="menorR" (change)="cargarAutos()">
-                <span class="focus-border" style="position: relative !important;"></span>
-            </div>
-        </div>
-        <mat-slider min="{{menorKm}}" max="{{mayorKm}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
-            <input [(ngModel)]="menorR" matSliderStartThumb>
-            <input [(ngModel)]="mayorR" matSliderEndThumb>
-        </mat-slider>
-        <span class="focus-border"></span>
-    </div>
-    <label style="text-decoration: underline;">Precio: </label>
-    <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
-        <div style="display: flex; flex-direction: row;">
-            <div style="display: flex; flex-direction: column; margin-right: 2%;">
-                <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
-                <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorRP" [max]="mayorRP" (change)="cargarAutos()">
-                <span class="focus-border" style="position: relative !important;"></span>
-            </div>
-            <div style="display: flex; flex-direction: column; margin-right: 2%;">
-                <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
-                <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorRP" [min]="menorRP" (change)="cargarAutos()">
-                <span class="focus-border" style="position: relative !important;"></span>
-            </div>
-        </div>
-        <mat-slider min="{{menorP}}" max="{{mayorP}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
-            <input [(ngModel)]="menorRP" matSliderStartThumb>
-            <input [(ngModel)]="mayorRP" matSliderEndThumb>
-        </mat-slider>
-        <span class="focus-border"></span>
-    </div>
-    <div style="display: flex; flex-direction: column; margin-right: 2%; width: 60%;">
-        <div style="display: flex; flex-direction: row;"><label style="text-decoration: underline;">Ubicacion: </label></div>
-        <input class="effect-1" style="width: 100%;" type="text" placeholder="Ubicacion" style="height: 2.5rem;" [(ngModel)]="ubicacion" (change)="cargarAutos()">
-        <span class="focus-border" style="position: relative !important;"></span>
-    </div>
-</div>
 <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem; display: flex; justify-content: center; margin-top: 5rem;">Vehículos</div>
 <div class="svh borderAzul margins rounded pagRes" style="text-align: center; flex-direction: column; justify-content: flex-start;">
-    <div class="filtro glass textWhite">
+    <div class="filtro glass2 textWhite" mat-button [matMenuTriggerFor]="menu" #filtroTrigger="matMenuTrigger">
         <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" style="padding-right: 2%; cursor: pointer;" (click)="open()"></i>
         <span (click)="open()" style="cursor: pointer; margin-right: 2rem;">Filtrar</span>
     </div>
-    <div class="filtroRes" style="width: 100%; 
-    border-bottom: 1px solid rgb(15, 52, 96, 0.2);
-    padding-right: 2%; display: flex; 
-    /* flex-direction: column; */
-     align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;">
+    <mat-menu #menu="matMenu" MenuPositionY="below" yPosition="below">
+        <div (click)="$event.stopPropagation()" class="glassTrue" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="filtro glass2 textWhite" mat-button [matMenuTriggerFor]="menu" style="border-radius: 0px; display: flex !important; align-items: center; justify-content: flex-end;">
+                <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" style="padding-right: 2%; cursor: pointer;" (click)="closeMe(filtroTrigger)"></i>
+                <span (click)="closeMe(filtroTrigger)" style="cursor: pointer; margin-right: 2rem;">Cerrar</span>
+            </div>
+            <label style="text-decoration: underline;">Marca: </label>
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+                <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
+                    <option value='' selected>Todas</option>
+                    <ng-container *ngFor="let m of marcas">
+                        <option  [ngValue]=m>{{m}}</option>    
+                    </ng-container>
+                </select>
+                <span class="focus-border"></span>
+            </div>
+            <label style="text-decoration: underline;">Modelo: </label>
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+                <select class="effect-1" [(ngModel)]="modelo" style="width: 100%; height: 2.5rem;" disabled="{{modeloD}}" (change)="getVersiones()">
+                    <option value='' selected>Todos</option>
+                    <ng-container *ngFor="let m of modelos">
+                        <option  [ngValue]=m>{{m}}</option>    
+                    </ng-container>
+                </select>
+                <span class="focus-border"></span>
+            </div>
+            <label style="text-decoration: underline;">Version: </label>
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+                <select class="effect-1" [(ngModel)]="version" style="width: 100%; height: 2.5rem;" disabled="{{versionD}}" (change)="cargarAutos()">
+                    <option value='' selected>Todas</option>
+                    <ng-container *ngFor="let v of versiones">
+                        <option  [ngValue]=v>{{v}}</option>    
+                    </ng-container>
+                </select>
+                <span class="focus-border"></span>
+            </div>
+            <label style="text-decoration: underline;">Año: </label>
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+                <select class="effect-1" [(ngModel)]="ano" style="width: 100%; height: 2.5rem;" (change)="cargarAutos()">
+                    <option value='' selected>Todos</option>
+                    <ng-container *ngFor="let a of anos">
+                        <option  [ngValue]=a>{{a}}</option>    
+                    </ng-container>
+                </select>
+                <span class="focus-border"></span>
+            </div>
+            <label style="text-decoration: underline;">Kilometros: </label>
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+                <div style="display: flex; flex-direction: row;">
+                    <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                        <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
+                        <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorR" [max]="mayorR" (change)="cargarAutos()">
+                        <span class="focus-border" style="position: relative !important;"></span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                        <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
+                        <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorR" [min]="menorR" (change)="cargarAutos()">
+                        <span class="focus-border" style="position: relative !important;"></span>
+                    </div>
+                </div>
+                <mat-slider min="{{menorKm}}" max="{{mayorKm}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
+                    <input [(ngModel)]="menorR" matSliderStartThumb>
+                    <input [(ngModel)]="mayorR" matSliderEndThumb>
+                </mat-slider>
+                <span class="focus-border"></span>
+            </div>
+            <label style="text-decoration: underline;">Precio: </label>
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
+                <div style="display: flex; flex-direction: row;">
+                    <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                        <div style="display: flex; flex-direction: row;"><label>Menor: </label></div>
+                        <input class="effect-1" type="number" placeholder="Menor" style="height: 2.5rem;" [(ngModel)]="menorRP" [max]="mayorRP" (change)="cargarAutos()">
+                        <span class="focus-border" style="position: relative !important;"></span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; margin-right: 2%;">
+                        <div style="display: flex; flex-direction: row;"><label>Mayor: </label></div>
+                        <input class="effect-1" type="number" placeholder="Mayor" style="height: 2.5rem;" [(ngModel)]="mayorRP" [min]="menorRP" (change)="cargarAutos()">
+                        <span class="focus-border" style="position: relative !important;"></span>
+                    </div>
+                </div>
+                <mat-slider min="{{menorP}}" max="{{mayorP}}" step="500" [displayWith]="formatLabel" (change)="cargarAutos()">
+                    <input [(ngModel)]="menorRP" matSliderStartThumb>
+                    <input [(ngModel)]="mayorRP" matSliderEndThumb>
+                </mat-slider>
+                <span class="focus-border"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; margin-right: 2%; width: 60%; margin-bottom: 2%;">
+                <div style="display: flex; flex-direction: row;"><label style="text-decoration: underline;">Ubicacion: </label></div>
+                <input class="effect-1" style="width: 100%;" type="text" placeholder="Ubicacion" style="height: 2.5rem;" [(ngModel)]="ubicacion" (change)="cargarAutos()">
+                <span class="focus-border" style="position: relative !important;"></span>
+            </div>
+        </div>
+    </mat-menu>
+    <div class="filtroRes" style="width: 100%; border-bottom: 1px solid rgb(15, 52, 96, 0.2); padding-right: 2%; display: flex; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;">
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 10rem;">
             <label class="textRed" style="text-decoration: underline;">Marca: </label>
             <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">

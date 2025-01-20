@@ -206,3 +206,31 @@ input, select{
 .borderAzul{
     border: 1px solid rgb(15, 52, 96, 0.2);
 }
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    outline: 0;
+    border-radius: 0px;
+    background-color: var(--mat-menu-container-color);
+    will-change: transform, opacity;
+}
+.cdk-overlay-pane.cdk-overlay-pane {
+    position: absolute;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}
+.mat-mdc-menu-content.mat-mdc-menu-content {
+    margin: 0;
+    padding: 0px 0 !important;
+    list-style-type: none;
+}
