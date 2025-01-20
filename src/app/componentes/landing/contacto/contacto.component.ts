@@ -4,13 +4,14 @@ import { ServiciosService } from '../../../servicios/servicios.service';
 import Swal from 'sweetalert2';
 import { RecaptchaV3Module, ReCaptchaV3Service } from 'ng-recaptcha';
 import { RouterModule } from '@angular/router';
+import { VentaRapidaComponent } from "../../venta-rapida/venta-rapida.component";
 
 @Component({
   selector: 'app-contacto',
   standalone: true,
-  imports: [FormsModule, RecaptchaV3Module, RouterModule],
+  imports: [FormsModule, RecaptchaV3Module, RouterModule, VentaRapidaComponent],
   templateUrl: './contacto.component.html',
-  styleUrl: './contacto.component.css'
+  styleUrl: '../inicio/inicio.component.css'
 })
 export class ContactoComponent {
   campos:Array<string>=['','',''];

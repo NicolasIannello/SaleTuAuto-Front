@@ -1,4 +1,12 @@
 <div class="svh" style="flex-direction: column;">
+    <div class="inicio foto">
+        <p style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
+            <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Bienvenido a SALE Tu Auto.</span>
+            <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Cotizamos tu auto usado!!</span>
+            <span style="font-weight: 100;" class="textS">Vende al mejor precio y no te apresures. SALE Tu Auto te acerca la mejor cotización por tu vehículo.</span>
+        </p>
+    </div>
+    <div class="shadow"></div>
     <div class="glass1" style="min-height: 90vh; width: 100%; display: flex; align-items: center;">
         <div class="margin5" style="width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: center;">
             <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">La empresa</div>
@@ -26,6 +34,8 @@
             </div>
         </div>
     </div>
+    <app-venta-rapida></app-venta-rapida>
+    <div class="glass1" style="width: 100%;">
     <div class="margin5 seccion">
         <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Comunícate con nosotros</div>
         <div class="wsp rounded" (click)="wspW()"><i class="fa-brands fa-whatsapp" style="margin-right: 2%;"></i> {{number}}</div>
@@ -59,5 +69,6 @@
                 </form>
             </div>
         </div> -->
+    </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 const base_url=environment.base_url;
+const licitaciones_url=environment.licitaciones_url;
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class ServiciosService {
     this.header=new HttpHeaders().set('Acces-Control-Allow-Origin','*');
   }
 
-  contacto(dato:any):Observable<any>{
-    return this.http.post(base_url+'/usuarios/mailContacto', dato, {'headers':this.header})
-  }
+  // contacto(dato:any):Observable<any>{
+  //   return this.http.post(base_url+'/usuarios/mailContacto', dato, {'headers':this.header})
+  // }
   cargarAuto(dato:any):Observable<any>{
     return this.http.post(base_url+'/auto/auto', dato, {'headers':this.header})
   }
@@ -36,5 +37,19 @@ export class ServiciosService {
   }
   datos(dato:any):Observable<any>{
     return this.http.post(base_url+'/auto/datos', dato, {'headers':this.header})
+  }
+  async ventaRapida(dato:any){    
+    try {
+      const resp = await fetch(licitaciones_url+'/imgs/ventaRapida',{
+        method: 'POST', 
+        headers: {'Acces-Control-Allow-Origin':'*'},
+        body: dato
+      });
+
+      const data = await resp.json();
+      return data;
+    } catch (error) {
+      return false;
+    }
   }
 }
