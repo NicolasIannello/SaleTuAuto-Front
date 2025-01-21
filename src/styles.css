@@ -20,7 +20,7 @@ body {
     background-color: var(--blue1);  
 }
 .glass2 {
-    background-color: var(--blue2);  
+    background-color: var(--blue2) !important;  
 }
 .glassW {
     background-color: var(--white);  
@@ -207,30 +207,49 @@ input, select{
     border: 1px solid rgb(15, 52, 96, 0.2);
 }
 
-.mat-mdc-menu-panel.mat-mdc-menu-panel {
-    min-width: 100% !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    box-sizing: border-box;
-    outline: 0;
-    border-radius: 0px;
-    background-color: var(--mat-menu-container-color);
-    will-change: transform, opacity;
+.mat-expansion-panel-body.mat-expansion-panel-body {
+    padding: 0px !important;
 }
-.cdk-overlay-pane.cdk-overlay-pane {
-    position: absolute;
-    pointer-events: auto;
-    box-sizing: border-box;
-    z-index: 1000;
+.mat-expansion-panel-header-title.mat-expansion-panel-header-title, .mat-expansion-panel-header-description.mat-expansion-panel-header-description {
     display: flex;
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 16px;
+    align-items: center;
+    justify-content: flex-end;
 }
-.mat-mdc-menu-content.mat-mdc-menu-content {
+.mat-expansion-panel-header.mat-expanded.mat-expansion-panel-header.mat-expanded {
+    height: 2rem;
+}
+.mat-expansion-panel-header.mat-expansion-panel-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: inherit;
+    border-radius: inherit;
+    transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1);
+    height: inherit;
+    font-family: inherit; 
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+}
+.mat-expansion-panel.mat-expansion-panel {
+    box-sizing: content-box;
+    display: block;
     margin: 0;
-    padding: 0px 0 !important;
-    list-style-type: none;
+    overflow: hidden;
+    transition: margin 225ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    background: inherit;
+    color: inherit;
+    border-radius: 0px;
+}
+.mat-expansion-panel:not(.mat-expanded).mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover.mat-expansion-panel-header:not([aria-disabled=true]):hover {
+    background: var(--blue2);
+}
+.mat-expansion-panel-header.mat-expansion-panel-header .mat-expanded.mat-expanded:focus,
+.mat-expansion-panel-header.mat-expansion-panel-header.max-expanded:hover {
+    background: var(--blue2);
 }

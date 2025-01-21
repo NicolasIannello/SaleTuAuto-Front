@@ -1,16 +1,14 @@
 <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem; display: flex; justify-content: center; margin-top: 5rem;">Vehículos</div>
 <div class="svh borderAzul margins rounded pagRes" style="text-align: center; flex-direction: column; justify-content: flex-start;">
-    <div class="filtro glass2 textWhite" mat-button [matMenuTriggerFor]="menu" #filtroTrigger="matMenuTrigger">
-        <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" style="padding-right: 2%; cursor: pointer;" (click)="open()"></i>
-        <span (click)="open()" style="cursor: pointer; margin-right: 2rem;">Filtrar</span>
-    </div>
-    <mat-menu #menu="matMenu" MenuPositionY="below" yPosition="below">
-        <div (click)="$event.stopPropagation()" class="glassTrue" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="filtro glass2 textWhite" mat-button [matMenuTriggerFor]="menu" style="border-radius: 0px; display: flex !important; align-items: center; justify-content: flex-end;">
-                <i [ngClass]="{'fa-bars' : !menuOpen, 'fa-xmark' : menuOpen}" class="fa-solid" style="padding-right: 2%; cursor: pointer;" (click)="closeMe(filtroTrigger)"></i>
-                <span (click)="closeMe(filtroTrigger)" style="cursor: pointer; margin-right: 2rem;">Cerrar</span>
-            </div>
-            <label style="text-decoration: underline;">Marca: </label>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header class="filtro glass2 textWhite">
+            <mat-panel-title>
+                <i class="fa-solid fa-bars textWhite" style="padding-right: 2%; cursor: pointer;"></i>
+                <span class="textWhite" style="cursor: pointer; margin-right: 2rem;">Filtrar</span>         
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="glassTrue" style="display: flex; flex-direction: column; align-items: center;">
+            <label style="text-decoration: underline; margin-top: 2%;">Marca: </label>
             <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 60%;">
                 <select class="effect-1" [(ngModel)]="marca" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
                     <option value='' selected>Todas</option>
@@ -96,7 +94,7 @@
                 <span class="focus-border" style="position: relative !important;"></span>
             </div>
         </div>
-    </mat-menu>
+    </mat-expansion-panel>
     <div class="filtroRes" style="width: 100%; border-bottom: 1px solid rgb(15, 52, 96, 0.2); padding-right: 2%; display: flex; align-items: flex-start; flex-wrap: wrap; justify-content: space-evenly;">
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 10rem;">
             <label class="textRed" style="text-decoration: underline;">Marca: </label>
