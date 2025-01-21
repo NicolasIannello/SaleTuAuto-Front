@@ -1,9 +1,10 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AdminService } from '../../../../servicios/admin.service';
 import Swal from 'sweetalert2';
+import { ServiciosService } from '../../../../servicios/servicios.service';
 
 @Component({
   selector: 'app-crear-auto',
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrl: '../../usuarios/usuarios.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class CrearAutoComponent {
+export class CrearAutoComponent implements OnInit{
   datos:Array<any>=     ['','','','','','','','',''];
   alertas:Array<string>=['','','','','','','','','',''];
   //extras:Array<any>=    ['','','','','','','','','','','','','','','','','','','','','','','','','','',''];
@@ -59,6 +60,10 @@ export class CrearAutoComponent {
   @Output() messageEvent = new EventEmitter<boolean>();
   @ViewChild('imagen') inputImagen!: ElementRef;
   // @ViewChild('pdfTC') inputPDF!: ElementRef;
+  marcas:Array<any>=[""];
+  marcasFlag:boolean=true;
+  modelos:Array<any>=[""];
+  modelosFlag:boolean=true;
 
   cerrarModal() {
     this.datos=  ['','','','','','','','',''];
@@ -104,10 +109,56 @@ export class CrearAutoComponent {
     // this.pdf=null;
     this.inputImagen.nativeElement.value = "";
     // this.inputPDF.nativeElement.value = "";
+    this.marcasFlag=true;
+    this.modelosFlag=true;
+    this.modelos=[];
     this.messageEvent.emit(false);
   }
 
-  constructor(private sanitizer: DomSanitizer, public api:AdminService) {}
+  constructor(private sanitizer: DomSanitizer, public api:AdminService, public api2:ServiciosService) {}
+
+  ngOnInit(): void {
+    let dato={
+      'dato':'marcaAdmin'
+    }
+    this.api2.datos(dato).subscribe({
+      next:(value)=> {
+        if(value.ok) {
+          this.marcas=value.datos;
+        }
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+      },
+    })
+  }
+
+  changeMF(){
+    this.marcasFlag=!this.marcasFlag;
+    this.datos[0]='';
+  }
+  changeMF2(){
+    this.modelosFlag=!this.modelosFlag;
+    this.datos[1]='';
+  }
+
+  getModelos(){
+    this.modelos=[""];
+    let dato={
+      'dato':'modeloAdmin',
+      'marca':this.datos[0]
+    }
+    this.api2.datos(dato).subscribe({
+      next:(value)=> {
+        if(value.ok) {
+          this.modelos=value.datos;
+        }
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+      },
+    })
+  }
 
   showImg(event: Event){
 		this.sources=[];
@@ -208,6 +259,9 @@ export class CrearAutoComponent {
       if(this.extras['bluetooth']!='') formData.append('bluetooth', this.extras['bluetooth']);
       if(this.extras['radio']!='') formData.append('radio', this.extras['radio']);
       if(this.extras['android_auto']!='') formData.append('android_auto', this.extras['android_auto']);
+
+      formData.append('marcasFlag', this.marcasFlag ? 'NO' : 'SI');
+      formData.append('modelosFlag', this.modelosFlag ? 'NO' : 'SI');      
 
       formData.append('token', localStorage.getItem('token')!);
       formData.append('tipo', '1');

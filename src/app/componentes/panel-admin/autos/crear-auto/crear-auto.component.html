@@ -4,24 +4,32 @@
             <i class="fa-solid fa-xmark icerrar" (click)="cerrarModal()"></i>
         </div>
         <label>Marca: </label><span class="msg">*{{alertas[0]}}</span>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
-            <input class="effect-1" type="text" placeholder="Marca" style="height: 2.5rem;" [(ngModel)]="datos[0]">
-            <span class="focus-border"></span>
-            <!-- <select class="effect-1" [(ngModel)]="datos[0]" style="width: 100%; height: 2.5rem;">
-                <option [ngValue]=true selected>Precio base / Precio salida</option>
-                <option [ngValue]=false>Monto arranque / Monto esperado</option>    
-            </select>
-            <span class="focus-border"></span> -->
+        <div style="display: flex; margin-bottom: 2%; width: 100%;">
+            <div class="col-3" style="display: flex; flex-direction: column; width: 100%;">
+                <input *ngIf="!marcasFlag" class="effect-1" type="text" placeholder="Marca" style="width: 100%; height: 2.5rem;" [(ngModel)]="datos[0]">
+                <select *ngIf="marcasFlag" class="effect-1" [(ngModel)]="datos[0]" style="width: 100%; height: 2.5rem;" (change)="getModelos()">
+                    <option value='' selected hidden>Marca</option>
+                    <ng-container *ngFor="let m of marcas">
+                        <option  [ngValue]=m>{{m}}</option>    
+                    </ng-container>
+                </select>
+                <span class="focus-border"></span>
+            </div>
+            <i class="fa-solid fa-plus glass textWhite" style="width: 10%; display: flex; align-items: center; justify-content: center; cursor: pointer;" (click)="changeMF()"></i>
         </div>
         <label>Modelo: </label><span class="msg">*{{alertas[1]}}</span>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
-            <input class="effect-1" type="text" placeholder="Modelo" style="height: 2.5rem;" [(ngModel)]="datos[1]">
-            <span class="focus-border"></span>
-            <!-- <select class="effect-1" [(ngModel)]="datos[1]" style="width: 100%; height: 2.5rem;">
-                <option [ngValue]=true selected>Precio base / Precio salida</option>
-                <option [ngValue]=false>Monto arranque / Monto esperado</option>    
-            </select>
-            <span class="focus-border"></span> -->
+        <div style="display: flex; margin-bottom: 2%; width: 100%;">
+            <div class="col-3" style="display: flex; flex-direction: column; width: 100%;">
+                <input *ngIf="!modelosFlag" class="effect-1" type="text" placeholder="Modelo" style="width: 100%; height: 2.5rem;" [(ngModel)]="datos[1]">
+                <select *ngIf="modelosFlag" class="effect-1" [(ngModel)]="datos[1]" style="width: 100%; height: 2.5rem;">
+                    <option value='' selected hidden>Modelo</option>
+                    <ng-container *ngFor="let m of modelos">
+                        <option  [ngValue]=m>{{m}}</option>    
+                    </ng-container>
+                </select>
+                <span class="focus-border"></span>
+            </div>
+            <i class="fa-solid fa-plus glass textWhite" style="width: 10%; display: flex; align-items: center; justify-content: center; cursor: pointer;" (click)="changeMF2()"></i>
         </div>
         <label>Version: </label><span class="msg">*{{alertas[2]}}</span>
         <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
