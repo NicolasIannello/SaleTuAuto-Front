@@ -8,11 +8,12 @@ import { VerAutoComponent } from './ver-auto/ver-auto.component';
 import { EditarAutoComponent } from './editar-auto/editar-auto.component';
 import { ServiciosService } from '../../../servicios/servicios.service';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-autos',
   standalone: true,
-  imports: [CommonModule, CrearAutoComponent, VerAutoComponent, FormsModule, EditarAutoComponent, MatSliderModule],
+  imports: [CommonModule, CrearAutoComponent, VerAutoComponent, FormsModule, EditarAutoComponent, MatSliderModule, MatExpansionModule],
   templateUrl: './autos.component.html',
   styleUrl: '../usuarios/usuarios.component.css'
 })
@@ -64,7 +65,7 @@ export class AutosComponent implements OnInit{
     afterNextRender(() => this.width=window.innerWidth, {injector: this.injector});
     this.cargarAutos();
     let dato={
-      'dato':'marca'
+      'dato':'marcaAdmin'
     }
     this.api2.datos(dato).subscribe({
       next:(value)=> {
@@ -208,7 +209,7 @@ getModelos(){
     }else{
       this.modeloD=false;
       let dato={
-        'dato':'modelo',
+        'dato':'modeloAdmin',
         'marca':this.marca
       }
       this.api2.datos(dato).subscribe({
