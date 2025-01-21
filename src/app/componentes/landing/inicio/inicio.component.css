@@ -87,3 +87,9 @@ input, select{
         
     }
 }
+.envDatos{
+    width: 20rem;
+    @media (max-width: 450px){
+        width: 10rem;
+    }
+}

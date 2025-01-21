@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <label>Imagenes del auto: </label><span class="msg">*{{alertas[2]}}</span>
+            <label>Imagenes del auto: </label><span class="msg">{{alertas[2]}}</span>
             <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
                 <span *ngFor="let src of sources">
                     <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
@@ -28,7 +28,7 @@
             <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;">
             <div style="text-align: end; width: 100%;">
                 <form #form="ngForm">
-                    <button class="boton border rounded botones" (click)="send(form)" style="width: 20rem;">Enviar datos del Auto</button>
+                    <button class="boton border rounded botones envDatos" (click)="send(form)">Enviar datos del Auto</button>
                 </form>
             </div>
         </div>
