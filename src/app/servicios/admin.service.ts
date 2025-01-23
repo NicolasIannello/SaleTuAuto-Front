@@ -74,4 +74,10 @@ export class AdminService {
       return false;
     }
   }
+  cargarTyc():Observable<any>{
+    return this.http.post(base_url+'/admin/tyc', {'headers':this.header})
+  }
+  editarTyc(dato:any):Observable<any>{
+    return this.http.post(base_url+'/admin/actualizarTyc', dato, {'headers':this.header})
+  }
 }

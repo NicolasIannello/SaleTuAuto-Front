@@ -4,6 +4,7 @@
         <div class="btnnav" [ngClass]="{'activa' : activa=='login'}" (click)="activar('login')" routerLink="login"><span>Inicio</span></div>
         <div class="btnnav" [ngClass]="{'activa' : activa=='usuarios'}" (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
         <div class="btnnav" [ngClass]="{'activa' : activa=='autos'}" (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
+        <div class="btnnav" [ngClass]="{'activa' : activa=='Term&Cond'}" (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
     </div>
     <ng-template #mobile>
         <div style="display: flex;">
@@ -14,5 +15,5 @@
 <div *ngIf="widthC!=undefined && cap!=undefined && widthC<cap" class="menu glassTrue" [ngClass]="{'none' : !menuOpen}">
     <div (click)="activar('login')" routerLink="login"><span>Inicio</span></div>
     <div (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
-    <div (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
+    <div (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
 </div>

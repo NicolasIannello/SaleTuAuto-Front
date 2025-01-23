@@ -9,6 +9,7 @@ import { AutosComponent } from './componentes/panel-admin/autos/autos.component'
 import { ListaAutosComponent } from './componentes/autos/lista-autos.component';
 import { AutoComponent } from './componentes/autos/auto/auto.component';
 import { ContactoComponent } from './componentes/landing/contacto/contacto.component';
+import { TycComponent } from './componentes/panel-admin/tyc/tyc.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent, children: [
@@ -21,6 +22,7 @@ export const routes: Routes = [
         { path: '', component: LoginComponent },
         { path: 'usuarios', component: UsuariosComponent, canActivate:[authGuard] },
         { path: 'autos', component: AutosComponent, canActivate:[authGuard] },
+        { path: 'Term&Cond', component: TycComponent, canActivate:[authGuard] },
         { path: '**',   redirectTo: '', pathMatch: 'full' },
     ]},
     { path: '**',   redirectTo: '', pathMatch: 'full' },

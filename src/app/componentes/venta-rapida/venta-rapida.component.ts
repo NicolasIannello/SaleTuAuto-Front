@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ServiciosService } from '../../servicios/servicios.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { CommonModule } from '@angular/common';
+import { AdminService } from '../../servicios/admin.service';
 
 @Component({
   selector: 'app-venta-rapida',
@@ -12,14 +13,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './venta-rapida.component.html',
   styleUrl: '../landing/inicio/inicio.component.css'
 })
-export class VentaRapidaComponent {
+export class VentaRapidaComponent implements OnInit{
   campos:Array<string>=['',''];
   alertas:Array<string>=['*','*','*'];
   sources: Array<any> = [];
   fotos:any = []
   flag:boolean=true;
+  tyc:string='';
 
-  constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service) {}
+  constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service, public api2:AdminService) {}
+  
+  ngOnInit(): void {
+    this.api2.cargarTyc().subscribe({
+      next:(value)=> {
+          this.tyc=value.tyc
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});            
+      },
+    })
+  }
   
   public send(form: NgForm): void {
     if (form.invalid) {      
@@ -38,7 +51,7 @@ export class VentaRapidaComponent {
     );
   }
   
-  enviar(){
+  async enviar(){
     this.flag=true;
     for (let i = 0; i < this.campos.length; i++) {
       if(this.campos[i]=='') this.flag=false;
@@ -48,19 +61,32 @@ export class VentaRapidaComponent {
     this.alertas[2]= this.fotos.length==0 ? 'Campo obligatorio' : '';
     
     if(this.flag){
-      const formData = new FormData();
-      formData.append('matricula', this.campos[0]);
-      formData.append('descripcion', this.campos[1]);
-      for (let i = 0; i < this.fotos.length; i++) {
-				formData.append('img', this.fotos[i]);  
-			}      
-      
-      this.api.ventaRapida(formData).then(resp =>{
-        if(resp.ok) Swal.fire({title:'Datos del auto enviados con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-        if(!resp.ok) Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-      }, (err)=>{				
-        Swal.fire({title:'Ocurrio un error',confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+      const { value: accept } = await Swal.fire({
+        title: "Terminos y condiciones",
+        text: this.tyc,
+        input: "checkbox",
+        inputValue: 0,
+        inputPlaceholder: `He leido y acepto los terminos y condiciones`,
+        confirmButtonText: `Enviar datos`,
+        inputValidator: (result) => {
+          return !result && "Debe aceptar los Terminos y condiciones";
+        }
       });
+      if (accept) {
+        const formData = new FormData();
+        formData.append('matricula', (this.campos[0]+" (Particular)"));
+        formData.append('descripcion', this.campos[1]);
+        for (let i = 0; i < this.fotos.length; i++) {
+          formData.append('img', this.fotos[i]);  
+        }      
+        
+        this.api.ventaRapida(formData).then(resp =>{
+          if(resp.ok) Swal.fire({title:'Datos del auto enviados con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+          if(!resp.ok) Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+        }, (err)=>{				
+          Swal.fire({title:'Ocurrio un error',confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+        });
+      }
     }
   }
 
