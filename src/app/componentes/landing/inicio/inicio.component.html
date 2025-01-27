@@ -1,12 +1,14 @@
 <div class="svh seccion">
     <div class="inicio foto">
-        <p style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
+        <p style="display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
             <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Bienvenido a SALE Tu Auto.</span>
             <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Encontra el Auto que buscas!</span>
             <!-- <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Cotizamos tu auto usado!!</span>
             <span style="font-weight: 100;" class="textS">Vende al mejor precio y no te apresures. SALE Tu Auto te acerca la mejor cotización por tu vehículo.</span> -->
-            <span style="width: 100%; display: flex; justify-content: flex-end;">
-                <button class="boton border rounded botones" style="font-size: xx-large; width: 15rem; height: 4rem;" routerLink="ventaRapida">Quiero vender!</button>
+            <span style="width: 100%; display: flex; justify-content: space-around;">
+                <span class="triple" style="text-transform: uppercase; font-size: xx-large; font-family: shameimaru sans; width: 33%;">Compra o vende tu auto usado</span>
+                <button class="boton border rounded botones triple triple2" style="font-size: xx-large; width: 16rem; height: 4rem;" (click)="vehiculos()">Quiero comprar!</button>
+                <button class="boton border rounded botones triple triple2" style="font-size: xx-large; width: 16rem; height: 4rem;" routerLink="ventaRapida">Quiero vender!</button>
             </span>
         </p>
     </div>
@@ -39,7 +41,7 @@
         </div>
     </div> -->
     <!-- <app-contacto style="width: 100%;"></app-contacto> -->
-    <app-lista-autos style="width: 100%;"></app-lista-autos>
+    <app-lista-autos style="width: 100%;" id="vehiculos"></app-lista-autos>
     <div class="glass1" style="width: 100%;">
         <div class="margin5 seccion">
             <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Comunícate con nosotros</div>

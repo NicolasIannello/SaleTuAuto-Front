@@ -9,6 +9,9 @@
     /* --blue3: rgb(15, 52, 96); */
     --red: rgb(233, 69, 96);
 }
+html{
+    scroll-behavior: smooth;
+}
 body {
     font-family: Avenir;
     margin: 0;

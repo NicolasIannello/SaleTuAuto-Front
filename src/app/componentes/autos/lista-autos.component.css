@@ -4,11 +4,15 @@
     height: 20rem;
     @media (max-width: 700px){
         width: 10rem;
-        height: 15rem;
+        height: 18rem;
     }
-    @media (max-width: 470px){
+    /* @media (max-width: 470px){
         width: 9rem;
         height: 14rem;
+    } */
+    @media (max-width: 350px){
+        width: 19rem;
+        height: 30rem;
     }
 }
 .cartaHover:hover {
@@ -63,7 +67,7 @@
             font-size: medium !important;
         }
     }
-    @media (max-width: 680px){
+    @media (max-width: 735px){
         justify-content: center !important;
     }
     @media (max-width: 520px){

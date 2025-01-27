@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ContactoComponent } from "../contacto/contacto.component";
@@ -16,9 +16,13 @@ export class InicioComponent {
   @Input() cap: number | undefined;
   number:string="+5491127605336";
 
-  constructor() {}
+  constructor(private scroller: ViewportScroller) {}
   
   wspW(){
     window.open('https://wa.me/'+this.number);
+  }
+
+  vehiculos(){
+    this.scroller.scrollToAnchor('vehiculos');
   }
 }
