@@ -10,6 +10,13 @@
                 </div>
             </div>
             <div class="linea" style="width: 100%;">
+                <div class="col-3" style="width: 100%;">
+                    <label class="textBlue" for="nomapel">Telefono </label><span class="msg">{{alertas[2]}}</span>
+                    <input class="effect-1" type="text" placeholder="Telefono" [(ngModel)]="campos[2]">
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="linea" style="width: 100%;">
                 <div class="col-3" style="margin-bottom: 2%; width: 100%;">
                     <label class="textBlue">Descripcion </label><span class="msg">{{alertas[1]}}</span>
                     <div style="display: flex;">
@@ -18,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <label>Imagenes del auto: </label><span class="msg">{{alertas[2]}}</span>
+            <label>Imagenes del auto: </label><span class="msg">{{alertas[3]}}</span>
             <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
                 <span *ngFor="let src of sources">
                     <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">

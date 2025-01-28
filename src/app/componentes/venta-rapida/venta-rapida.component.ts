@@ -14,8 +14,8 @@ import { AdminService } from '../../servicios/admin.service';
   styleUrl: '../landing/inicio/inicio.component.css'
 })
 export class VentaRapidaComponent implements OnInit{
-  campos:Array<string>=['',''];
-  alertas:Array<string>=['*','*','*'];
+  campos:Array<string>=['','',''];
+  alertas:Array<string>=['*','*','*','*'];
   sources: Array<any> = [];
   fotos:any = []
   flag:boolean=true;
@@ -58,7 +58,7 @@ export class VentaRapidaComponent implements OnInit{
       this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
     }
     if(this.fotos.length==0) this.flag=false;
-    this.alertas[2]= this.fotos.length==0 ? 'Campo obligatorio' : '';
+    this.alertas[3]= this.fotos.length==0 ? 'Campo obligatorio' : '';
     
     if(this.flag){
       const { value: accept } = await Swal.fire({
@@ -74,8 +74,9 @@ export class VentaRapidaComponent implements OnInit{
       });
       if (accept) {
         const formData = new FormData();
-        formData.append('matricula', (this.campos[0]+" (Particular)"));
+        formData.append('matricula', this.campos[0]);
         formData.append('descripcion', this.campos[1]);
+        formData.append('telefono', this.campos[2]);
         for (let i = 0; i < this.fotos.length; i++) {
           formData.append('img', this.fotos[i]);  
         }      
