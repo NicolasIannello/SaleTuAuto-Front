@@ -15,7 +15,7 @@ import { ServiciosService } from '../../../../servicios/servicios.service';
   encapsulation: ViewEncapsulation.None
 })
 export class CrearAutoComponent implements OnInit{
-  datos:Array<any>=     ['','','','','','','','',''];
+  datos:Array<any>=     ['','','','','','','','','','ARS'];
   alertas:Array<string>=['','','','','','','','','',''];
   //extras:Array<any>=    ['','','','','','','','','','','','','','','','','','','','','','','','','','',''];
   extras:{[key: string]: any}={ 
@@ -66,7 +66,7 @@ export class CrearAutoComponent implements OnInit{
   modelosFlag:boolean=true;
 
   cerrarModal() {
-    this.datos=  ['','','','','','','','',''];
+    this.datos=  ['','','','','','','','','','ARS'];
     this.alertas=['','','','','','','','','',''];
     this.extras={ 
       cilindros: '',
@@ -224,6 +224,7 @@ export class CrearAutoComponent implements OnInit{
       formData.append('transmision', this.datos[6]);
       formData.append('traccion', this.datos[7]);
       formData.append('precio', this.datos[8]);
+      formData.append('moneda', this.datos[9]);
 
       if(this.extras['cilindros']!='') formData.append('cilindros', this.extras['cilindros']);
       if(this.extras['caballos']!='') formData.append('caballos', this.extras['caballos']);

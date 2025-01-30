@@ -100,12 +100,21 @@
             <span class="focus-border"></span>
         </div>
         <label>Precio: </label><span class="msg">*{{alertas[8]}}</span>
-        <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%;">
-            <input class="effect-1" type="number" placeholder="Precio" style="height: 2.5rem;" 
-            [ngClass]="{'changed': autoNuevo['precio']!=auto['precio']}" [(ngModel)]="autoNuevo['precio']">
-            <span class="focus-border"></span>
+        <div style="display: flex;">
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 4rem;">
+                <select class="effect-1" [(ngModel)]="autoNuevo['moneda']" style="width: 100%; height: 2.5rem;">
+                    <option [ngValue]="autoNuevo['moneda']" selected hidden>{{autoNuevo['moneda']}}</option>
+                    <option value="ARS">ARS</option>
+                    <option value="USD">USD</option>    
+                </select>
+                <span class="focus-border"></span>
+            </div>
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+                <input class="effect-1" type="number" placeholder="Precio" style="height: 2.5rem;" 
+                [ngClass]="{'changed': autoNuevo['precio']!=auto['precio']}" [(ngModel)]="autoNuevo['precio']">
+                <span class="focus-border"></span>
+            </div>
         </div>
-
         <h1 class="textRed">General:</h1>
         <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
             <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
