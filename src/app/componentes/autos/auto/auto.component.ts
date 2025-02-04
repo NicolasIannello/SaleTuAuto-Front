@@ -21,7 +21,7 @@ export class AutoComponent implements OnInit {
   imagen:{link:SafeResourceUrl,id:number,name:string}={link:'',id:0,name:''};
   infoBasica:Array<any>=[['cilindros','Cilindros'],['caballos','Caballos de Fuerza'],['peso_bruto_kg','Peso bruto (kg)'],['combined_km','Combined (km)'],['combined_l_100','Combined (l / 100km)'],['numero_velocidades','Número de Velocidades'],['aceleración_0_100','Aceleración Estimada 0-100 km/h'],['litros','Litros'],['motor','Tipo de motor'],['combustible','Tipo de Combustible']];
   infoBasicaFlag:Boolean=false;
-  exterior:Array<any>=[['puertas','Número de Puertas'],['rin_dia','Diámetro de Rin'],['rin','Tipo de Rin'],['carroceria','Tipo de Carrocería'],['luz_baja','Tipo de bulbo luz baja']];
+  exterior:Array<any>=[['puertas','Número de Puertas'],['rin_dia','Diámetro de Llanta'],['rin','Tipo de Llanta'],['carroceria','Tipo de Carrocería'],['luz_baja','Tipo de bulbo luz baja']];
   exteriorFlag:Boolean=false;
   comfort:Array<any>=[['gps','GPS'],['aire_acondicionado','Aire acondicionado'],['sensor_distancia','Sensor de distancia'],['asistencia_estacionamiento','Asistencia de estacionamiento']];
   comfortFlag:Boolean=false;
