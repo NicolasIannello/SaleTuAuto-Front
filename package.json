@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve:ssr:sta": "node dist/sta/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +21,7 @@
     "@angular/platform-browser": "^18.1.0",
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
+    "@angular/ssr": "^19.1.5",
     "@schematics/angular": "^19.0.7",
     "ng-recaptcha": "^13.2.1",
     "rxjs": "~7.8.0",
