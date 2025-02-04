@@ -1,0 +1,11 @@
+{
+  "routes": [
+    "/",
+    "/autos",
+    "/panelAdmin",
+    "/panelAdmin/autos",
+    "/panelAdmin/Term&Cond",
+    "/panelAdmin/usuarios",
+    "/ventaRapida"
+  ]
+}
