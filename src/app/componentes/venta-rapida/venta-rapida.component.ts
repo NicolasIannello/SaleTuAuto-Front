@@ -83,7 +83,10 @@ export class VentaRapidaComponent implements OnInit{
         
         this.api.ventaRapida(formData).then(resp =>{
           if(resp.ok) Swal.fire({title:'Datos del auto enviados con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-          if(!resp.ok) Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+          if(!resp.ok) {
+            Swal.fire({title:'Ocurrio un error: \n'+(resp.errors.matricula ? resp.errors.matricula.param+": "+resp.errors.matricula.msg : '')+'\n'+
+              (resp.errors.telefono ? " "+resp.errors.telefono.param+": "+resp.errors.telefono.msg : ''), confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+          }
         }, (err)=>{				
           Swal.fire({title:'Ocurrio un error',confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
         });
