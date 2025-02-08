@@ -74,7 +74,7 @@ export class VentaRapidaComponent implements OnInit{
       });
       if (accept) {
         const formData = new FormData();
-        formData.append('matricula', this.campos[0]);
+        formData.append('matricula', this.campos[0].toUpperCase());
         formData.append('descripcion', this.campos[1]);
         formData.append('telefono', this.campos[2]);
         for (let i = 0; i < this.fotos.length; i++) {
