@@ -15,5 +15,6 @@
 <div *ngIf="widthC!=undefined && cap!=undefined && widthC<cap" class="menu glassTrue" [ngClass]="{'none' : !menuOpen}">
     <div (click)="activar('login')" routerLink="login"><span>Inicio</span></div>
     <div (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
+    <div (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
     <div (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
 </div>
