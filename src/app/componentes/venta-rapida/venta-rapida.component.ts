@@ -5,6 +5,7 @@ import { ServiciosService } from '../../servicios/servicios.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { CommonModule } from '@angular/common';
 import { AdminService } from '../../servicios/admin.service';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-venta-rapida',
@@ -18,6 +19,8 @@ export class VentaRapidaComponent implements OnInit{
   alertas:Array<string>=['*','*','*','*'];
   sources: Array<any> = [];
   fotos:any = []
+  sourcesAdicionales: Array<any> = [];
+  fotosAdicionales:any = []
   flag:boolean=true;
   tyc:string='';
 
@@ -36,6 +39,8 @@ export class VentaRapidaComponent implements OnInit{
   
   public send(form: NgForm): void {
     if (form.invalid) {      
+      console.log('hola');
+      
       for (const control of Object.keys(form.controls)) {
         form.controls[control].markAsTouched();
       }
@@ -57,11 +62,18 @@ export class VentaRapidaComponent implements OnInit{
       if(this.campos[i]=='') this.flag=false;
       this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
     }
-    if(this.fotos.length==0) this.flag=false;
-    this.alertas[3]= this.fotos.length==0 ? 'Campo obligatorio' : '';
+    if(this.fotos.length<7) this.flag=false;
+    this.alertas[3]= this.fotos.length<7 ? 'Los campos con * son obligatorio' : '*';
+    for (let i = 0; i < this.fotos.length; i++) {
+      if(this.fotos[i] == undefined) {
+        this.flag=false;
+        this.alertas[3]='Los campos con * son obligatorio';
+      }
+    }
     
     if(this.flag){
       const { value: accept } = await Swal.fire({
+        width: '90%',
         title: "Terminos y condiciones",
         text: this.tyc,
         input: "checkbox",
@@ -79,7 +91,10 @@ export class VentaRapidaComponent implements OnInit{
         formData.append('telefono', this.campos[2]);
         for (let i = 0; i < this.fotos.length; i++) {
           formData.append('img', this.fotos[i]);  
-        }      
+        }
+        for (let i = 0; i < this.fotosAdicionales.length; i++) {
+          formData.append('img', this.fotosAdicionales[i]);  
+        }
         
         this.api.ventaRapida(formData).then(resp =>{
           if(resp.ok) Swal.fire({title:'Datos del auto enviados con exito', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
@@ -94,16 +109,19 @@ export class VentaRapidaComponent implements OnInit{
     }
   }
 
-  showImg(event: Event){
-		this.sources=[];
-    this.fotos=[];
+  showImg(event: Event, id:number){
+		if(id!=7) this.sources[id]={};
+		if(id==7) this.sourcesAdicionales=[];
+    if(id!=7) this.fotos[id]=EMPTY;
+    if(id==7) this.fotosAdicionales=[];
     const element = event.currentTarget as HTMLInputElement;
 		let cantidad = element.files?.length || 0;    
-		this.fotos=element.files;
-    
-		if(cantidad==0) {
-			this.sources=[];
-		}else{
+		if(id!=7) this.fotos[id]=element.files![0];
+		if(id==7) this.fotosAdicionales=element.files;
+    if(cantidad==0) {
+			if(id!=7) this.sources[id]={};
+			if(id==7) this.sourcesAdicionales=[];
+    }else{
 			for (let index = 0; index < cantidad; index++) {
 				var nombreCortado=element.files![index].name.split('.');
 				var extensionArchivo=nombreCortado[nombreCortado.length-1];
@@ -114,8 +132,10 @@ export class VentaRapidaComponent implements OnInit{
             reader.readAsDataURL(element.files![index]);
 
             reader.onloadend = ()=>{
-              this.sources.push({id: (index+1), link: reader.result, name: element.files![index].name})
-            }            
+              //this.sources.push({id: (index+1), link: reader.result, name: element.files![index].name})
+              if(id!=7) this.sources[id]={id: (index+1), link: reader.result, name: element.files![index].name};
+              if(id==7) this.sourcesAdicionales.push({id: (index+1), link: reader.result, name: element.files![index].name});
+            }
           }, index*200);
 				}
 			}			
