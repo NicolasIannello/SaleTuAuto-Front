@@ -110,17 +110,18 @@ export class VentaRapidaComponent implements OnInit{
   }
 
   showImg(event: Event, id:number){
-		if(id!=7) this.sources[id]={};
-		if(id==7) this.sourcesAdicionales=[];
-    if(id!=7) this.fotos[id]=EMPTY;
-    if(id==7) this.fotosAdicionales=[];
+		if(id!=-1) this.sources[id]={};
+		if(id==-1) this.sourcesAdicionales=[];
+    if(id!=-1) this.fotos[id]=EMPTY;
+    if(id==-1) this.fotosAdicionales=[];
     const element = event.currentTarget as HTMLInputElement;
 		let cantidad = element.files?.length || 0;    
-		if(id!=7) this.fotos[id]=element.files![0];
-		if(id==7) this.fotosAdicionales=element.files;
+		if(id!=-1) this.fotos[id]=element.files![0];
+		if(id==-1) this.fotosAdicionales=element.files;
+
     if(cantidad==0) {
-			if(id!=7) this.sources[id]={};
-			if(id==7) this.sourcesAdicionales=[];
+			if(id!=-1) this.sources[id]={};
+			if(id==-1) this.sourcesAdicionales=[];
     }else{
 			for (let index = 0; index < cantidad; index++) {
 				var nombreCortado=element.files![index].name.split('.');
@@ -132,9 +133,8 @@ export class VentaRapidaComponent implements OnInit{
             reader.readAsDataURL(element.files![index]);
 
             reader.onloadend = ()=>{
-              //this.sources.push({id: (index+1), link: reader.result, name: element.files![index].name})
-              if(id!=7) this.sources[id]={id: (index+1), link: reader.result, name: element.files![index].name};
-              if(id==7) this.sourcesAdicionales.push({id: (index+1), link: reader.result, name: element.files![index].name});
+              if(id!=-1) this.sources[id]={id: (index+1), link: reader.result, name: element.files![index].name};
+              if(id==-1) this.sourcesAdicionales.push({id: (index+1), link: reader.result, name: element.files![index].name});
             }
           }, index*200);
 				}

@@ -53,7 +53,7 @@
                     <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 1)" style="margin-bottom: 2%;">
                 </div>
                 <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del motor: </label><span class="msg">*</span>
+                    <label>Foto del lateral izquierdo: </label><span class="msg">*</span>
                     <div style="margin-top: 2%; margin-bottom: 4%;">
                         <span *ngIf="sources[2]">
                             <img id=foto{{sources[2].id}} src="{{sources[2].link}}" alt="" style="width: 100px;">
@@ -62,7 +62,7 @@
                     <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 2)" style="margin-bottom: 2%;">
                 </div>
                 <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del interior delantero: </label><span class="msg">*</span>
+                    <label>Foto del lateral derecho: </label><span class="msg">*</span>
                     <div style="margin-top: 2%; margin-bottom: 4%;">
                         <span *ngIf="sources[3]">
                             <img id=foto{{sources[3].id}} src="{{sources[3].link}}" alt="" style="width: 100px;">
@@ -71,7 +71,7 @@
                     <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 3)" style="margin-bottom: 2%;">
                 </div>
                 <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del interior trasero: </label><span class="msg">*</span>
+                    <label>Foto del motor: </label><span class="msg">*</span>
                     <div style="margin-top: 2%; margin-bottom: 4%;">
                         <span *ngIf="sources[4]">
                             <img id=foto{{sources[4].id}} src="{{sources[4].link}}" alt="" style="width: 100px;">
@@ -80,7 +80,7 @@
                     <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 4)" style="margin-bottom: 2%;">
                 </div>
                 <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del interior de baul: </label><span class="msg">*</span>
+                    <label>Foto del interior delantero: </label><span class="msg">*</span>
                     <div style="margin-top: 2%; margin-bottom: 4%;">
                         <span *ngIf="sources[5]">
                             <img id=foto{{sources[5].id}} src="{{sources[5].link}}" alt="" style="width: 100px;">
@@ -89,13 +89,31 @@
                     <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 5)" style="margin-bottom: 2%;">
                 </div>
                 <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del instrumental de tablero: </label><span class="msg">*</span>
+                    <label>Foto del interior trasero: </label><span class="msg">*</span>
                     <div style="margin-top: 2%; margin-bottom: 4%;">
                         <span *ngIf="sources[6]">
                             <img id=foto{{sources[6].id}} src="{{sources[6].link}}" alt="" style="width: 100px;">
                         </span>
                     </div>
                     <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 6)" style="margin-bottom: 2%;">
+                </div>
+                <div style="max-width: 100%; min-width: 15rem;">
+                    <label>Foto del interior de baul: </label><span class="msg">*</span>
+                    <div style="margin-top: 2%; margin-bottom: 4%;">
+                        <span *ngIf="sources[7]">
+                            <img id=foto{{sources[7].id}} src="{{sources[7].link}}" alt="" style="width: 100px;">
+                        </span>
+                    </div>
+                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 7)" style="margin-bottom: 2%;">
+                </div>
+                <div style="max-width: 100%; min-width: 15rem;">
+                    <label>Foto del instrumental de tablero: </label><span class="msg">*</span>
+                    <div style="margin-top: 2%; margin-bottom: 4%;">
+                        <span *ngIf="sources[8]">
+                            <img id=foto{{sources[8].id}} src="{{sources[8].link}}" alt="" style="width: 100px;">
+                        </span>
+                    </div>
+                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 8)" style="margin-bottom: 2%;">
                 </div>
             </div>
             <div style="max-width: 100%; min-width: 15rem;">
@@ -105,7 +123,7 @@
                         <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
                     </span>
                 </div>
-                <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event, 7)" style="margin-bottom: 2%;">
+                <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event, -1)" style="margin-bottom: 2%;">
             </div>
             <div style="text-align: end; width: 100%;">
                 <form #form="ngForm">
