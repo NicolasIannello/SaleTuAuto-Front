@@ -2,9 +2,9 @@
     <div style="align-items: center; display: flex; height: 100%;"><div class="logo" style="cursor: pointer;" (click)="activar('')" routerLink=""><span>SALE Tu Auto</span></div></div> 
     <div *ngIf="widthC!=undefined && cap!=undefined && widthC>cap else mobile">
         <div class="btnnav" [ngClass]="{'activa' : activa=='login'}" (click)="activar('login')" routerLink="login"><span>Inicio</span></div>
-        <div class="btnnav" [ngClass]="{'activa' : activa=='usuarios'}" (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
-        <div class="btnnav" [ngClass]="{'activa' : activa=='autos'}" (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
-        <div class="btnnav" [ngClass]="{'activa' : activa=='Term&Cond'}" (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
+        <div *ngIf="users" class="btnnav" [ngClass]="{'activa' : activa=='usuarios'}" (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
+        <div *ngIf="autos" class="btnnav" [ngClass]="{'activa' : activa=='autos'}" (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
+        <div *ngIf="users" class="btnnav" [ngClass]="{'activa' : activa=='Term&Cond'}" (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
     </div>
     <ng-template #mobile>
         <div style="display: flex;">
@@ -14,7 +14,7 @@
 </div>
 <div *ngIf="widthC!=undefined && cap!=undefined && widthC<cap" class="menu glassTrue" [ngClass]="{'none' : !menuOpen}">
     <div (click)="activar('login')" routerLink="login"><span>Inicio</span></div>
-    <div (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
-    <div (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
-    <div (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
+    <div *ngIf="users" (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
+    <div *ngIf="autos" (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
+    <div *ngIf="users" (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
 </div>
