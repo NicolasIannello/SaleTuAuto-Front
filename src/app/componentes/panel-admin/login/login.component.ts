@@ -54,7 +54,8 @@ export class LoginComponent implements OnInit{
         next: (value)=>{
           if(value.ok){
             localStorage.setItem('token',value.token)
-            this.User=value.user
+            window.location.reload();
+            //this.User=value.user
             //this.api.setUserAdmin(this.User);
           }
           if(!value.ok){
