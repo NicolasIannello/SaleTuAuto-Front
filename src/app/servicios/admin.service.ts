@@ -80,4 +80,7 @@ export class AdminService {
   editarTyc(dato:any):Observable<any>{
     return this.http.post(base_url+'/admin/actualizarTyc', dato, {'headers':this.header})
   }
+  actualizarUser(dato:any):Observable<any>{
+    return this.http.post(base_url+'/admin/actualizarUser', dato, {'headers':this.header})
+  }
 }

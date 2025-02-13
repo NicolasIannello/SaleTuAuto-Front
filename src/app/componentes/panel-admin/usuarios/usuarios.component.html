@@ -119,6 +119,7 @@
                 <i class="fa-solid" [ngClass]="{'fa-circle-check verde':u['autos'], 'fa-circle-xmark rojo':!u['autos']}" style="font-size: larger; margin-right: 1%;"></i> {{u['autos'] ? 'Habilitado' : 'Inhabilitado'}}
             </div>
             <div class="celda" style="width: 10%; border-right: none; display: flex; justify-content: flex-end; font-size: medium; padding-top: 0.5%; padding-bottom: 0.5%;">
+                <i class="fa-solid fa-pen-to-square boton border rounded ibtn" (click)="verCambio(i,u['_id'])"></i>
                 <i class="fa-solid fa-trash-can boton border rounded ibtn" (click)="eliminar(u['_id'],u['usuario'],'admin')"></i>
             </div>
         </div>
@@ -203,151 +204,27 @@
     </div>
 </div> -->
 <!-- Modal cambiar -->
-<!-- <div id="myModal" class="modal" [ngClass]="{'oculto':!mostrarCambio, '':mostrarCambio }">
+<div id="myModal" class="modal" [ngClass]="{'oculto':!mostrarCambio, '':mostrarCambio }">
     <div class="modal-content">
         <div style="display: flex; justify-content: flex-end; font-size: x-large;">
             <i class="fa-solid fa-xmark icerrar" (click)="verCambio(-1,'')"></i>
         </div>
-        <div style="display: flex;">
-            <div class="celda" style="width: 50%; display:flex; align-items:center; display: flex; align-items: center;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Nombre:</span> 
+        <div class="borderAbajo" style="display: flex; justify-content: center;">
+            <div class="celda" style="width: 50%; display:flex; align-items:center; display: flex; align-items: center; border-right: none;">
+                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Usuario:</span> 
                 <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["nombre"]' [(ngModel)]="datoCambio['nombre']"
-                    [ngClass]="{'changed': datoCambio['nombre']!=datoCambioCheck['nombre']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">CUIL/CUIT:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["cuil_cuit"]' [(ngModel)]="datoCambio['cuil_cuit']"
-                    [ngClass]="{'changed': datoCambio['cuil_cuit']!=datoCambioCheck['cuil_cuit']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
+                    <input type="text" class="effect-1" [value]='datoCambio["usuario"]' [(ngModel)]="datoCambio['usuario']"
+                    [ngClass]="{'changed': datoCambio['usuario']!=datoCambioCheck['usuario']}" style="width: 100%; height: 2rem; background: #ececec;">
+                    <span class="focus-border"></span>
                 </div>
             </div>
         </div>
-        <div style="display: flex;">
-            <div class="celda" style="width: 50%; display:flex; align-items:center;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Mail:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["mail"]' [(ngModel)]="datoCambio['mail']"
-                    [ngClass]="{'changed': datoCambio['mail']!=datoCambioCheck['mail']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
+        <div class="borderAbajo" style="display: flex; justify-content: center;">
+            <div class="col-3 modalRes celda" style="display: flex; flex-direction: row; justify-content: center; align-items: center; width: 30%">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':datoCambio['usuarios'], 'fa-circle-xmark rojo':!datoCambio['usuarios']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="datoCambio['usuarios']=!datoCambio['usuarios']"></i> Gestion de usuarios
             </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Telefono:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["telefono"]' [(ngModel)]="datoCambio['telefono']"
-                    [ngClass]="{'changed': datoCambio['telefono']!=datoCambioCheck['telefono']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-        </div>
-        <div style="display: flex;">
-            <div class="celda" style="width: 50%; display:flex; align-items:center;">
-                
-            </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none;">
-                
-            </div>
-        </div>
-        <div style="display: flex;">
-            <div class="celda" style="width: 50%; display:flex; align-items:center;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Ciudad:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["ciudad"]' [(ngModel)]="datoCambio['ciudad']"
-                    [ngClass]="{'changed': datoCambio['ciudad']!=datoCambioCheck['ciudad']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Codigo Postal:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["postal"]' [(ngModel)]="datoCambio['postal']"
-                    [ngClass]="{'changed': datoCambio['postal']!=datoCambioCheck['postal']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-        </div>
-        <div style="display: flex;">
-            <div class="celda" style="width: 50%; display:flex; align-items:center;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Domicilio:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["domicilio"]' [(ngModel)]="datoCambio['domicilio']"
-                    [ngClass]="{'changed': datoCambio['domicilio']!=datoCambioCheck['domicilio']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Actividad:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <select class="effect-1" [value]='datoCambio["actividad"]' [(ngModel)]="datoCambio['actividad']"
-                    [ngClass]="{'changed': datoCambio['actividad']!=datoCambioCheck['actividad']}" style="width: 100%; height: 2rem; background: #ececec;">
-                        <option value="ACTIVIDADES ADMINISTRATIVAS Y SERVICIOS DE APOYO">ACTIVIDADES ADMINISTRATIVAS Y SERVICIOS DE APOYO</option>
-                        <option value="ADMINISTRACION PUBLICA, DEFENSA Y SEGURIDAD SOCIAL OBLIGATORIA">ADMINISTRACION PUBLICA, DEFENSA Y SEGURIDAD SOCIAL OBLIGATORIA</option>
-                        <option value="AGRICULTURA, GANADERÍA, CAZA, SILVICULTURA Y PESCA">AGRICULTURA, GANADERÍA, CAZA, SILVICULTURA Y PESCA</option>
-                        <option value="COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS">COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS</option>
-                        <option value="CONSTRUCCIÓN">CONSTRUCCIÓN</option>
-                        <option value="ENSEÑANZA">ENSEÑANZA</option>
-                        <option value="EXPLOTACIÓN DE MINAS Y CANTERAS">EXPLOTACIÓN DE MINAS Y CANTERAS</option>
-                        <option value="INDUSTRIA MANUFACTURERA">INDUSTRIA MANUFACTURERA</option>
-                        <option value="INFORMACIÓN Y COMUNICACIONES">INFORMACIÓN Y COMUNICACIONES</option>
-                        <option value="INTERMEDIACIÓN FINANCIERA Y SERVICIOS DE SEGUROS">INTERMEDIACIÓN FINANCIERA Y SERVICIOS DE SEGUROS</option>
-                        <option value="SALUD HUMANA Y SERVICIOS SOCIALES">SALUD HUMANA Y SERVICIOS SOCIALES</option>
-                        <option value="SERVICIOS ARTÍSTICOS, CULTURALES, DEPORTIVOS Y DE ESPARCIMIENTO">SERVICIOS ARTÍSTICOS, CULTURALES, DEPORTIVOS Y DE ESPARCIMIENTO</option>
-                        <option value="SERVICIOS DE ALOJAMIENTO Y SERVICIOS DE COMIDA">SERVICIOS DE ALOJAMIENTO Y SERVICIOS DE COMIDA</option>
-                        <option value="SERVICIOS DE ASOCIACIONES Y SERVICIOS PERSONALES">SERVICIOS DE ASOCIACIONES Y SERVICIOS PERSONALES</option>
-                        <option value="SERVICIOS DE HOGARES PRIVADOS QUE CONTRATAN SERVICIO DOMESTICO">SERVICIOS DE HOGARES PRIVADOS QUE CONTRATAN SERVICIO DOMESTICO</option>
-                        <option value="SERVICIOS DE ORGANIZACIONES Y ÓRGANOS EXTRATERRITORIALES">SERVICIOS DE ORGANIZACIONES Y ÓRGANOS EXTRATERRITORIALES</option>
-                        <option value="SERVICIOS DE TRANSPORTE Y ALMACENAMIENTO">SERVICIOS DE TRANSPORTE Y ALMACENAMIENTO</option>
-                        <option value="SERVICIOS INMOBILIARIOS">SERVICIOS INMOBILIARIOS</option>
-                        <option value="SERVICIOS PROFESIONALES, CIENTÍFICOS Y TÉCNICOS">SERVICIOS PROFESIONALES, CIENTÍFICOS Y TÉCNICOS</option>
-                        <option value="SUMINISTRO DE AGUA, CLOACAS, GESTIÓN DE RESIDUOS Y RECUPERACIÓN DE MATERIALES Y SANEAMIENTO PÚBLICO">SUMINISTRO DE AGUA, CLOACAS, GESTIÓN DE RESIDUOS Y RECUPERACIÓN DE MATERIALES Y SANEAMIENTO PÚBLICO</option>
-                        <option value="SUMINISTRO DE ELECTRICIDAD, GAS, VAPOR Y AIRE ACONDICIONADO">SUMINISTRO DE ELECTRICIDAD, GAS, VAPOR Y AIRE ACONDICIONADO</option>
-                        <option value="OTRA">OTRA</option>
-                    </select>
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-        </div>
-        <div style="display: flex;">
-            <div class="celda" style="width: 50%; display:flex; align-items:center;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%; margin-right: 2%;">Validado: </span> {{datoCambio["validado"]? 'validado' : 'invalidado'}}
-            </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Habilitado:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <select class="effect-1" [value]='datoCambio["habilitado"]' [(ngModel)]="datoCambio['habilitado']" (change)="checkCambio('habilitado')"
-                    [ngClass]="{'changed': flagH}" style="width: 100%; height: 2rem; background: #ececec;">
-                        <option value='true'>Habilitado</option>    
-                        <option value='false'>Deshabilitado</option>
-                    </select>
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-        </div>
-        <div style="display: flex;">
-            <div class="celda borderAbajo" style="width: 50%; display:flex; align-items:center;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Como encontro:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambio["como_encontro"]' [(ngModel)]="datoCambio['como_encontro']"
-                    [ngClass]="{'changed': datoCambio['como_encontro']!=datoCambioCheck['como_encontro']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-            <div class="celda borderAbajo" style="width: 50%; display:flex; align-items:center; border-right: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Grupo:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <select class="effect-1" [value]='datoCambio["grupo"]' [(ngModel)]="datoCambio['grupo']"
-                    [ngClass]="{'changed': datoCambio['grupo']!=datoCambioCheck['grupo']}" style="width: 100%; height: 2rem; background: #ececec;">
-                        <option value='general'>General</option>    
-                        <option value='chocado'>Chocado</option>
-                        <option value='desarmadero'>Desarmadero</option>
-                        <option value='otro'>Otro</option>
-                    </select>
-                    <span class="focus-border2"></span>
-                </div>
+            <div class="col-3 modalRes celda" style="border-right: none; display: flex; flex-direction: row; justify-content: center; align-items: center; width: 30%">
+                <i class="fa-solid" [ngClass]="{'fa-circle-check verde':datoCambio['autos'], 'fa-circle-xmark rojo':!datoCambio['autos']}" style="font-size: larger; margin-right: 1%; cursor: pointer;" (click)="datoCambio['autos']=!datoCambio['autos']"></i> Gestion de autos
             </div>
         </div>
         <div style="display: flex;">
@@ -356,7 +233,7 @@
                 <div class="col-3" style="width: 60%; margin-left: 2%;">
                     <input type="text" class="effect-1" [(ngModel)]="passwordCambio"
                     [ngClass]="{'changed': passwordCambio!=''}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
+                    <span class="focus-border"></span>
                 </div>
             </div>
             <div class="celda borderAbajo" style="width: 50%; display:flex; align-items:center; border-right: none;">
@@ -364,39 +241,7 @@
                 <div class="col-3" style="width: 60%; margin-left: 2%;">
                     <input type="text" class="effect-1" [(ngModel)]="passwordCambio2"
                     [ngClass]="{'changed': passwordCambio2!=''}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-        </div>
-        <div style="display: flex;">
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-left: none; border-top: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Tipo de usuario:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <select class="effect-1" [value]='datoCambio["tipo"]' [(ngModel)]="datoCambio['tipo']"
-                    [ngClass]="{'changed': datoCambio['tipo']!=datoCambioCheck['tipo']}" style="width: 100%; height: 2rem; background: #ececec;">
-                        <option value='user'>Usuario</option>    
-                        <option value='emp'>Empresa</option>
-                    </select>
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none; border-top: none;"></div>
-        </div>
-        <div style="display: flex;" *ngIf="datoCambio['tipo']=='emp'">
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-left: none; border-top: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Persona responsable:</span> 
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambioEMP["persona_responsable"]' [(ngModel)]="datoCambioEMP['persona_responsable']"
-                    [ngClass]="{'changed': datoCambioEMP['persona_responsable']!=datoCambioEMPCheck['persona_responsable']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
-                </div>
-            </div>
-            <div class="celda" style="width: 50%; display:flex; align-items:center; border-right: none; border-top: none;">
-                <span style="font-weight: bold; text-decoration: underline; width: 35%;">Razon social:</span>
-                <div class="col-3" style="width: 60%; margin-left: 2%;">
-                    <input type="text" class="effect-1" [value]='datoCambioEMP["razon_social"]' [(ngModel)]="datoCambioEMP['razon_social']"
-                    [ngClass]="{'changed': datoCambioEMP['razon_social']!=datoCambioEMPCheck['razon_social']}" style="width: 100%; height: 2rem; background: #ececec;">
-                    <span class="focus-border2"></span>
+                    <span class="focus-border"></span>
                 </div>
             </div>
         </div>
@@ -407,7 +252,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- Modal tipo user -->
 <!-- <div id="myModal" class="modal" [ngClass]="{'oculto':!mostrarCrear, '':mostrarCrear }">
     <div class="modal-content">
