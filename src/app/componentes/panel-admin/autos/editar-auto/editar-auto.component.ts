@@ -155,6 +155,7 @@ export class EditarAutoComponent{
       formData.append('traccion', this.autoNuevo['traccion']);
       formData.append('precio', this.autoNuevo['precio']);
       formData.append('moneda', this.autoNuevo['moneda']);
+      formData.append('estado', this.autoNuevo['estado']);
 
       if(this.autoNuevo['cilindros']!==undefined && this.autoNuevo['cilindros']!=='') formData.append('cilindros', this.autoNuevo['cilindros']);
       if(this.autoNuevo['caballos']!==undefined && this.autoNuevo['caballos']!=='') formData.append('caballos', this.autoNuevo['caballos']);

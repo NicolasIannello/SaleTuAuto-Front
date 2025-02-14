@@ -115,6 +115,18 @@
                 <span class="focus-border"></span>
             </div>
         </div>
+        <label>Estado: </label><span class="msg">*</span>
+        <div style="display: flex;">
+            <div class="col-3" style="display: flex; flex-direction: column; margin-bottom: 2%; width: 100%;">
+                <select class="effect-1" [(ngModel)]="autoNuevo['estado']" style="width: 100%; height: 2.5rem;">
+                    <option [ngValue]="autoNuevo['estado']" selected hidden>{{autoNuevo['estado']}}</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Reservado">Reservado</option>
+                    <option value="Vendido">Vendido</option>    
+                </select>
+                <span class="focus-border"></span>
+            </div>
+        </div>
         <h1 class="textRed">General:</h1>
         <div class="col-3" style="display: flex; flex-direction: row; margin-bottom: 2%;">
             <div style="display: flex; flex-direction: column; width: 32%; margin-right: 2%;">
