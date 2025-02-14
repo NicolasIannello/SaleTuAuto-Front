@@ -19,6 +19,7 @@ export class AzulComponent implements AfterViewInit{
   menuOpen2:boolean=false;
   autos:boolean=false;
   users:boolean=false;
+  logged:boolean=false;
 
   constructor(public api: AdminService){ }
 
@@ -35,6 +36,7 @@ export class AzulComponent implements AfterViewInit{
       this.api.checkTokenA(dato).subscribe({
         next: (value:any) => {
           if (value.ok) {
+            this.logged=true;
             this.users=value.users;
             this.autos=value.autos
           }
@@ -65,5 +67,10 @@ export class AzulComponent implements AfterViewInit{
     this.menuOpen=false;
     this.menuOpen2=!this.menuOpen2;
     this.activa= this.menuOpen2? "login" : '';
+  }
+
+  cerrarSession(){
+    localStorage.removeItem('token');
+    window.location.reload();
   }
 }

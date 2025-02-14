@@ -5,6 +5,7 @@
         <div *ngIf="users" class="btnnav" [ngClass]="{'activa' : activa=='usuarios'}" (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
         <div *ngIf="autos" class="btnnav" [ngClass]="{'activa' : activa=='autos'}" (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
         <div *ngIf="users" class="btnnav" [ngClass]="{'activa' : activa=='Term&Cond'}" (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
+        <div *ngIf="logged" class="btnnav" (click)="cerrarSession()"><span>Cerrar session</span></div>
     </div>
     <ng-template #mobile>
         <div style="display: flex;">
@@ -17,4 +18,5 @@
     <div *ngIf="users" (click)="activar('usuarios')" routerLink="usuarios"><span>Usuarios</span></div>
     <div *ngIf="autos" (click)="activar('autos')" routerLink="autos"><span>Autos</span></div>
     <div *ngIf="users" (click)="activar('Term&Cond')" routerLink="Term&Cond"><span>Term & Cond</span></div>
+    <div *ngIf="logged" (click)="cerrarSession()"><span>Cerrar session</span></div>
 </div>
