@@ -5,6 +5,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AdminService } from '../../../../servicios/admin.service';
 import Swal from 'sweetalert2';
 import { ServiciosService } from '../../../../servicios/servicios.service';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-crear-auto',
@@ -56,6 +57,8 @@ export class CrearAutoComponent implements OnInit{
   };
   fotos: any = [];
   sources: Array<any> = [];
+  fotosAdicionales:any = []
+  sourcesAdicionales: Array<any> = [];
   // pdf:SafeResourceUrl|null=null;
   @Output() messageEvent = new EventEmitter<boolean>();
   @ViewChild('imagen') inputImagen!: ElementRef;
@@ -106,6 +109,8 @@ export class CrearAutoComponent implements OnInit{
     };
     this.fotos = [];
     this.sources = [];
+    this.fotosAdicionales = [];
+    this.sourcesAdicionales = [];
     // this.pdf=null;
     this.inputImagen.nativeElement.value = "";
     // this.inputPDF.nativeElement.value = "";
@@ -160,15 +165,19 @@ export class CrearAutoComponent implements OnInit{
     })
   }
 
-  showImg(event: Event){
-		this.sources=[];
-    this.fotos=[];
+  showImg(event: Event, id:number){
+    if(id!=-1) this.sources[id]={};
+    if(id==-1) this.sourcesAdicionales=[];
+    if(id!=-1) this.fotos[id]=EMPTY;
+    if(id==-1) this.fotosAdicionales=[];
     const element = event.currentTarget as HTMLInputElement;
 		let cantidad = element.files?.length || 0;    
-		this.fotos=element.files;
+    if(id!=-1) this.fotos[id]=element.files![0];
+		if(id==-1) this.fotosAdicionales=element.files;
     
 		if(cantidad==0) {
-			this.sources=[];
+      if(id!=-1) this.sources[id]={};
+			if(id==-1) this.sourcesAdicionales=[];
 		}else{
 			for (let index = 0; index < cantidad; index++) {
 				var nombreCortado=element.files![index].name.split('.');
@@ -180,7 +189,8 @@ export class CrearAutoComponent implements OnInit{
             reader.readAsDataURL(element.files![index]);
 
             reader.onloadend = ()=>{
-              this.sources.push({id: (index+1), link: reader.result, name: element.files![index].name})
+              if(id!=-1) this.sources[id]={id: (id+1), link: reader.result, name: element.files![index].name};
+              if(id==-1) this.sourcesAdicionales.push({id: (index+7), link: reader.result, name: element.files![index].name});
             }            
           }, index*200);
 				}
@@ -209,9 +219,17 @@ export class CrearAutoComponent implements OnInit{
       if(this.datos[i]==='') flag=false;
       this.alertas[i]= this.datos[i]==='' ? 'Campo obligatorio' : '';
     }
-    if(this.fotos.length==0) flag=false;
-    this.alertas[8]= this.fotos.length==0 ? 'Campo obligatorio' : '';
+    // if(this.fotos.length==0) flag=false;
+    // this.alertas[8]= this.fotos.length==0 ? 'Campo obligatorio' : '';
     // this.alertas[8]= this.pdf==null ? 'Campo obligatorio' : '';
+    if(this.fotos.length<7) flag=false;
+    this.alertas[8]= this.fotos.length<7 ? 'Los campos con * son obligatorio' : '*';
+    for (let i = 0; i < this.fotos.length; i++) {
+      if(this.fotos[i] == undefined) {
+        flag=false;
+        this.alertas[8]='Los campos con * son obligatorio';
+      }
+    }
 
     if(flag){
       const formData = new FormData();
@@ -270,6 +288,10 @@ export class CrearAutoComponent implements OnInit{
 				formData.append('img', this.fotos[i]);  
         formData.append('imgOrden', this.sources[i].name);	
 			}
+      for (let i = 0; i < this.fotosAdicionales.length; i++) {
+        formData.append('img', this.fotosAdicionales[i]);
+        formData.append('imgOrden', this.sourcesAdicionales[i].name);
+      }
       //formData.append('pdf', this.datos[8][0]);
 
       this.api.crearAuto(formData).then(resp =>{
