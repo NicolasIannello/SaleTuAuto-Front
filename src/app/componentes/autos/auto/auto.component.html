@@ -105,7 +105,7 @@
     </div>
 </div>
 <div class="glass1">
-    <app-contacto></app-contacto>
+    <app-contacto [color]="'textWhite'"></app-contacto>
 </div>
 
 <app-ver-imagen [ngClass]="{ 'oculto':!verImg }" (messageEvent)="handleMessage($event,'crear')" [imagenes]="imagenes" [imagen]="imgID" [verImg]="verImg"></app-ver-imagen>
