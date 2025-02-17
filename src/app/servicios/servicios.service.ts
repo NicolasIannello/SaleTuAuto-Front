@@ -17,9 +17,9 @@ export class ServiciosService {
     this.header=new HttpHeaders().set('Acces-Control-Allow-Origin','*');
   }
 
-  // contacto(dato:any):Observable<any>{
-  //   return this.http.post(base_url+'/usuarios/mailContacto', dato, {'headers':this.header})
-  // }
+  contacto(dato:any):Observable<any>{
+    return this.http.post(base_url+'/usuarios/mailContacto', dato, {'headers':this.header})
+  }
   cargarAuto(dato:any):Observable<any>{
     return this.http.post(base_url+'/auto/auto', dato, {'headers':this.header})
   }
