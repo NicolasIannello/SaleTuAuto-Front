@@ -9,11 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  number:string="+5491127605336";
   @Input() widthC: number | undefined;
   @Input() cap: number | undefined;
 
-  wspW(){
-    window.open('https://wa.me/'+this.number);
-  }
 }
