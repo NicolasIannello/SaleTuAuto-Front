@@ -1,14 +1,14 @@
-<div class="svh" style="flex-direction: column;">
-    <div class="inicio foto">
+<!-- <div class="svh" style="flex-direction: column;"> -->
+    <!-- <div class="inicio foto">
         <p style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
             <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Bienvenido a SALE Tu Auto.</span>
             <span style="text-transform: uppercase; font-size: larger; font-family: shameimaru sans;">Cotizamos tu auto usado!!</span>
             <span style="font-weight: 100;" class="textS">Vende al mejor precio y no te apresures. SALE Tu Auto te acerca la mejor cotización por tu vehículo.</span>
         </p>
     </div>
-    <div class="shadow"></div>
-    <app-venta-rapida></app-venta-rapida>
-    <div class="glass1" style="min-height: 90vh; width: 100%; display: flex; align-items: center;">
+    <div class="shadow"></div> -->
+    <!-- <app-venta-rapida></app-venta-rapida> -->
+    <!-- <div class="glass1" style="min-height: 90vh; width: 100%; display: flex; align-items: center;">
         <div class="margin5" style="width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: center;">
             <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">La empresa</div>
             <div style="display: flex; font-size: larger;" class="textWhite text">
@@ -34,41 +34,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div style="width: 100%;">
-    <div class="margin5 seccion">
+    <div class="margin5 seccion" style="margin-top: 0; margin-bottom: 0; padding-top: 5rem; padding-bottom: 5rem;">
         <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Comunícate con nosotros</div>
-        <div class="wsp rounded" (click)="wspW()"><i class="fa-brands fa-whatsapp" style="margin-right: 2%;"></i> {{number}}</div>
-        <!-- <div style="width: 80%;">
-            <div class="linea" style="width: 100%;">
-                <div class="col-3" style="width: 100%;">
-                    <label class="textBlue" for="nomapel">Nombre y apellido </label><span class="msg">{{alertas[0]}}</span>
-                    <input class="effect-1" type="text" placeholder="Nombre y apellido" [(ngModel)]="campos[0]">
-                    <span class="focus-border"></span>
-                </div>
+        <form #form="ngForm">
+            <div class="wsp rounded" (click)="send(form)">
+                <span *ngIf="!flag" style="display: flex; align-items: center; width: 100%; height: 100%; justify-content: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 2%;"></i> Contactate</span>
+                <i *ngIf="flag" class="fa-solid fa-spinner ispinner" style="font-size: 3rem; color: aliceblue;"></i>
             </div>
-            <div class="linea" style="width: 100%;">
-                <div class="col-3" style="width: 100%;">
-                    <label class="textBlue" for="mail">E-Mail </label><span class="msg">{{alertas[1]}}</span>
-                    <input class="effect-1" type="text" placeholder="E-Mail" [(ngModel)]="campos[1]">
-                    <span class="focus-border"></span>
-                </div>
-            </div>
-            <div class="linea" style="width: 100%;">
-                <div class="col-3" style="margin-bottom: 2%; width: 100%;">
-                    <label class="textBlue">Mensaje </label><span class="msg">{{alertas[2]}}</span>
-                    <div style="display: flex;">
-                        <textarea class="effect-1" style="width: 100%; height: 300px;" placeholder="Mensaje" [(ngModel)]="campos[2]"></textarea>
-                        <span class="focus-border"></span>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: end; width: 100%;">
-                <form #form="ngForm">
-                    <button class="boton border rounded botones" (click)="send(form)">Enviar mensaje</button>
-                </form>
-            </div>
-        </div> -->
+        </form>
     </div>
     </div>
-</div>
+<!-- </div> -->
