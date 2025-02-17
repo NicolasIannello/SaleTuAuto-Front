@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ServiciosService } from '../../servicios/servicios.service';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { RecaptchaV3Module, ReCaptchaV3Service } from 'ng-recaptcha';
 import { CommonModule } from '@angular/common';
 import { AdminService } from '../../servicios/admin.service';
 import { EMPTY } from 'rxjs';
+import { ContactoComponent } from "../landing/contacto/contacto.component";
 
 @Component({
   selector: 'app-venta-rapida',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RecaptchaV3Module, ContactoComponent],
   templateUrl: './venta-rapida.component.html',
   styleUrl: '../landing/inicio/inicio.component.css'
 })
