@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ServiciosService } from '../../../servicios/servicios.service';
 import Swal from 'sweetalert2';
@@ -21,10 +21,12 @@ type LoginFormResult = {
   styleUrl: '../inicio/inicio.component.css'
 })
 export class ContactoComponent {
+  @Input() color: string | undefined;
   campos:Array<string>=['','',''];
   alertas:Array<string>=['*','*','*'];
   flag:boolean=false;
   number:string="+5491127605336";
+  maps:string="https://www.google.com/maps/place/Diag.+San+Mart%C3%ADn+1051,+B7630+Necochea,+Provincia+de+Buenos+Aires/@-38.5702242,-58.7298997,17z/data=!3m1!4b1!4m6!3m5!1s0x958f97fbc309579d:0xa5dfd694711382!8m2!3d-38.5702242!4d-58.7298997!16s%2Fg%2F11qmsw20pl?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D";
 
   constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service) {}
 
@@ -96,5 +98,9 @@ export class ContactoComponent {
       (error)=> {
       },
     );
+  }
+
+  mapsG(){
+    window.open(this.maps);
   }
 }

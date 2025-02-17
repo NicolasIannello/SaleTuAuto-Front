@@ -44,6 +44,16 @@
                 <i *ngIf="flag" class="fa-solid fa-spinner ispinner" style="font-size: 3rem; color: aliceblue;"></i>
             </div>
         </form>
+        <div style="margin-top: 4rem; width: 100%; display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+            <div>
+                <h2 class="textRed titulo" style="text-decoration: underline;">Representante Comercial Necochea:</h2>
+                <span [ngClass]="color"><i class="fa-solid fa-user" style="margin-right: 1%;"></i>Carolina Gómez.</span>
+            </div>
+            <div>
+                <h2 class="textRed titulo" style="text-decoration: underline;">Ubicación de la agencia:</h2>
+                <span class="hoverRed" [ngClass]="color" style="cursor: pointer;" (click)="mapsG()" ><i class="fa-solid fa-location-dot" style="margin-right: 1%;"></i>Diagonal San Martin N 1051, Necochea Buenos Aires.</span>
+            </div>
+        </div>
     </div>
     </div>
 <!-- </div> -->
