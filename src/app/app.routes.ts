@@ -8,14 +8,14 @@ import { UsuariosComponent } from './componentes/panel-admin/usuarios/usuarios.c
 import { AutosComponent } from './componentes/panel-admin/autos/autos.component';
 import { ListaAutosComponent } from './componentes/autos/lista-autos.component';
 import { AutoComponent } from './componentes/autos/auto/auto.component';
-import { ContactoComponent } from './componentes/landing/contacto/contacto.component';
 import { TycComponent } from './componentes/panel-admin/tyc/tyc.component';
+import { VentaRapidaComponent } from './componentes/venta-rapida/venta-rapida.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent, children: [
         { path: '', component: InicioComponent },
         { path: 'autos', component: ListaAutosComponent },
-        { path: 'ventaRapida', component: ContactoComponent },
+        { path: 'ventaRapida', component: VentaRapidaComponent },
         { path: 'autos/:uuid', component: AutoComponent },
     ] },
     { path: 'panelAdmin', component: PanelAdminComponent , children: [
