@@ -8,4 +8,5 @@ export const environment = {
   recaptcha: {
     siteKey: '6Let_k4qAAAAAIHQe6HtHzYwosJ58y4feuaKRmRu123',
   },
+  numero: '+5492983510599',
 };
