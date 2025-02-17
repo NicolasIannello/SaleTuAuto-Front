@@ -5,11 +5,12 @@ import Swal from 'sweetalert2';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { VerImagenComponent } from '../../ver-imagen/ver-imagen.component';
+import { ContactoComponent } from "../../landing/contacto/contacto.component";
 
 @Component({
   selector: 'app-auto',
   standalone: true,
-  imports: [CommonModule, VerImagenComponent],
+  imports: [CommonModule, VerImagenComponent, ContactoComponent],
   templateUrl: './auto.component.html',
   styleUrl: '../lista-autos.component.css'
 })

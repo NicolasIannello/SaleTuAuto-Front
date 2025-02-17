@@ -1,4 +1,4 @@
-<div class="svh margins" style="text-align: center; justify-content: flex-start; flex-direction: column;">
+<div class="margins" style="text-align: center; justify-content: flex-start; flex-direction: column;">
     <div *ngIf="Auto['estado']=='Reservado'" style="background-color: steelblue; color: aliceblue; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; margin-bottom: 1%;">{{Auto['estado']}}</div>
     <div *ngIf="Auto['estado']=='Vendido'" style="background-color:limegreen; color: aliceblue; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; border-top-left-radius: 12px; border-top-right-radius: 12px; margin-bottom: 1%;">{{Auto['estado']}}</div>
     <div class="autoRes" style="display: flex; flex-direction: row; width: 100%;">
@@ -103,6 +103,9 @@
             </ng-container>
         </div>
     </div>
+</div>
+<div class="glass1">
+    <app-contacto></app-contacto>
 </div>
 
 <app-ver-imagen [ngClass]="{ 'oculto':!verImg }" (messageEvent)="handleMessage($event,'crear')" [imagenes]="imagenes" [imagen]="imgID" [verImg]="verImg"></app-ver-imagen>
