@@ -111,3 +111,6 @@ input, select{
         height: 2.5rem !important;
     }
 }
+.hoverRed:hover{
+    color: var(--red);
+}
