@@ -35,7 +35,7 @@ export class ContactoComponent {
     let telefonoInput: HTMLInputElement
   
     Swal.fire<LoginFormResult>({
-      title: 'Formulario',
+      title: 'Datos de contacto',
       html: `
         <input type="text" id="nomapel" class="swal2-input" placeholder="Nombre y apellido">
         <input type="text" id="telefono" class="swal2-input" placeholder="Telefono">
