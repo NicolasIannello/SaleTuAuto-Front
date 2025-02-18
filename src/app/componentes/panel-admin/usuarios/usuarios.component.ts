@@ -287,32 +287,30 @@ export class UsuariosComponent implements OnInit{
   //   this.mostrarReporte=!this.mostrarReporte
   // }
 
-  // generarExcel(flag:boolean){
-  //   let dato={
-  //     'token':localStorage.getItem('token'),
-  //     'tipo':1,
-  //     'estado':flag,
-  //   }
+  reporte(){
+    let dato={
+      'token':localStorage.getItem('token'),
+      'tipo':1,
+    }
 
-  //   this.api.excelUsuarios(dato).subscribe({
-  //     next:(value)=> {
-  //         if(value.ok){
-  //           let hoy=new Date();
-  //           let mes = hoy.getMonth()>8 ? (hoy.getMonth()+1) : "0"+(hoy.getMonth()+1);
-  //           let dia = hoy.getDate()>9 ? hoy.getDate() : "0"+hoy.getDate()
-  //           let fecha = dia+"-"+mes+"-"+hoy.getFullYear();
-  //           let est = flag ? 'habilitados' : 'deshabilitados';
+    this.api.form(dato).subscribe({
+      next:(value)=> {
+          if(value.ok){
+            let hoy=new Date();
+            let mes = hoy.getMonth()>8 ? (hoy.getMonth()+1) : "0"+(hoy.getMonth()+1);
+            let dia = hoy.getDate()>9 ? hoy.getDate() : "0"+hoy.getDate()
+            let fecha = dia+"-"+mes+"-"+hoy.getFullYear();
 
-  //           this.excel.generateExcel(value.busqueda, "Usuarios "+est+" "+fecha);
-  //         }else{
-  //           Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
-  //         }
-  //     },
-  //     error:(err)=> {
-  //       Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
-  //     },
-  //   })
-  // }
+            this.api.generateExcel(value.form, "Formulario STA "+fecha);
+          }else{
+            Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
+          }
+      },
+      error:(err)=> {
+        Swal.fire({title:'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});       
+      },
+    })
+  }
 
   // cambiarTabla(flag:boolean){
   //   this.tabla=flag;
