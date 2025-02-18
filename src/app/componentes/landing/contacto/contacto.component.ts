@@ -70,14 +70,15 @@ export class ContactoComponent {
           this.api.contacto(dato).subscribe({
             next:(value) => {
               this.flag=false;
-              if(value.ok) window.open('https://wa.me/'+numero);
-              if(!value.ok) Swal.fire({title: value.msg, confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+              // if(value.ok) window.open('https://wa.me/'+numero);
+              // if(!value.ok) Swal.fire({title: value.msg, confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
             },
             error:(err) => {
               this.flag=false;     
               Swal.fire({title: err.error.errors.telefono.msg ? err.error.errors.telefono.msg : 'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
             },
           })
+          window.open('https://wa.me/'+numero);
         }        
       },
     })
