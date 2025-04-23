@@ -184,3 +184,24 @@ i{
     display: flex;
     justify-content: center;
 }
+.inicio{
+    background-image: url("../../../../../public/STA-fondo.webp");
+    background-size: cover;
+    align-content: center;
+}
+.foto{
+    height: 2rem;
+    width: 10rem;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-height: 900px){
+        height: 1.8rem;
+        width: 9rem;
+    }
+    @media (max-height: 800px){
+        height: 1rem;
+        width: 5rem;
+    }
+}

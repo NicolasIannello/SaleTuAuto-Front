@@ -15,7 +15,7 @@
         height: 7%;
     }
 }
-.logo{
+/* .logo{
     margin-inline: 0.5rem;
     @media (max-width: 1230px){
         margin-inline: 0rem;
@@ -38,5 +38,29 @@
         height: 100%;
         align-content: center;
         text-align: center;
+    }
+} */
+.inicio{
+    background-image: url("../../../../public/STA-fondo.webp");
+    background-size: cover;
+    align-content: center;
+}
+.foto{
+    height: 4rem;
+    width: 20rem;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 1230px){
+        height: 3rem;
+    }
+    @media (max-height: 820px){
+        height: 3rem;
+        width: 15rem;
+    }
+    @media (max-height: 710px){
+        height: 2rem;
+        width: 10rem;
     }
 }
