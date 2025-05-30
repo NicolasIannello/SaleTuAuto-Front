@@ -20,7 +20,7 @@ export class ListaAutosComponent implements OnInit{
   total:number=-1;
   pagina:number=0;
   ordenar:string="_id";
-  orden:string="1";
+  orden:string="-1";
   pagU:number=0;
   marcas:Array<any>=[""];
   marca:string|undefined='';

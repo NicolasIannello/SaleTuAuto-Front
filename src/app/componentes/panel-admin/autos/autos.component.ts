@@ -26,7 +26,7 @@ export class AutosComponent implements OnInit{
   total:number=-1;
   pagina:number=0;
   ordenar:string="_id";
-  orden:string="1";
+  orden:string="-1";
   autoModal:Array<any>=[];
   @ViewChild(VerAutoComponent)verComp!:VerAutoComponent;
   @ViewChild(EditarAutoComponent)editComp!:EditarAutoComponent;
