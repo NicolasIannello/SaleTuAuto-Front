@@ -8,135 +8,143 @@
     </div>
     <div class="shadow"></div>
     <div class="margin5 seccion">
-        <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Venta rapida</div>
+        <div class="textRed titulo russo-one-regular" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Venta rapida</div>
         <div style="width: 80%;">
-            <div class="linea" style="width: 100%;">
-                <div class="col-3" style="width: 100%;">
-                    <label class="textBlue" for="nomapel">Matricula </label><span class="msg">{{alertas[0]}}</span>
-                    <input class="effect-1" type="text" placeholder="Matricula" [(ngModel)]="campos[0]">
-                    <span class="focus-border"></span>
-                </div>
-            </div>
-            <div class="linea" style="width: 100%;">
-                <div class="col-3" style="width: 100%;">
-                    <label class="textBlue" for="nomapel">Telefono </label><span class="msg">{{alertas[2]}}</span>
-                    <input class="effect-1" type="text" placeholder="Telefono" [(ngModel)]="campos[2]">
-                    <span class="focus-border"></span>
-                </div>
-            </div>
-            <div class="linea" style="width: 100%;">
-                <div class="col-3" style="margin-bottom: 2%; width: 100%;">
-                    <label class="textBlue">Descripcion </label><span class="msg">{{alertas[1]}}</span>
-                    <div style="display: flex;">
-                        <textarea class="effect-1" style="width: 100%; height: 100px;" placeholder="Descripcion" [(ngModel)]="campos[1]"></textarea>
+            <div [ngClass]="{ 'oculto':display }">
+                <div class="linea" style="width: 100%;">
+                    <div class="col-3" style="width: 100%;">
+                        <label class="textBlue" for="nomapel">Matricula </label><span class="msg">{{alertas[0]}}</span>
+                        <input class="effect-1" type="text" placeholder="Matricula" [(ngModel)]="campos[0]">
                         <span class="focus-border"></span>
                     </div>
                 </div>
-            </div>
-            <label>Imagenes del auto: </label><span class="msg">{{alertas[3]}}</span>
-            <!-- <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
-                <span *ngFor="let src of sources">
-                    <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;"> -->
-                    <!-- <span class="boton glass border rounded textWhite" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 1rem; cursor: pointer;" (click)="cambiarOrden(src.id)">{{src.id}}</span> -->
-                <!-- </span>
-            </div>
-            <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;"> -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto frontal: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[0]">
-                            <img id=foto{{sources[0].id}} src="{{sources[0].link}}" alt="" style="width: 100px;">
-                        </span>
+                <div class="linea" style="width: 100%;">
+                    <div class="col-3" style="width: 100%;">
+                        <label class="textBlue" for="nomapel">Telefono </label><span class="msg">{{alertas[2]}}</span>
+                        <input class="effect-1" type="text" placeholder="Telefono" [(ngModel)]="campos[2]">
+                        <span class="focus-border"></span>
                     </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 0)" style="margin-bottom: 2%;">
                 </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto trasera: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[1]">
-                            <img id=foto{{sources[1].id}} src="{{sources[1].link}}" alt="" style="width: 100px;">
-                        </span>
+                <div class="linea" style="width: 100%;">
+                    <div class="col-3" style="margin-bottom: 2%; width: 100%;">
+                        <label class="textBlue">Descripcion </label><span class="msg">{{alertas[1]}}</span>
+                        <div style="display: flex;">
+                            <textarea class="effect-1" style="width: 100%; height: 100px;" placeholder="Descripcion" [(ngModel)]="campos[1]"></textarea>
+                            <span class="focus-border"></span>
+                        </div>
                     </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 1)" style="margin-bottom: 2%;">
                 </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del lateral izquierdo: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[2]">
-                            <img id=foto{{sources[2].id}} src="{{sources[2].link}}" alt="" style="width: 100px;">
-                        </span>
-                    </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 2)" style="margin-bottom: 2%;">
-                </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del lateral derecho: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[3]">
-                            <img id=foto{{sources[3].id}} src="{{sources[3].link}}" alt="" style="width: 100px;">
-                        </span>
-                    </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 3)" style="margin-bottom: 2%;">
-                </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del motor: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[4]">
-                            <img id=foto{{sources[4].id}} src="{{sources[4].link}}" alt="" style="width: 100px;">
-                        </span>
-                    </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 4)" style="margin-bottom: 2%;">
-                </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del interior delantero: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[5]">
-                            <img id=foto{{sources[5].id}} src="{{sources[5].link}}" alt="" style="width: 100px;">
-                        </span>
-                    </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 5)" style="margin-bottom: 2%;">
-                </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del interior trasero: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[6]">
-                            <img id=foto{{sources[6].id}} src="{{sources[6].link}}" alt="" style="width: 100px;">
-                        </span>
-                    </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 6)" style="margin-bottom: 2%;">
-                </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del interior de baul: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[7]">
-                            <img id=foto{{sources[7].id}} src="{{sources[7].link}}" alt="" style="width: 100px;">
-                        </span>
-                    </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 7)" style="margin-bottom: 2%;">
-                </div>
-                <div style="max-width: 100%; min-width: 15rem;">
-                    <label>Foto del instrumental de tablero: </label><span class="msg">*</span>
-                    <div style="margin-top: 2%; margin-bottom: 4%;">
-                        <span *ngIf="sources[8]">
-                            <img id=foto{{sources[8].id}} src="{{sources[8].link}}" alt="" style="width: 100px;">
-                        </span>
-                    </div>
-                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 8)" style="margin-bottom: 2%;">
+                <div style="text-align: end; width: 100%;">
+                    <button class="boton border rounded botones envDatos" (click)="display=true">Aceptar</button>
                 </div>
             </div>
-            <div style="max-width: 100%; min-width: 15rem;">
-                <label>Fotos adicionales: </label>
-                <div style="margin-top: 2%; margin-bottom: 4%;">
-                    <span *ngFor="let src of sourcesAdicionales">
-                        <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
-                    </span>
+            <div [ngClass]="{ 'oculto':!display }">
+                <label>Imagenes del auto: </label><span class="msg">{{alertas[3]}}</span>
+                <!-- <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
+                    <span *ngFor="let src of sources">
+                        <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;"> -->
+                        <!-- <span class="boton glass border rounded textWhite" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 1rem; cursor: pointer;" (click)="cambiarOrden(src.id)">{{src.id}}</span> -->
+                    <!-- </span>
                 </div>
-                <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event, -1)" style="margin-bottom: 2%;">
-            </div>
-            <div style="text-align: end; width: 100%;">
-                <form #form="ngForm">
-                    <button class="boton border rounded botones envDatos" (click)="send(form)">Enviar datos del Auto</button>
-                </form>
+                <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;"> -->
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto frontal: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[0]">
+                                <img id=foto{{sources[0].id}} src="{{sources[0].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 0)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto trasera: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[1]">
+                                <img id=foto{{sources[1].id}} src="{{sources[1].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 1)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto del lateral izquierdo: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[2]">
+                                <img id=foto{{sources[2].id}} src="{{sources[2].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 2)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto del lateral derecho: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[3]">
+                                <img id=foto{{sources[3].id}} src="{{sources[3].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 3)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto del motor: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[4]">
+                                <img id=foto{{sources[4].id}} src="{{sources[4].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 4)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto del interior delantero: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[5]">
+                                <img id=foto{{sources[5].id}} src="{{sources[5].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 5)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto del interior trasero: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[6]">
+                                <img id=foto{{sources[6].id}} src="{{sources[6].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 6)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto del interior de baul: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[7]">
+                                <img id=foto{{sources[7].id}} src="{{sources[7].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 7)" style="margin-bottom: 2%;">
+                    </div>
+                    <div style="max-width: 100%; min-width: 15rem;">
+                        <label>Foto del instrumental de tablero: </label><span class="msg">*</span>
+                        <div style="margin-top: 2%; margin-bottom: 4%;">
+                            <span *ngIf="sources[8]">
+                                <img id=foto{{sources[8].id}} src="{{sources[8].link}}" alt="" style="width: 100px;">
+                            </span>
+                        </div>
+                        <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 8)" style="margin-bottom: 2%;">
+                    </div>
+                </div>
+                <div style="max-width: 100%; min-width: 15rem;">
+                    <label>Fotos adicionales: </label>
+                    <div style="margin-top: 2%; margin-bottom: 4%;">
+                        <span *ngFor="let src of sourcesAdicionales">
+                            <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
+                        </span>
+                    </div>
+                    <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event, -1)" style="margin-bottom: 2%;">
+                </div>
+                <div style="text-align: end; width: 100%; display: flex; justify-content: flex-end;">
+                    <button class="boton border rounded botones envDatos" (click)="display=false">Atras</button>
+                    <form #form="ngForm">
+                        <button class="boton border rounded botones envDatos" (click)="send(form)">Enviar datos del Auto</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

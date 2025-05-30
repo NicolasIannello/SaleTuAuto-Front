@@ -24,6 +24,7 @@ export class VentaRapidaComponent implements OnInit{
   fotosAdicionales:any = []
   flag:boolean=true;
   tyc:string='';
+  display:boolean=false;
 
   constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service, public api2:AdminService) {}
   
