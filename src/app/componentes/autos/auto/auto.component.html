@@ -3,8 +3,12 @@
     <div *ngIf="Auto['estado']=='Vendido'" style="background-color:limegreen; color: aliceblue; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; border-top-left-radius: 12px; border-top-right-radius: 12px; margin-bottom: 1%;">{{Auto['estado']}}</div>
     <div class="autoRes" style="display: flex; flex-direction: row; width: 100%;">
         <div style="width: 60%;">
-            <div class="rounded" [ngStyle]="{'background-image': 'url(' + imagen.link + ')'}" (click)="verImagen(imagen.id)"
-            style="width: 100%; background-repeat: no-repeat; background-size: cover; max-width:100%; max-height:100%; height: 30rem; background-position: center center; cursor: pointer;" ></div>
+            <div style="display: flex; justify-content: space-between;">
+                <i style="cursor: pointer; height: 30rem; display: flex; align-items: center; width: 2%; justify-content: center; border-top-right-radius: 0; border-bottom-right-radius: 0;" class="fa-solid fa-chevron-left border rounded glassAzul colorWhite" (click)="sigImg(-1)"></i>
+                <div [ngStyle]="{'background-image': 'url(' + imagen.link + ')'}" (click)="verImagen(imagen.id)"
+                style="width: 100%; background-repeat: no-repeat; background-size: cover; max-width:100%; max-height:100%; height: 30rem; background-position: center center; cursor: pointer;" ></div>
+                <i style="cursor: pointer; height: 30rem; display: flex; align-items: center; width: 2%; justify-content: center; border-top-left-radius: 0; border-bottom-left-radius: 0;" class="fa-solid fa-chevron-right border rounded glassAzul colorWhite" (click)="sigImg(+1)"></i>
+            </div>
             <div class="border rounded glassW" style="overflow-x: auto; overflow-y: hidden; white-space: nowrap; margin-top: 1%; padding-top: 1%;">
                 <ng-container *ngFor="let src of imagenes">
                     <img class="rounded" id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 6rem; cursor: pointer; margin-left: 1%; margin-right: 1%;" (click)="imagen=src">
@@ -31,9 +35,15 @@
             flex-direction: column; align-items: flex-start;">
                 <span style="text-decoration: underline; margin-right: 2%;" class="textRed">Traccion:</span>{{Auto['traccion']}}
             </span>
-            <span style="margin-bottom: 2%; display: flex; margin-left: 4%; margin-right: 4%; height: 100%; justify-content: center; 
-            flex-direction: column; align-items: flex-start;">
-                <span style="text-decoration: underline; margin-right: 2%;" class="textRed">Ubicacion:</span>{{Auto['ubicacion']}}
+            <span style="margin-bottom: 2%;display: flex; margin-left: 4%; margin-right: 4%; height: 100%;
+            justify-content: space-between;flex-direction: row; align-items: center;">
+                <div style="display: flex; flex-direction: column; align-items: flex-start;"><span style="text-decoration: underline; margin-right: 2%;" class="textRed">Ubicacion:</span>{{Auto['ubicacion']}}</div>
+                <form #form="ngForm" style="margin-right: 3%;">
+                    <div class="wsp rounded" (click)="send(form)">
+                        <span *ngIf="!flag" style="display: flex; align-items: center; width: 100%; height: 100%; justify-content: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 2%;"></i> Contactate</span>
+                        <i *ngIf="flag" class="fa-solid fa-spinner ispinner" style="font-size: 3rem; color: aliceblue;"></i>
+                    </div>
+                </form>
             </span>
         </div>
     </div>

@@ -3,14 +3,23 @@ import { ActivatedRoute } from '@angular/router';
 import { ServiciosService } from '../../../servicios/servicios.service';
 import Swal from 'sweetalert2';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { VerImagenComponent } from '../../ver-imagen/ver-imagen.component';
 import { ContactoComponent } from "../../landing/contacto/contacto.component";
+import { FormsModule, NgForm } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
+import { RecaptchaV3Module, ReCaptchaV3Service } from 'ng-recaptcha';
+
+const numero=environment.numero;
+type LoginFormResult = {
+  nomapel: string
+  telefono: string
+};
 
 @Component({
   selector: 'app-auto',
   standalone: true,
-  imports: [CommonModule, VerImagenComponent, ContactoComponent],
+  imports: [FormsModule, RecaptchaV3Module, CommonModule, VerImagenComponent, ContactoComponent],
   templateUrl: './auto.component.html',
   styleUrl: '../lista-autos.component.css'
 })
@@ -32,10 +41,13 @@ export class AutoComponent implements OnInit {
   interiorFlag:Boolean=false;
   entretenimiento:Array<any>=[['bluetooth','Bluetooth'],['radio','Radio'],['android_auto','Android auto']];
   entretenimientoFlag:Boolean=false;
+  intImg:number=0;
+  flag:boolean=false;
 
-  constructor(public ruta:ActivatedRoute, public api:ServiciosService) {}
+  constructor(public ruta:ActivatedRoute, public api:ServiciosService, private viewportScroller: ViewportScroller, private recaptchaV3Service: ReCaptchaV3Service) {}
 
   ngOnInit(): void {    
+    this.viewportScroller.scrollToPosition([0, 0]);
     let datos={
       'uuid': this.ruta.snapshot.paramMap.get('uuid'),
     }
@@ -88,4 +100,81 @@ export class AutoComponent implements OnInit {
     this.verImg=true;
     this.imgID=(id-1);    
   }
+
+  sigImg(i:number){
+    if(this.intImg+i<0 || this.intImg+i>=this.imagenes.length) return;
+    this.intImg = this.intImg+i;
+    this.imagen=this.imagenes[this.intImg];
+  }
+
+  wspW(){
+      let nomapelInput: HTMLInputElement
+      let telefonoInput: HTMLInputElement
+    
+      Swal.fire<LoginFormResult>({
+        title: 'Datos de contacto',
+        html: `
+          <input type="text" id="nomapel" class="swal2-input" placeholder="Nombre y apellido">
+          <input type="text" id="telefono" class="swal2-input" placeholder="Telefono">
+        `,
+        confirmButtonText: 'Enviar',
+        cancelButtonText: 'Cancelar',
+        showCancelButton: true,
+        focusConfirm: false,
+        didOpen: () => {
+          const popup = Swal.getPopup()!
+          nomapelInput = popup.querySelector('#nomapel') as HTMLInputElement
+          telefonoInput = popup.querySelector('#telefono') as HTMLInputElement
+          nomapelInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
+          telefonoInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
+        },
+        preConfirm: () => {
+          const nomapel = nomapelInput.value
+          const telefono = telefonoInput.value
+          if (!nomapel || !telefono) {
+            Swal.showValidationMessage(`Complete los campos`)
+          }else{
+            this.flag=true;
+            let hoy=new Date();
+            let mes = hoy.getMonth()>8 ? (hoy.getMonth()+1) : "0"+(hoy.getMonth()+1);
+            let dia = hoy.getDate()>9 ? hoy.getDate() : "0"+hoy.getDate()
+            let fecha = dia+"-"+mes+"-"+hoy.getFullYear();
+            let dato = {
+              'nomapel': nomapel,
+              'telefono' : telefono,
+              'fecha' : fecha
+            }
+            this.api.contacto(dato).subscribe({
+              next:(value) => {
+                this.flag=false;
+                // if(value.ok) window.open('https://wa.me/'+numero);
+                // if(!value.ok) Swal.fire({title: value.msg, confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+              },
+              error:(err) => {
+                this.flag=false;     
+                Swal.fire({title: err.error.errors.telefono.msg ? err.error.errors.telefono.msg : 'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+              },
+            })
+            window.open('https://wa.me/'+numero);
+          }        
+        },
+      })
+    }
+  
+    public send(form: NgForm): void {
+      if (form.invalid) {
+        for (const control of Object.keys(form.controls)) {
+          form.controls[control].markAsTouched();
+        }
+        return;
+      }
+  
+      this.recaptchaV3Service.execute('importantAction').subscribe(
+        (token)=> {
+          this.wspW();
+        },
+        (error)=> {
+        },
+      );
+    }
 }
