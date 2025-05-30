@@ -152,3 +152,22 @@
         }
     }
 }
+.wsp{
+    border: 1px solid rgb(7,94,84);
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    margin: 0.5rem;
+    background-color: rgb(37,211,102);
+    color: azure;
+    &:hover{
+        background-color: rgb(18,140,126);
+    }
+    @media (max-width: 1000px){
+        
+    }
+}
