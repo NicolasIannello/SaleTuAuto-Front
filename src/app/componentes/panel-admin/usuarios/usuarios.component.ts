@@ -37,7 +37,7 @@ export class UsuariosComponent implements OnInit{
   gestionUserAdmin:boolean=false;
   gestionAutosAdmin:boolean=false;
   // ordenar:string="_id";
-  // orden:string="1";
+  // orden:string="-1";
   // datoBuscar:string="";
   // tipoBuscar:string="nombre";
   // tipoBuscarUser:string="";
