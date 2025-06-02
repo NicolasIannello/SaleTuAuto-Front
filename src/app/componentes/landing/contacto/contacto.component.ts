@@ -68,7 +68,8 @@ export class ContactoComponent {
             'telefono' : telefono,
             'fecha' : fecha,
             'auto': this.auto,
-            'link' : window.location.href
+            'link' : window.location.href,
+            'subject' : "SALE Tu Auto Formulario de contacto"
           }          
           this.api.contacto(dato).subscribe({
             next:(value) => {

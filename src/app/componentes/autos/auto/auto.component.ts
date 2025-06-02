@@ -144,7 +144,8 @@ export class AutoComponent implements OnInit {
               'telefono' : telefono,
               'fecha' : fecha,
               'auto' : this.Auto['marca']+' '+this.Auto['modelo']+' '+this.Auto['version'],
-              'link' : window.location.href
+              'link' : window.location.href,
+              'subject' : "SALE Tu Auto Formulario de contacto"
             }
             this.api.contacto(dato).subscribe({
               next:(value) => {
