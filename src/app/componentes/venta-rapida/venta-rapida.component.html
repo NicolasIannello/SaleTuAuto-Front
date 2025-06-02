@@ -35,7 +35,9 @@
                     </div>
                 </div>
                 <div style="text-align: end; width: 100%;">
-                    <button class="boton border rounded botones envDatos" (click)="display=true">Aceptar</button>
+                    <button class="boton border rounded botones envDatos" (click)="siguiente()">{{aceptarText}}
+                        <i *ngIf="flagspinner" class="fa-solid fa-spinner ispinner" style="font-size: 3rem; color: aliceblue;"></i>
+                    </button>
                 </div>
             </div>
             <div [ngClass]="{ 'oculto':!display }">
