@@ -115,7 +115,7 @@
     </div>
 </div>
 <div class="glass1">
-    <app-contacto [color]="'textWhite'"></app-contacto>
+    <app-contacto [color]="'textWhite'" [auto]="Auto['marca']+' '+Auto['modelo']+' '+Auto['version']"></app-contacto>
 </div>
 
 <app-ver-imagen [ngClass]="{ 'oculto':!verImg }" (messageEvent)="handleMessage($event,'crear')" [imagenes]="imagenes" [imagen]="imgID" [verImg]="verImg"></app-ver-imagen>
