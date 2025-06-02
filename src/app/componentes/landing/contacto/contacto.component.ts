@@ -22,6 +22,7 @@ type LoginFormResult = {
 })
 export class ContactoComponent {
   @Input() color: string | undefined;
+  @Input() auto: string | undefined;
   campos:Array<string>=['','',''];
   alertas:Array<string>=['*','*','*'];
   flag:boolean=false;
@@ -65,8 +66,10 @@ export class ContactoComponent {
           let dato = {
             'nomapel': nomapel,
             'telefono' : telefono,
-            'fecha' : fecha
-          }
+            'fecha' : fecha,
+            'auto': this.auto,
+            'link' : window.location.href
+          }          
           this.api.contacto(dato).subscribe({
             next:(value) => {
               this.flag=false;

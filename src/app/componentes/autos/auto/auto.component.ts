@@ -142,7 +142,9 @@ export class AutoComponent implements OnInit {
             let dato = {
               'nomapel': nomapel,
               'telefono' : telefono,
-              'fecha' : fecha
+              'fecha' : fecha,
+              'auto' : this.Auto['marca']+' '+this.Auto['modelo']+' '+this.Auto['version'],
+              'link' : window.location.href
             }
             this.api.contacto(dato).subscribe({
               next:(value) => {
