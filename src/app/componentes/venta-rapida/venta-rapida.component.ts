@@ -25,6 +25,8 @@ export class VentaRapidaComponent implements OnInit{
   flag:boolean=true;
   tyc:string='';
   display:boolean=false;
+  flagspinner:boolean=false;
+  aceptarText:string='Aceptar';
 
   constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service, public api2:AdminService) {}
   
@@ -41,7 +43,6 @@ export class VentaRapidaComponent implements OnInit{
   
   public send(form: NgForm): void {
     if (form.invalid) {      
-      console.log('hola');
       
       for (const control of Object.keys(form.controls)) {
         form.controls[control].markAsTouched();
@@ -143,4 +144,43 @@ export class VentaRapidaComponent implements OnInit{
 			}			
 		}
 	}
+
+  siguiente(){
+    let flag = true;
+
+    for (let i = 0; i < this.campos.length; i++) {
+      if(this.campos[i]=='') flag=false;
+      this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
+    }
+
+    if(flag) {
+      this.flagspinner=true;
+      this.aceptarText='';
+      let hoy=new Date();
+      let mes = hoy.getMonth()>8 ? (hoy.getMonth()+1) : "0"+(hoy.getMonth()+1);
+      let dia = hoy.getDate()>9 ? hoy.getDate() : "0"+hoy.getDate()
+      let fecha = dia+"-"+mes+"-"+hoy.getFullYear();
+      let dato = {
+        'nomapel': this.campos[0],
+        'telefono' : this.campos[2],
+        'fecha' : fecha,
+        'auto' : this.campos[1],
+        'subject' : "SALE Tu Auto Formulario de Venta rapida",
+        'link' : ''
+      }
+      
+      this.api.contacto(dato).subscribe({
+        next:(value) => {
+          this.display=true;
+          this.flagspinner=false;
+          this.aceptarText='Aceptar';
+        },
+        error:(err) => {
+          this.flagspinner=false;
+          this.aceptarText='Aceptar';
+          Swal.fire({title: err.error.errors.telefono.msg ? err.error.errors.telefono.msg : 'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+        },
+      });
+    }
+  }
 }
