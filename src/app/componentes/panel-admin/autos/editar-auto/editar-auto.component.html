@@ -327,7 +327,7 @@
             </div>
         </div>
         <label>Imagenes del auto: </label>
-        <div style="margin-top: 2%; text-align: center;">
+        <div style="margin-top: 2%; text-align: center;  margin-left: 2%; margin-right: 2%;">
             <span *ngFor="let src of imagenes">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 200px; cursor: pointer;" (click)="verImagen(src.id)">
                 <span *ngIf="src.link!=''" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 2rem; height: 2rem; cursor: pointer;">
@@ -336,10 +336,11 @@
             </span>
         </div>
         <label>Nuevas imagenes del auto: </label>
-        <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
+        <div style="margin-top: 2%; text-align: center; margin-bottom: 4%; margin-left: 2%; margin-right: 2%;">
             <span *ngFor="let src of sources">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
-                <span class="boton glass border rounded textWhite" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 1rem; cursor: pointer;" (click)="cambiarOrden(src.id)">{{src.id}}</span>
+                <span class="glass border rounded textWhite" style="position: relative; left: -110px; bottom: -5px; display: inline-block; width: 1.5rem;">{{src.id}}</span>
+                <i class="fa-regular fa-circle-right boton rounded" style="position: relative; left: -40px; bottom: -10px; display: inline-block; width: 1.5rem; cursor: pointer; font-size: x-large;" (click)="cambiarOrden(src.id)"></i> 
             </span>
         </div>
         <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;">
