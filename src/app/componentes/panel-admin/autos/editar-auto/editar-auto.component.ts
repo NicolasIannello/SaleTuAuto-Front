@@ -110,7 +110,8 @@ export class EditarAutoComponent{
 					const reader = new FileReader();
 					reader.readAsDataURL(element.files![index]);
 
-					reader.onloadend = ()=>{
+					reader.onloadend = async ()=>{
+            await this.sleep(500); 
 						this.sources.push({id: (index+1), link: reader.result, name: element.files![index].name})
 					}
 				}
