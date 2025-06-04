@@ -327,21 +327,24 @@
             </div>
         </div>
         <label>Imagenes del auto: </label>
-        <div style="margin-top: 2%; text-align: center;  margin-left: 2%; margin-right: 2%;">
-            <span *ngFor="let src of imagenes">
+        <div style="text-align: center; display: flex; align-items: flex-end; flex-wrap: wrap; align-items: flex-end; justify-content: center;">
+            <div *ngFor="let src of imagenes" style="margin: 2%;">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 200px; cursor: pointer;" (click)="verImagen(src.id)">
-                <span *ngIf="src.link!=''" style="position: relative; left: -10px; bottom: -5px; display: inline-block; width: 2rem; height: 2rem; cursor: pointer;">
-                    <i class="fa-solid fa-trash-can boton border glass textWhite rounded ibtn" style="width: 2rem; height: 2rem;" (click)="eliminarImg(src)"></i>
-                </span>
-            </span>
+                <div *ngIf="src.link!=''">
+                    <i class="fa-solid fa-trash-can boton border glass textWhite rounded ibtn" style="width: 2rem; height: 2rem; position: relative; left: 180px; bottom: 20px; width: 2rem; height: 2rem; cursor: pointer;" (click)="eliminarImg(src)"></i>
+                </div>
+            </div>
         </div>
-        <label>Nuevas imagenes del auto: </label>
-        <div style="margin-top: 2%; text-align: center; margin-bottom: 4%; margin-left: 2%; margin-right: 2%;">
-            <span *ngFor="let src of sources">
+        <label>Nuevas imagenes del auto: (Estas imagenes reemplazaran a las imagenes actuales)</label>
+        <div style="text-align: center; display: flex; align-items: flex-end; flex-wrap: wrap; align-items: flex-end; justify-content: center;">
+            <div *ngFor="let src of sources" style="margin: 3%;">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
-                <span class="glass border rounded textWhite" style="position: relative; left: -110px; bottom: -5px; display: inline-block; width: 1.5rem;">{{src.id}}</span>
-                <i class="fa-regular fa-circle-right boton rounded" style="position: relative; left: -40px; bottom: -10px; display: inline-block; width: 1.5rem; cursor: pointer; font-size: x-large;" (click)="cambiarOrden(src.id)"></i> 
-            </span>
+                <div>
+                    <span class="glass border rounded textWhite" style="position: relative; left: -15px; bottom: 23px; display: inline-block; width: 1.5rem;">{{src.id}}</span>
+                    <i class="fa-regular fa-circle-left boton rounded" style="position: relative; left: 20px; bottom: 20px; display: inline-block; width: 1.5rem; cursor: pointer; font-size: x-large;" (click)="cambiarOrden(src.id,-2)"></i> 
+                    <i class="fa-regular fa-circle-right boton rounded" style="position: relative; left: 20px; bottom: 20px; display: inline-block; width: 1.5rem; cursor: pointer; font-size: x-large;" (click)="cambiarOrden(src.id,0)"></i> 
+                </div>
+            </div>
         </div>
         <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;">
         <div style="display: flex; justify-content: flex-end;">
