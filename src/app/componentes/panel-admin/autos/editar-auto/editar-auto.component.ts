@@ -226,21 +226,26 @@ export class EditarAutoComponent{
     }
   }
 
-  cambiarOrden(id:number){
+  cambiarOrden(id:number,i:number){
     let index=id-1
     let link=this.sources[index].link;
     let name=this.sources[index].name;
 
-    if(id==this.sources.length){
+    if(id==this.sources.length && i==0){
       this.sources[index].link=this.sources[0].link;
       this.sources[0].link=link;
       this.sources[index].name=this.sources[0].name;
       this.sources[0].name=name;
+    }else if(index==0 && i<0){
+      this.sources[index].link=this.sources[this.sources.length-1].link;
+      this.sources[this.sources.length-1].link=link;
+      this.sources[index].name=this.sources[this.sources.length-1].name;
+      this.sources[this.sources.length-1].name=name;
     }else{
-      this.sources[index].link=this.sources[id].link;
-      this.sources[id].link=link;
-      this.sources[index].name=this.sources[id].name;
-      this.sources[id].name=name;
+      this.sources[index].link=this.sources[id+i].link;
+      this.sources[id+i].link=link;
+      this.sources[index].name=this.sources[id+i].name;
+      this.sources[id+i].name=name;
     }
   }
 
