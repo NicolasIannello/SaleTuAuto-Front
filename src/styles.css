@@ -273,3 +273,10 @@ input, select{
 .glassAzul {
     background-color: var(--red);  
 }
+
+.bg-delete{
+    background-color: rgb(233, 69, 96, 0.3);
+}
+.bg-green{
+    background-color: green;
+}
