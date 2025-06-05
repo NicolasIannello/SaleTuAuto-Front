@@ -12,7 +12,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 export class VerImagenComponent {
   @Output() messageEvent = new EventEmitter<boolean>();
   @Input() imagen:number=0;
-  @Input() imagenes: Array<{link:SafeResourceUrl,id:number}> = [];
+  @Input() imagenes: Array<{link:SafeResourceUrl|string|null,id:number}> = [];
   @Input() verImg:boolean=false;
 
   cerrarModal() {
