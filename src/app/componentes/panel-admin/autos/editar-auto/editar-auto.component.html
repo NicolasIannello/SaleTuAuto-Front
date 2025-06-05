@@ -327,16 +327,29 @@
             </div>
         </div>
         <label>Imagenes del auto: </label>
-        <div style="text-align: center; display: flex; align-items: flex-end; flex-wrap: wrap; align-items: flex-end; justify-content: center;">
-            <div *ngFor="let src of imagenes" style="margin: 2%;">
+        <div cdkDropList [cdkDropListSortingDisabled]="true" class="example-list">
+            <!-- <div *ngFor="let src of imagenes" style="margin: 2%;">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 200px; cursor: pointer;" (click)="verImagen(src.id)">
                 <div *ngIf="src.link!=''">
                     <i class="fa-solid fa-trash-can boton border glass textWhite rounded ibtn" style="width: 2rem; height: 2rem; position: relative; left: 180px; bottom: 20px; width: 2rem; height: 2rem; cursor: pointer;" (click)="eliminarImg(src)"></i>
                 </div>
-            </div>
+            </div> -->
+            <i class="fa-regular fa-plus glass" style="align-content: center; height: 100px; font-size: x-large;" (mouseup)="mouseup(-1,true)"></i> 
+            <ng-container *ngFor="let src of imagenes">
+                    <div style="background-repeat: no-repeat; background-size: contain; background-position: center;" 
+                    [ngStyle]="{'background-image': 'url(' +src.link + ')'}" class="example-box" cdkDrag cdkDragBoundary=".example-list" 
+                    (mousedown)="upID=src.id-1" (mouseup)="mouseup(src.id-1,false)">
+                        <div style="width:100%; height:100%; text-align: right; align-content: end;" [ngClass]="{ 'bg-delete': src.estado==2 || src.estado==3 }">
+                            <span *ngIf="src.estado==1 || src.estado==3" class="bg-green textWhite" style="position: relative; left: 54px; bottom: 77px; font-size: small;">NEW</span> 
+                            <i class="fa-solid fa-expand glass1 boton textWhite" style="padding: 5px; cursor: pointer;" (click)="verImagen(src.id)"></i>
+                            <i class="fa-regular fa-trash-can glass boton textWhite" style="padding: 5px; cursor: pointer;" (click)="eliminarImg(src.id-1)"></i> 
+                        </div>
+                    </div>
+                    <i class="fa-regular fa-plus glass" style="align-content: center; height: 100px; font-size: x-large;" (mouseup)="mouseup(src.id-1,true)"></i> 
+            </ng-container>
         </div>
-        <label>Nuevas imagenes del auto: (Estas imagenes reemplazaran a las imagenes actuales)</label>
-        <div style="text-align: center; display: flex; align-items: flex-end; flex-wrap: wrap; align-items: flex-end; justify-content: center;">
+        <label>Agregar nuevas imagenes del auto:</label>
+        <!-- <div style="text-align: center; display: flex; align-items: flex-end; flex-wrap: wrap; align-items: flex-end; justify-content: center;">
             <div *ngFor="let src of sources" style="margin: 3%;">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
                 <div>
@@ -345,7 +358,20 @@
                     <i class="fa-regular fa-circle-right boton rounded" style="position: relative; left: 20px; bottom: 20px; display: inline-block; width: 1.5rem; cursor: pointer; font-size: x-large;" (click)="cambiarOrden(src.id,0)"></i> 
                 </div>
             </div>
-        </div>
+        </div> -->
+        <!-- <div *ngIf="sources.length>0" cdkDropList class="example-list">
+            <i class="fa-regular fa-plus glass" style="align-content: center; height: 100px; font-size: x-large;" (mouseup)="mouseup(0,true)"></i> 
+            <ng-container *ngFor="let src of sources">
+                <ng-container *ngIf="src.id!=null">
+                    <div style="background-repeat: no-repeat; background-size: contain; background-position: center; max-width:100%; max-height:100%; text-align: right; align-content: end;" 
+                    [ngStyle]="{'background-image': 'url(' +src.link + ')'}" class="example-box" cdkDrag cdkDragBoundary=".example-list" 
+                    (mousedown)="upID=src.id-1" (mouseup)="mouseup(src.id-1,false)">
+                        <i class="fa-regular fa-trash-can glass boton textWhite" style="padding: 5px; cursor: pointer;" (click)="borrar(src.id-1)"></i>
+                    </div>
+                    <i class="fa-regular fa-plus glass" style="align-content: center; height: 100px; font-size: x-large;" (mouseup)="mouseup(src.id-1,true)"></i> 
+                </ng-container>
+            </ng-container>
+        </div> -->
         <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;">
         <div style="display: flex; justify-content: flex-end;">
             <button class="border rounded boton botones" (click)="actualizar()">Actualizar</button>

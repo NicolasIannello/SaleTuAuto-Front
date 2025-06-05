@@ -6,32 +6,34 @@ import { VerImagenComponent } from '../../../ver-imagen/ver-imagen.component';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AdminService } from '../../../../servicios/admin.service';
+import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-editar-auto',
   standalone: true,
-  imports: [CommonModule, VerImagenComponent, FormsModule],
+  imports: [CommonModule, VerImagenComponent, FormsModule, CdkDropList, CdkDrag],
   templateUrl: './editar-auto.component.html',
   styleUrl: '../../usuarios/usuarios.component.css'
 })
 export class EditarAutoComponent{
   @Output() messageEvent = new EventEmitter<boolean>();
   @Input() auto:{[key: string]: any}={descripcion:''};
-  imagenes: Array<{link:SafeResourceUrl,id:number,name:string}> = [];
+  imagenes: Array<{link:SafeResourceUrl|string|null,id:number,name:string,estado:number}> = [];
   //pdf:SafeResourceUrl|null=null;
   verImg:boolean=false;
   imgID:number=-1;
   autoNuevo:{[key: string]: any}={descripcion:''}
   alertas:Array<string>=['','','','','','','','',''];
-  sources: Array<any> = [];
+  //sources: Array<any> = [];
   imgs: any = [];
   //pdfFile: any = [];
   //pdfNuevo:SafeResourceUrl|null=null;
   @ViewChild('imagen') inputImagen!: ElementRef;
   //@ViewChild('pdfTC') inputPDF!: ElementRef;
-  flagElim:boolean=false;
+  //flagElim:boolean=false;
   imgElim:Array<string>=[]
-  imgElimCount:number=1;
+  //imgElimCount:number=1;
+  upID:number|null=null;
 
   constructor(private sanitizer: DomSanitizer, public api:ServiciosService, public apiAdmin:AdminService) {}
 
@@ -44,16 +46,16 @@ export class EditarAutoComponent{
   }
 
   cerrarModal() {
-    this.flagElim=false;
+    //this.flagElim=false;
     this.imgElim=[];
-    this.imgElimCount=1;
+    //this.imgElimCount=1;
     this.imagenes=[];
     //this.pdf=null;
     this.autoNuevo={};
     //this.pdfFile=[];
     //this.pdfNuevo=null;
     this.imgs=[];
-    this.sources=[];
+    //this.sources=[];
     this.alertas=['','','','','','','','',''];
     this.inputImagen.nativeElement.value = "";
     //this.inputPDF.nativeElement.value = "";
@@ -63,13 +65,13 @@ export class EditarAutoComponent{
   async cargarImagenes(imgs:Array<any>, pdf:any){
     this.imagenes=[];
     for (let i = 1; i < imgs.length+1; i++) {      
-      this.imagenes.push({link:'', id:i,name:''});
+      this.imagenes.push({link:'', id:i,name:'',estado:0});
     }
     //this.pdf=null;
     for (let i = 0; i < imgs.length; i++) {      
       this.api.cargarArchivo(imgs[i].img,'autos').then(resp=>{						
         if(resp!=false){
-          this.imagenes[imgs[i].orden-1]={link:resp.url, id:(imgs[i].orden), name:imgs[i].img};
+          this.imagenes[imgs[i].orden-1]={link:resp.url, id:(imgs[i].orden), name:imgs[i].img, estado:0};
         }
       })      
     }    
@@ -93,15 +95,19 @@ export class EditarAutoComponent{
   }
 
   showImg(event: Event){
-		this.sources=[];
+		//this.sources=[];
     this.imgs=[];
     const element = event.currentTarget as HTMLInputElement;
 		let cantidad = element.files?.length || 0;    
 		this.imgs=element.files;
     
 		if(cantidad==0) {
-			this.sources=[];
+			//this.sources=[];
+      for (let i = this.imagenes.length-1; i > 0; i--) {
+        if(this.imagenes[i].estado==1 || this.imagenes[i].estado==3) this.imagenes.splice(i,1)
+      }
 		}else{
+      let base = this.imagenes.length;
 			for (let index = 0; index < cantidad; index++) {
 				var nombreCortado=element.files![index].name.split('.');
 				var extensionArchivo=nombreCortado[nombreCortado.length-1];
@@ -112,7 +118,8 @@ export class EditarAutoComponent{
 
 					reader.onloadend = async ()=>{
             await this.sleep(500); 
-						this.sources.push({id: (index+1), link: reader.result, name: element.files![index].name})
+						//this.sources.push({id: (index+1), link: reader.result, name: element.files![index].name})
+            this.imagenes.push({link:reader.result, id:(index+1+base), name:element.files![index].name, estado:1});
 					}
 				}
 			}			
@@ -197,17 +204,21 @@ export class EditarAutoComponent{
       formData.append('token', localStorage.getItem('token')!);
       formData.append('tipo', '1');
       //if(this.pdfFile.length!=0 && this.pdfFile.length!=undefined) formData.append('pdf', this.pdfFile[0]);
-      if(this.imgs.length!=0 && this.imgs.length!=undefined && !this.flagElim) {
+      if(this.imgs.length!=0 && this.imgs.length!=undefined /*&& !this.flagElim*/) {
         for (let i = 0; i < this.imgs.length; i++) {
           formData.append('img', this.imgs[i]);		
-          formData.append('imgOrden', this.sources[i].name);	
+          //formData.append('imgOrden', this.sources[i].name);	
         }
-      }      
-      if(this.flagElim){
-        for (let i = 0; i < this.imgElim.length; i++) {
-          formData.append('imgElim', this.imgElim[i]);		
-        }
+      }  
+      for (let i = 0; i < this.imagenes.length; i++) {
+        formData.append('imgOrden', this.imagenes[i].name);    
+        formData.append('imgEstado', this.imagenes[i].estado.toString());    
       }
+      //if(this.flagElim){
+        // for (let i = 0; i < this.imgElim.length; i++) {
+        //   formData.append('imgElim', this.imgElim[i]);		
+        // }
+      //}
       for (var key in this.autoNuevo) {
         if(this.autoNuevo[key]===undefined || this.autoNuevo[key]==='') formData.append('unset', key);
       }
@@ -226,35 +237,73 @@ export class EditarAutoComponent{
     }
   }
 
-  cambiarOrden(id:number,i:number){
-    let index=id-1
-    let link=this.sources[index].link;
-    let name=this.sources[index].name;
+  // cambiarOrden(id:number,i:number){
+  //   let index=id-1
+  //   let link=this.sources[index].link;
+  //   let name=this.sources[index].name;
 
-    if(id==this.sources.length && i==0){
-      this.sources[index].link=this.sources[0].link;
-      this.sources[0].link=link;
-      this.sources[index].name=this.sources[0].name;
-      this.sources[0].name=name;
-    }else if(index==0 && i<0){
-      this.sources[index].link=this.sources[this.sources.length-1].link;
-      this.sources[this.sources.length-1].link=link;
-      this.sources[index].name=this.sources[this.sources.length-1].name;
-      this.sources[this.sources.length-1].name=name;
-    }else{
-      this.sources[index].link=this.sources[id+i].link;
-      this.sources[id+i].link=link;
-      this.sources[index].name=this.sources[id+i].name;
-      this.sources[id+i].name=name;
-    }
+  //   if(id==this.sources.length && i==0){
+  //     this.sources[index].link=this.sources[0].link;
+  //     this.sources[0].link=link;
+  //     this.sources[index].name=this.sources[0].name;
+  //     this.sources[0].name=name;
+  //   }else if(index==0 && i<0){
+  //     this.sources[index].link=this.sources[this.sources.length-1].link;
+  //     this.sources[this.sources.length-1].link=link;
+  //     this.sources[index].name=this.sources[this.sources.length-1].name;
+  //     this.sources[this.sources.length-1].name=name;
+  //   }else{
+  //     this.sources[index].link=this.sources[id+i].link;
+  //     this.sources[id+i].link=link;
+  //     this.sources[index].name=this.sources[id+i].name;
+  //     this.sources[id+i].name=name;
+  //   }
+  // }
+
+  eliminarImg(id:any){
+    // if(this.imagenes.length>this.imgElimCount) {
+    //   this.imgElimCount++;
+    //   this.flagElim=true;
+      if(this.imagenes[id].estado==0 || this.imagenes[id].estado==1){
+        this.imgElim.push(this.imagenes[id].name);
+        this.imagenes[id].estado= this.imagenes[id].estado==0 ? 2 : 3;
+      }else{
+        this.imagenes[id].estado= this.imagenes[id].estado==2 ? 0 : 1;
+        if(this.imagenes[id].estado==0){  
+          for (let i = 0; i < this.imgElim.length; i++) {
+            if(this.imgElim[i]==this.imagenes[id].name) this.imgElim.splice(i,1);
+          }
+        }
+      }
+      //this.imagenes[imagen.id-1]={link:'',id:0,name:'',};      
+    //}
   }
 
-  eliminarImg(imagen:any){
-    if(this.imagenes.length>this.imgElimCount) {
-      this.imgElimCount++;
-      this.flagElim=true;
-      this.imgElim.push(this.imagenes[imagen.id-1].name);
-      this.imagenes[imagen.id-1]={link:'',id:0,name:''};
+  mouseup(id:number, flag:boolean){
+    if(this.upID!=null){
+      let link=this.imagenes[this.upID].link;
+      let name=this.imagenes[this.upID].name;
+      let estado=this.imagenes[this.upID].estado;
+      if(flag){
+        if(this.upID>id+1) this.imagenes.splice(this.upID,1);
+        if(id==-1){
+          this.imagenes.unshift({link: link, id:-1, name:name, estado:estado});
+        }else{
+          this.imagenes.splice(id+1, 0, {link: link, id:-1, name:name, estado:estado})
+          if(this.upID<id+1) this.imagenes.splice(this.upID,1);
+        }
+        for (let i = 0; i < this.imagenes.length; i++) {
+          this.imagenes[i].id=i+1;          
+        }
+      }else{
+        this.imagenes[this.upID].link=this.imagenes[id].link;
+        this.imagenes[id].link=link;
+        this.imagenes[this.upID].name=this.imagenes[id].name;
+        this.imagenes[id].name=name;
+        this.imagenes[this.upID].estado=this.imagenes[id].estado;
+        this.imagenes[id].estado=estado;
+      }
+      this.upID=null;
     }
   }
 }
