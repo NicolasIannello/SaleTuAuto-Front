@@ -26,6 +26,28 @@
                     </div>
                 </div>
                 <div class="linea" style="width: 100%;">
+                    <div class="col-3" style="width: 100%;">
+                        <label class="textBlue" for="nomapel">Provincia </label><span class="msg">{{alertas[3]}}</span>
+                        <select class="effect-1" [(ngModel)]="campos[3]">
+                            <option value=-1 selected hidden>Seleccione su Provincia</option>
+                            <ng-container *ngFor="let l of Provincias, index as i">
+                                <option value="{{i}}" selected>{{Provincias[i].nombre}}</option>
+                            </ng-container>
+                        </select>
+                        <span class="focus-border"></span>
+                    </div>
+                    <div class="col-3" style="width: 100%;">
+                        <label class="textBlue" for="nomapel">Localidad </label><span class="msg">{{alertas[4]}}</span>
+                        <select class="effect-1" [(ngModel)]="campos[4]">
+                            <option value=-1 selected hidden>Seleccione su Localidad</option>
+                            <ng-container *ngIf="campos[3]!=-1"><ng-container *ngFor="let l of Provincias[campos[3]].localidades index as i">
+                                <option value="{{i}}" selected>{{Provincias[campos[3]].localidades[i]}}</option>
+                            </ng-container></ng-container>
+                        </select>
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="linea" style="width: 100%;">
                     <div class="col-3" style="margin-bottom: 2%; width: 100%;">
                         <label class="textBlue">Descripcion </label><span class="msg">{{alertas[1]}}</span>
                         <div style="display: flex;">
@@ -41,7 +63,7 @@
                 </div>
             </div>
             <div [ngClass]="{ 'oculto':!display }">
-                <label>Imagenes del auto: </label><span class="msg">{{alertas[3]}}</span>
+                <label>Imagenes del auto: </label><span class="msg"></span>
                 <!-- <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
                     <span *ngFor="let src of sources">
                         <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;"> -->

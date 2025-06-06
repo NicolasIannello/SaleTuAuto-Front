@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { AdminService } from '../../servicios/admin.service';
 import { EMPTY } from 'rxjs';
 import { ContactoComponent } from "../landing/contacto/contacto.component";
+import { Provincias } from './provincias';
+import { provincias } from './provincias-data';
 
 @Component({
   selector: 'app-venta-rapida',
@@ -16,8 +18,8 @@ import { ContactoComponent } from "../landing/contacto/contacto.component";
   styleUrl: '../landing/inicio/inicio.component.css'
 })
 export class VentaRapidaComponent implements OnInit{
-  campos:Array<string>=['','',''];
-  alertas:Array<string>=['*','*','*','*'];
+  campos:Array<any>=['','','',-1,-1];
+  alertas:Array<string>=['*','*','*','*','*','*'];
   sources: Array<any> = [];
   fotos:any = []
   sourcesAdicionales: Array<any> = [];
@@ -27,6 +29,7 @@ export class VentaRapidaComponent implements OnInit{
   display:boolean=false;
   flagspinner:boolean=false;
   aceptarText:string='Aceptar';
+  Provincias:Provincias[]=provincias;
 
   constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service, public api2:AdminService) {}
   
@@ -63,16 +66,17 @@ export class VentaRapidaComponent implements OnInit{
     this.flag=true;
     for (let i = 0; i < this.campos.length; i++) {
       if(this.campos[i]=='') this.flag=false;
-      this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
+      if(this.campos[i]==-1) this.flag=false;      
+      this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : this.campos[i]==-1 ? 'El campo es obligatorio' : '*';
     }
-    if(this.fotos.length<7) this.flag=false;
-    this.alertas[3]= this.fotos.length<7 ? 'Los campos con * son obligatorio' : '*';
-    for (let i = 0; i < this.fotos.length; i++) {
-      if(this.fotos[i] == undefined) {
-        this.flag=false;
-        this.alertas[3]='Los campos con * son obligatorio';
-      }
-    }
+    // if(this.fotos.length<7) this.flag=false;
+    // this.alertas[3]= this.fotos.length<7 ? 'Los campos con * son obligatorio' : '*';
+    // for (let i = 0; i < this.fotos.length; i++) {
+    //   if(this.fotos[i] == undefined) {
+    //     this.flag=false;
+    //     this.alertas[3]='Los campos con * son obligatorio';
+    //   }
+    // }
     
     if(this.flag){
       const { value: accept } = await Swal.fire({
@@ -92,6 +96,7 @@ export class VentaRapidaComponent implements OnInit{
         formData.append('matricula', this.campos[0].toUpperCase());
         formData.append('descripcion', this.campos[1]);
         formData.append('telefono', this.campos[2]);
+        formData.append('ubicacion', this.Provincias[this.campos[3]].nombre+' '+this.Provincias[this.campos[3]].localidades[this.campos[4]]);
         for (let i = 0; i < this.fotos.length; i++) {
           formData.append('img', this.fotos[i]);  
         }
@@ -150,7 +155,8 @@ export class VentaRapidaComponent implements OnInit{
 
     for (let i = 0; i < this.campos.length; i++) {
       if(this.campos[i]=='') flag=false;
-      this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : '*';
+      if(this.campos[i]==-1) this.flag=false;      
+      this.alertas[i]= this.campos[i]=='' ? 'El campo es obligatorio' : this.campos[i]==-1 ? 'El campo es obligatorio' : '*';
     }
 
     if(flag) {
@@ -166,7 +172,8 @@ export class VentaRapidaComponent implements OnInit{
         'fecha' : fecha,
         'auto' : this.campos[1],
         'subject' : "SALE Tu Auto Formulario de Venta rapida",
-        'link' : ''
+        'link' : '',
+        'ubicacion' : this.Provincias[this.campos[3]].nombre+' '+this.Provincias[this.campos[3]].localidades[this.campos[4]]
       }
       
       this.api.contacto(dato).subscribe({
