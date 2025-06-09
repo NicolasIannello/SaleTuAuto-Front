@@ -336,7 +336,7 @@
             </div> -->
             <i class="fa-regular fa-plus glass" style="align-content: center; height: 100px; font-size: x-large;" (mouseup)="mouseup(-1,true)"></i> 
             <ng-container *ngFor="let src of imagenes">
-                    <div style="background-repeat: no-repeat; background-size: contain; background-position: center;" 
+                    <div *ngIf="src.estado!=2 && src.estado!=3" style="background-repeat: no-repeat; background-size: contain; background-position: center;" 
                     [ngStyle]="{'background-image': 'url(' +src.link + ')'}" class="example-box" cdkDrag cdkDragBoundary=".example-list" 
                     (mousedown)="upID=src.id-1" (mouseup)="mouseup(src.id-1,false)">
                         <div style="width:100%; height:100%; text-align: right; align-content: end;" [ngClass]="{ 'bg-delete': src.estado==2 || src.estado==3 }">
@@ -345,7 +345,7 @@
                             <i class="fa-regular fa-trash-can glass boton textWhite" style="padding: 5px; cursor: pointer;" (click)="eliminarImg(src.id-1)"></i> 
                         </div>
                     </div>
-                    <i class="fa-regular fa-plus glass" style="align-content: center; height: 100px; font-size: x-large;" (mouseup)="mouseup(src.id-1,true)"></i> 
+                    <i *ngIf="src.estado!=2 && src.estado!=3" class="fa-regular fa-plus glass" style="align-content: center; height: 100px; font-size: x-large;" (mouseup)="mouseup(src.id-1,true)"></i> 
             </ng-container>
         </div>
         <label>Agregar nuevas imagenes del auto:</label>
