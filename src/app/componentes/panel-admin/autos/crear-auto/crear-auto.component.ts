@@ -222,15 +222,17 @@ export class CrearAutoComponent implements OnInit{
     // if(this.fotos.length==0) flag=false;
     // this.alertas[8]= this.fotos.length==0 ? 'Campo obligatorio' : '';
     // this.alertas[8]= this.pdf==null ? 'Campo obligatorio' : '';
-    if(this.fotos.length<7) flag=false;
-    this.alertas[8]= this.fotos.length<7 ? 'Los campos con * son obligatorio' : '*';
-    for (let i = 0; i < this.fotos.length; i++) {
-      if(this.fotos[i] == undefined) {
-        flag=false;
-        this.alertas[8]='Los campos con * son obligatorio';
-      }
-    }
-
+    // if(this.fotos.length<7) flag=false;
+    // this.alertas[8]= this.fotos.length<7 ? 'Los campos con * son obligatorio' : '*';
+    // for (let i = 0; i < this.fotos.length; i++) {
+    //   if(this.fotos[i] == undefined) {
+    //     flag=false;
+    //     this.alertas[8]='Los campos con * son obligatorio';
+    //   }
+    // }
+    if(this.fotosAdicionales<=0) flag=false;
+    this.alertas[9]= this.fotos.length<=0 ? 'Campo obligatorio' : '';
+    
     if(flag){
       const formData = new FormData();
       formData.append('marca', this.datos[0]);
@@ -284,10 +286,10 @@ export class CrearAutoComponent implements OnInit{
 
       formData.append('token', localStorage.getItem('token')!);
       formData.append('tipo', '1');
-			for (let i = 0; i < this.fotos.length; i++) {
-				formData.append('img', this.fotos[i]);  
-        formData.append('imgOrden', this.sources[i].name);	
-			}
+			// for (let i = 0; i < this.fotos.length; i++) {
+			// 	formData.append('img', this.fotos[i]);  
+      //   formData.append('imgOrden', this.sources[i].name);	
+			// }
       for (let i = 0; i < this.fotosAdicionales.length; i++) {
         formData.append('img', this.fotosAdicionales[i]);
         formData.append('imgOrden', this.sourcesAdicionales[i].name);

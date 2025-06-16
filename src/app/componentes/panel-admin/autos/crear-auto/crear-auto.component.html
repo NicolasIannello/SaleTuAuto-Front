@@ -254,7 +254,7 @@
             </div>
         </div>
 
-        <label>Imagenes del auto: </label><span class="msg">*{{alertas[8]}}</span>
+        <label>Imagenes del auto: </label><span class="msg">*{{alertas[9]}}</span>
         <!-- <div style="margin-top: 2%; text-align: center; margin-bottom: 4%;">
             <span *ngFor="let src of sources">
                 <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
@@ -262,7 +262,7 @@
             </span>
         </div>
         <input type="file" name="imagen" id="imagen" #imagen accept="image/*," multiple (change)="showImg($event)" style="margin-bottom: 2%;"> -->
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <!-- <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
             <div style="max-width: 100%; min-width: 15rem;">
                 <label>Foto frontal: </label><span class="msg">*</span>
                 <div style="margin-top: 2%; margin-bottom: 4%;">
@@ -344,9 +344,9 @@
                 </div>
                 <input type="file" name="imagen" id="imagen" #imagen accept="image/*," (change)="showImg($event, 8)" style="margin-bottom: 2%;">
             </div>
-        </div>
+        </div> -->
         <div style="max-width: 100%; min-width: 15rem;">
-            <label>Fotos adicionales: </label>
+            <!-- <label>Fotos adicionales: </label> -->
             <div style="margin-top: 2%; margin-bottom: 4%;">
                 <span *ngFor="let src of sourcesAdicionales">
                     <img id=foto{{src.id}} src="{{src.link}}" alt="" style="width: 100px;">
