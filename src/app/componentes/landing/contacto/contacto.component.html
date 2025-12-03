@@ -39,21 +39,21 @@
     <div class="margin5 seccion" style="margin-top: 0; margin-bottom: 0; padding-top: 5rem; padding-bottom: 5rem;">
         <div class="textRed titulo" style="font-weight: bold; text-transform: uppercase; font-size: xxx-large; margin-bottom: 5rem;">Comunícate con nosotros</div>
         <form #form="ngForm">
-            <div class="wsp rounded" (click)="send(form)">
+            <div class="wsp rounded" (click)="wspW()">
                 <span *ngIf="!flag" style="display: flex; align-items: center; width: 100%; height: 100%; justify-content: center;"><i class="fa-brands fa-whatsapp" style="margin-right: 2%;"></i> Contactate</span>
                 <i *ngIf="flag" class="fa-solid fa-spinner ispinner" style="font-size: 3rem; color: aliceblue;"></i>
             </div>
         </form>
-        <div style="margin-top: 4rem; width: 100%; display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+        <!-- <div style="margin-top: 4rem; width: 100%; display: flex; justify-content: space-evenly; flex-wrap: wrap;">
             <div>
-                <h2 class="textRed titulo" style="text-decoration: underline;">Representante Comercial Necochea:</h2>
-                <span [ngClass]="color"><i class="fa-solid fa-user" style="margin-right: 1%;"></i>Carolina Gómez.</span>
+                <h2 class="textRed titulo" style="text-decoration: underline;"></h2>
+                <span [ngClass]="color"><i class="fa-solid fa-user" style="margin-right: 1%;"></i></span>
             </div>
             <div>
                 <h2 class="textRed titulo" style="text-decoration: underline;">Ubicación de la agencia:</h2>
-                <span class="hoverRed" [ngClass]="color" style="cursor: pointer;" (click)="mapsG()" ><i class="fa-solid fa-location-dot" style="margin-right: 1%;"></i>Diagonal San Martin N 1051, Necochea Buenos Aires.</span>
+                <span class="hoverRed" [ngClass]="color" style="cursor: pointer;" (click)="mapsG()" ><i class="fa-solid fa-location-dot" style="margin-right: 1%;"></i></span>
             </div>
-        </div>
+        </div> -->
     </div>
     </div>
 <!-- </div> -->

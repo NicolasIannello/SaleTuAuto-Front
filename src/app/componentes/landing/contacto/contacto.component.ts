@@ -32,60 +32,61 @@ export class ContactoComponent {
   constructor(public api:ServiciosService, private recaptchaV3Service: ReCaptchaV3Service) {}
 
   wspW(){
-    let nomapelInput: HTMLInputElement
-    let telefonoInput: HTMLInputElement
+    window.open('https://wa.me/'+numero);
+    // let nomapelInput: HTMLInputElement
+    // let telefonoInput: HTMLInputElement
   
-    Swal.fire<LoginFormResult>({
-      title: 'Datos de contacto',
-      html: `
-        <input type="text" id="nomapel" class="swal2-input" placeholder="Nombre y apellido">
-        <input type="text" id="telefono" class="swal2-input" placeholder="Telefono">
-      `,
-      confirmButtonText: 'Enviar',
-      cancelButtonText: 'Cancelar',
-      showCancelButton: true,
-      focusConfirm: false,
-      didOpen: () => {
-        const popup = Swal.getPopup()!
-        nomapelInput = popup.querySelector('#nomapel') as HTMLInputElement
-        telefonoInput = popup.querySelector('#telefono') as HTMLInputElement
-        nomapelInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
-        telefonoInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
-      },
-      preConfirm: () => {
-        const nomapel = nomapelInput.value
-        const telefono = telefonoInput.value
-        if (!nomapel || !telefono) {
-          Swal.showValidationMessage(`Complete los campos`)
-        }else{
-          this.flag=true;
-          let hoy=new Date();
-          let mes = hoy.getMonth()>8 ? (hoy.getMonth()+1) : "0"+(hoy.getMonth()+1);
-          let dia = hoy.getDate()>9 ? hoy.getDate() : "0"+hoy.getDate()
-          let fecha = dia+"-"+mes+"-"+hoy.getFullYear();
-          let dato = {
-            'nomapel': nomapel,
-            'telefono' : telefono,
-            'fecha' : fecha,
-            'auto': this.auto,
-            'link' : window.location.href,
-            'subject' : "SALE Tu Auto Formulario de contacto"
-          }          
-          this.api.contacto(dato).subscribe({
-            next:(value) => {
-              this.flag=false;
-              // if(value.ok) window.open('https://wa.me/'+numero);
-              // if(!value.ok) Swal.fire({title: value.msg, confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-            },
-            error:(err) => {
-              this.flag=false;     
-              Swal.fire({title: err.error.errors.telefono.msg ? err.error.errors.telefono.msg : 'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
-            },
-          })
-          window.open('https://wa.me/'+numero);
-        }        
-      },
-    })
+    // Swal.fire<LoginFormResult>({
+    //   title: 'Datos de contacto',
+    //   html: `
+    //     <input type="text" id="nomapel" class="swal2-input" placeholder="Nombre y apellido">
+    //     <input type="text" id="telefono" class="swal2-input" placeholder="Telefono">
+    //   `,
+    //   confirmButtonText: 'Enviar',
+    //   cancelButtonText: 'Cancelar',
+    //   showCancelButton: true,
+    //   focusConfirm: false,
+    //   didOpen: () => {
+    //     const popup = Swal.getPopup()!
+    //     nomapelInput = popup.querySelector('#nomapel') as HTMLInputElement
+    //     telefonoInput = popup.querySelector('#telefono') as HTMLInputElement
+    //     nomapelInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
+    //     telefonoInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
+    //   },
+    //   preConfirm: () => {
+    //     const nomapel = nomapelInput.value
+    //     const telefono = telefonoInput.value
+    //     if (!nomapel || !telefono) {
+    //       Swal.showValidationMessage(`Complete los campos`)
+    //     }else{
+    //       this.flag=true;
+    //       let hoy=new Date();
+    //       let mes = hoy.getMonth()>8 ? (hoy.getMonth()+1) : "0"+(hoy.getMonth()+1);
+    //       let dia = hoy.getDate()>9 ? hoy.getDate() : "0"+hoy.getDate()
+    //       let fecha = dia+"-"+mes+"-"+hoy.getFullYear();
+    //       let dato = {
+    //         'nomapel': nomapel,
+    //         'telefono' : telefono,
+    //         'fecha' : fecha,
+    //         'auto': this.auto,
+    //         'link' : window.location.href,
+    //         'subject' : "SALE Tu Auto Formulario de contacto"
+    //       }          
+    //       this.api.contacto(dato).subscribe({
+    //         next:(value) => {
+    //           this.flag=false;
+    //           // if(value.ok) window.open('https://wa.me/'+numero);
+    //           // if(!value.ok) Swal.fire({title: value.msg, confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+    //         },
+    //         error:(err) => {
+    //           this.flag=false;     
+    //           Swal.fire({title: err.error.errors.telefono.msg ? err.error.errors.telefono.msg : 'Ocurrio un error', confirmButtonText:'Aceptar',confirmButtonColor:'#3083dc'});
+    //         },
+    //       })
+    //       window.open('https://wa.me/'+numero);
+    //     }        
+    //   },
+    // })
   }
 
   public send(form: NgForm): void {
